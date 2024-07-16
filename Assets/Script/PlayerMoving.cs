@@ -27,15 +27,15 @@ public class PlayerMoving : MonoBehaviour
         {
             movement = transform.up;
         }
-        else if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow))
         {
             movement = transform.right;
         }
-        else if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.DownArrow))
         {
             movement = -transform.up;
         }
-        else if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
             movement = -transform.right;
         }
