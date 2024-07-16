@@ -356,6 +356,7 @@
 "Assets/Script/PlayerMoving.cs"
 "Assets/Script/RazerMaker.cs"
 "Assets/Script/RazerMoving.cs"
+"Assets/Script/RocketMoving.cs"
 -langversion:9.0
 /deterministic
 /optimize+
