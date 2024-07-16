@@ -15,6 +15,10 @@ public class ScoreManager : MonoBehaviour
 
     }
 
+    public void IncreaseKillCount()
+    {
+        killCount++;
+    }
     // Update is called once per frame
     void Update()
     { 

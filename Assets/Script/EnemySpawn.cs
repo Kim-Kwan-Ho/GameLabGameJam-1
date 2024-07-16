@@ -20,14 +20,10 @@ public class EnemySpawner : MonoBehaviour
     {
         // Generate a random point within a sphere around the center position
         Vector3 randomDirection = Random.insideUnitSphere * spawnRadius;
-        Debug.Log("The enemy has been spawned");
         randomDirection.y = Mathf.Abs(randomDirection.y); 
 
         Vector3 spawnPosition = centerPosition.position + randomDirection;
 
-        
-        
-        Debug.Log(obj);
         Instantiate(obj, spawnPosition, Quaternion.identity);
     }
 }
