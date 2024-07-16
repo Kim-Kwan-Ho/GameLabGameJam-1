@@ -52,6 +52,7 @@ public class CameraMoving : MonoBehaviour
 
     IEnumerator OrbitAround(int caseNum)
     {
+        float curTimescale = Time.timeScale;
         Time.timeScale = 0;
         float starttime = Time.realtimeSinceStartup;
         if(caseNum == 0)
@@ -147,12 +148,12 @@ public class CameraMoving : MonoBehaviour
             player.transform.Rotate(-90, 0, 0);           
         }
         
-        Time.timeScale = 1;
+        Time.timeScale = curTimescale;
     }
     IEnumerator OrbitCooldown()
     {
         isOrbiting = true;
-        yield return new WaitForSeconds(cooltime);
+        yield return new WaitForSeconds(0.1f);
         isOrbiting = false;
     }
 }
