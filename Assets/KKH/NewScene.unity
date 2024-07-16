@@ -2054,6 +2054,7 @@ MonoBehaviour:
   target: {fileID: 1329720079}
   distance: 31
   orbitSpeed: 1
+  cooltime: 1
   player: {fileID: 0}
 --- !u!1 &1187836654
 GameObject:
