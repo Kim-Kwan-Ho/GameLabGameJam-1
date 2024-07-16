@@ -26,10 +26,9 @@ public class RazerMaker : MonoBehaviour
     IEnumerator RandRazer()
     {
 
-        int randomXYZ = Random.Range(0, 4);
+        int randomXYZ = Random.Range(0, 3);
         float randY = Random.Range(1, 20);
-        float randX = Random.Range(-9, 10);
-        float randZ = Random.Range(-9, 10);
+        float randXZ = Random.Range(-9, 10);
         if (randomXYZ == 0)
         {
             int dirRandom = Random.Range(0, 4); //0=PY, 1=NY, 2=NZ, 3=PZ
@@ -39,13 +38,13 @@ public class RazerMaker : MonoBehaviour
             {
             
                 case 0://Z-razer and PY
-                    position = new Vector3(0, -10, randZ);
+                    position = new Vector3(0, -10, randXZ);
 
                     GameObject razer = Instantiate(razers[0], position, Quaternion.identity);
                     razer.GetComponent<RazerMoving>().razerType = RazerMoving.RazerType.PY;
                     break;
                 case 1:
-                    position = new Vector3(0, 30, randZ);
+                    position = new Vector3(0, 30, randXZ);
                     GameObject razer1 = Instantiate(razers[0], position, Quaternion.identity);
                     
                     razer1.GetComponent<RazerMoving>().razerType = RazerMoving.RazerType.NY;
@@ -80,12 +79,12 @@ public class RazerMaker : MonoBehaviour
                     razer1.GetComponent<RazerMoving>().razerType = RazerMoving.RazerType.NX;
                     break;
                 case 2:
-                    position = new Vector3(randX, -10, 0);
+                    position = new Vector3(randXZ, -10, 0);
                     GameObject razer2 = Instantiate(razers[1], position, Quaternion.identity);
                     razer2.GetComponent<RazerMoving>().razerType = RazerMoving.RazerType.PY;
                     break;
                 case 3:
-                    position = new Vector3(randX, 30, 0);
+                    position = new Vector3(randXZ, 30, 0);
                     GameObject razer3 = Instantiate(razers[1], position, Quaternion.identity);
                     razer3.GetComponent<RazerMoving>().razerType = RazerMoving.RazerType.NY;
                     break;
@@ -98,58 +97,27 @@ public class RazerMaker : MonoBehaviour
             switch (dirRandom)
             {
                 case 0:
-                    position = new Vector3(-20, 10, randZ);
+                    position = new Vector3(-20, 10, randXZ);
                     GameObject razer = Instantiate(razers[2], position, Quaternion.identity);
                     razer.GetComponent<RazerMoving>().razerType = RazerMoving.RazerType.PX;
                     break;
                 case 1:
-                    position = new Vector3(20, 10, randZ);
+                    position = new Vector3(20, 10, randXZ);
                     GameObject razer1 = Instantiate(razers[2], position, Quaternion.identity);
                     razer1.GetComponent<RazerMoving>().razerType = RazerMoving.RazerType.NX;
                     break;
                 case 2:
-                    position = new Vector3(randX, 10, -20);
+                    position = new Vector3(randXZ, 10, -20);
                     GameObject razer2 = Instantiate(razers[2], position, Quaternion.identity);
                     razer2.GetComponent<RazerMoving>().razerType = RazerMoving.RazerType.PZ;
                     break;
                 case 3:
-                    position = new Vector3(randX, 10, 20);
+                    position = new Vector3(randXZ, 10, 20);
                     GameObject razer3 = Instantiate(razers[2], position, Quaternion.identity);
                     razer3.GetComponent<RazerMoving>().razerType = RazerMoving.RazerType.NZ;
                     break;
             }
 
-        }
-        else if (randomXYZ == 3)
-        {
-            int dirRandom = Random.Range(0, 6); 
-            switch(dirRandom)
-            {
-                case 0:
-                    Vector3 position = new Vector3(randX, 20, randZ);
-                    GameObject razer = Instantiate(razers[3], position, Quaternion.identity);
-                    break;
-                case 1:
-                    Vector3 position1 = new Vector3(randX, 0, randZ);
-                    GameObject razer1 = Instantiate(razers[3], position1, Quaternion.identity);
-                    break;
-                case 2:
-                    Vector3 position2 = new Vector3(10, randY, randZ);
-                    GameObject razer2 = Instantiate(razers[3], position2, Quaternion.identity);
-                    break;
-                case 3:
-                    Vector3 position3 = new Vector3(-10, randY, randZ);
-                    GameObject razer3 = Instantiate(razers[3], position3, Quaternion.identity);
-                    break;
-                case 4:
-                    Vector3 position4 = new Vector3(randX, randY, 10);
-                    GameObject razer4 = Instantiate(razers[3], position4, Quaternion.identity);
-                    break;
-                case 5:
-                    Vector3 position5 = new Vector3(randX, randY, -10);
-                    GameObject razer5 = Instantiate(razers[3], position5, Quaternion.identity);
-                    break;
-            }
         }
         yield return new WaitForSeconds(1.5f);
         cooltime = false;
