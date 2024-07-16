@@ -52,6 +52,7 @@ public class PlayerAttack : MonoBehaviour
 
         if (_enemy == null && !_isSearching)
         {
+            _isSearching = true;
             StartCoroutine(CoSearchEnemy());
         }
         else if (_enemy != null && _attackable)
@@ -63,12 +64,8 @@ public class PlayerAttack : MonoBehaviour
 
     private IEnumerator CoSearchEnemy()
     {
-        _isSearching = true;
-
-        RaycastHit hit;
-        // Physics.BoxCast (레이저를 발사할 위치, 사각형의 각 좌표의 절판 크기, 발사 방향, 충돌 결과, 회전 각도, 최대 거리)
         Collider[] col = Physics.OverlapSphere(transform.position, _searchSize, _enemyLayer);
-        if (col[0] != null)
+        if (col.Length >= 1 && col[0] != null)
         {
             _isSearching = false;
             _enemy = col[0].transform.gameObject;
