@@ -26,7 +26,7 @@ public class RazerMaker : MonoBehaviour
     IEnumerator RandRazer()
     {
 
-        int randomXYZ = Random.Range(1, 3);
+        int randomXYZ = Random.Range(0, 3);
         float randY = Random.Range(1, 20);
         float randXZ = Random.Range(-9, 10);
         if (randomXYZ == 0)

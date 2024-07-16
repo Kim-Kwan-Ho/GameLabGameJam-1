@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class CameraMoving : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class CameraMoving : MonoBehaviour
     public float orbitSpeed = 10.0f;  // 카메라가 회전하는 속도
 
     private float angle = 0.0f;  // 현재의 각도
+    private float Yangle = 0.0f;
     private bool isOrbiting = false;  // 코루틴 실행 중 여부 확인용 변수
     public GameObject player;
 
@@ -29,28 +31,37 @@ public class CameraMoving : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && !isOrbiting)
         {
-            StartCoroutine(OrbitAround());
+            StartCoroutine(OrbitAround(0));
+        }
+        if (Input.GetKeyDown(KeyCode.Q) && !isOrbiting)
+        {
+            StartCoroutine(OrbitAround(1));
+        }
+        if (Input.GetKeyDown(KeyCode.E) && !isOrbiting)
+        {
+            StartCoroutine(OrbitAround(2));
         }
 
-        transform.LookAt(target);
+
+        //transform.LookAt(target);
         
 
     }
 
-    IEnumerator OrbitAround()
+    IEnumerator OrbitAround(int caseNum)
     {
         isOrbiting = true;
         Time.timeScale = 0;
         float targetAngle;
         float starttime = Time.realtimeSinceStartup;
-        if(angle == 0.0f)
+        if(caseNum == 0)
         {
             targetAngle = angle + 90.0f;  // 목표 각도 설정
-            
+            float rotProgress = 0;
             while (angle < targetAngle)
             {
                 
-                angle = (Time.realtimeSinceStartup-starttime) * orbitSpeed;  // 회전할 각도 계산
+                angle = angle + (Time.realtimeSinceStartup-starttime) * orbitSpeed;  // 회전할 각도 계산
                 
 
                 if (angle > targetAngle)
@@ -58,38 +69,88 @@ public class CameraMoving : MonoBehaviour
                     angle = targetAngle;  // 목표 각도를 초과하지 않도록 설정
                 }
 
-                float radians = angle * Mathf.Deg2Rad;  // 라디안으로 변환
-                transform.position = new Vector3(0, Mathf.Sin(radians) * distance, -Mathf.Cos(radians) * distance) + target.position;
-                yield return null;
-                player.transform.rotation = Quaternion.Euler(90, 0, 0);
-            }
-        }
-        else
-        {
-            targetAngle = angle - 90.0f;  // 목표 각도 설정
-            while (angle > targetAngle)
-            {
-                angle = 90 - (Time.realtimeSinceStartup-starttime) * orbitSpeed;
+                //float radians = angle * Mathf.Deg2Rad;  // 라디안으로 변환
+                //transform.position = new Vector3(0, Mathf.Sin(radians) * distance, -Mathf.Cos(radians) * distance) + target.position;
+                //transform.rotation = Quaternion.Euler(angle, 0, 0);
+                float step = orbitSpeed*(Time.realtimeSinceStartup-starttime);
 
-                if (angle < targetAngle)
+                if (rotProgress + step > 90)
+                {
+                    step = 90 - rotProgress;
+                }
+                transform.RotateAround(target.position, transform.right, step);
+                rotProgress += step;
+                if(rotProgress >= 90)
+                {
+                    break;
+                }
+                yield return null;
+                
+            }
+            player.transform.Rotate(90, 0, 0);
+        }
+
+        if(caseNum == 1)
+        {
+            targetAngle = angle + 90.0f;  // 목표 각도 설정
+            float rotProgress = 0;
+            while (angle < targetAngle)
+            {
+                
+                angle = angle + (Time.realtimeSinceStartup-starttime) * orbitSpeed;  // 회전할 각도 계산        
+                if (angle > targetAngle)
                 {
                     angle = targetAngle;  // 목표 각도를 초과하지 않도록 설정
                 }
+                float step = orbitSpeed*(Time.realtimeSinceStartup-starttime);
 
-                float radians = angle * Mathf.Deg2Rad;  // 라디안으로 변환
-                transform.position = new Vector3(0, Mathf.Sin(radians) * distance, -Mathf.Cos(radians) * distance) + target.position;
-                player.transform.rotation = Quaternion.Euler(0, 0, 0);
+                if (rotProgress + step > 90)
+                {
+                    step = 90 - rotProgress;
+                }
+                transform.RotateAround(target.position, transform.up, step);
+                rotProgress += step;
+                if(rotProgress >= 90)
+                {
+                    break;
+                }
                 yield return null;
+                
             }
+            player.transform.Rotate(0, 90, 0);
         }
-        /*if(PlayerMoving.view == PlayerMoving.viewState.TOP)
+
+ 
+        if(caseNum == 2)
         {
-            PlayerMoving.view = PlayerMoving.viewState.SIDE;
-        }
-        else
-        {
-            PlayerMoving.view = PlayerMoving.viewState.TOP;
-        }*/
+            targetAngle = angle + 90.0f;  // 목표 각도 설정
+            float rotProgress = 0;
+            while (angle < targetAngle)
+            {
+                
+                angle = angle + (Time.realtimeSinceStartup-starttime) * orbitSpeed;  // 회전할 각도 계산        
+                if (angle > targetAngle)
+                {
+                    angle = targetAngle;  // 목표 각도를 초과하지 않도록 설정
+                }
+                float step = orbitSpeed*(Time.realtimeSinceStartup-starttime);
+
+                if (rotProgress + step > 90)
+                {
+                    step = 90 - rotProgress;
+                }
+                transform.RotateAround(target.position, -transform.up, step);
+                rotProgress += step;
+                if(rotProgress >= 90)
+                {
+                    break;
+                }
+                yield return null;
+                
+            }
+            player.transform.Rotate(0, -90, 0);
+        }       
+        
         isOrbiting = false;
         Time.timeScale = 1;
     }
