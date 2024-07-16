@@ -8,6 +8,8 @@ public class SpecialMaker : MonoBehaviour
     // Start is called before the first frame update
     public GameObject[] special;
     private bool cooltime = false;
+    private int specialCount = 0;
+    private int maxCount = 2;
 
 
     // Update is called once per frame
@@ -22,8 +24,7 @@ public class SpecialMaker : MonoBehaviour
 
     IEnumerator specialMake()
     {
-        int randSpecial = Random.Range(0, 2);
-        if (randSpecial == 0)
+        if (specialCount == 1)
         {
             int dirRandom = Random.Range(0, 3); //0=PX, 1=Y, 2=Z 
             switch (dirRandom)
@@ -51,11 +52,12 @@ public class SpecialMaker : MonoBehaviour
                     position2 = new Vector3(0, 10, -20);
                     GameObject wall5 = Instantiate(special[0], position2,Quaternion.identity );
                     wall5.GetComponent<MovingWallMoving>().wallType = MovingWallMoving.WallType.PZ;
-                    break;
+                    break;                
             }
+            yield return new WaitForSeconds(10f);
         }
 
-        if(randSpecial == 1)
+        if(specialCount == 2)
         {
             RazerMaker.isSpecial = true;
             int count = 0;
@@ -98,8 +100,13 @@ public class SpecialMaker : MonoBehaviour
             yield return new WaitForSeconds(1f);
             RazerMaker.isSpecial = false;
         }
-        Time.timeScale += 0.1f;
 
+        if(specialCount > maxCount)
+        {
+            specialCount = 0;
+        }
+        Time.timeScale += 0.1f;
+        specialCount++;
         yield return new WaitForSeconds(15f);
         cooltime = false;
     }

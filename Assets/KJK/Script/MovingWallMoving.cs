@@ -122,7 +122,7 @@ public class MovingWallMoving : MonoBehaviour
     IEnumerator WallCooldown()
     {
         float fixedspeed = speed * Time.deltaTime;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(7f);
         back = true;
         
     }
