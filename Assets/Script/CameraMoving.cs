@@ -29,17 +29,21 @@ public class CameraMoving : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !isOrbiting)
+        if (Input.GetKeyDown(KeyCode.W) && !isOrbiting)
         {
             StartCoroutine(OrbitAround(0));
         }
-        if (Input.GetKeyDown(KeyCode.Q) && !isOrbiting)
+        if (Input.GetKeyDown(KeyCode.A) && !isOrbiting)
         {
             StartCoroutine(OrbitAround(1));
         }
-        if (Input.GetKeyDown(KeyCode.E) && !isOrbiting)
+        if (Input.GetKeyDown(KeyCode.D) && !isOrbiting)
         {
             StartCoroutine(OrbitAround(2));
+        }
+        if  (Input.GetKeyDown(KeyCode.S) && !isOrbiting)
+        {
+            StartCoroutine(OrbitAround(3));
         }
 
 
@@ -150,6 +154,30 @@ public class CameraMoving : MonoBehaviour
             }
             player.transform.Rotate(0, -90, 0);
         }       
+
+        if(caseNum == 3)
+        {
+            targetAngle = angle + 90.0f;  // 목표 각도 설정
+            float rotProgress = 0;
+            while (true)
+            {
+                float step = orbitSpeed*(Time.realtimeSinceStartup-starttime);
+
+                if (rotProgress + step > 90)
+                {
+                    step = 90 - rotProgress;
+                }
+                transform.RotateAround(target.position, -transform.right, step);
+                rotProgress += step;
+                if(rotProgress >= 90)
+                {
+                    break;
+                }
+                yield return null;
+                
+            }
+            player.transform.Rotate(-90, 0, 0);           
+        }
         
         isOrbiting = false;
         Time.timeScale = 1;

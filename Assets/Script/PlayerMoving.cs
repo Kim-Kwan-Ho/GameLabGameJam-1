@@ -23,22 +23,21 @@ public class PlayerMoving : MonoBehaviour
     {
         Vector3 movement = Vector3.zero;
 
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.UpArrow))
         {
             movement = transform.up;
-            Debug.Log("W");
         }
-        else if (Input.GetKey(KeyCode.A))
+        else if (Input.GetKey(KeyCode.RightArrow))
         {
-            movement = -transform.right;
+            movement = transform.right;
         }
-        else if (Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(KeyCode.DownArrow))
         {
             movement = -transform.up;
         }
-        else if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.LeftArrow))
         {
-            movement = transform.right;
+            movement = -transform.right;
         }
 
         rb.velocity = movement * speed;
