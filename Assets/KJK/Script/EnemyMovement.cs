@@ -15,15 +15,18 @@ public class FlyingEnemyChase : MonoBehaviour
     private Material DamageMaterial;
     private Material EnemyDefaultMaterial;
     private Renderer EnemyRenderer;
-
     public float hp;
     int bulletDamage = 1;
+
+    [Header("Death Particle")]
+    [SerializeField] private GameObject _enemyDeathParticle;
+
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        DamageMaterial = (Material)AssetDatabase.LoadAssetAtPath("Assets/Material/DamageTakenMat.mat", typeof(Material));
-        EnemyDefaultMaterial = (Material)AssetDatabase.LoadAssetAtPath("Assets/Material/EnemyDefaultMat.mat", typeof(Material));
-        scoreManager = new ScoreManager();
+        DamageMaterial = (Material)AssetDatabase.LoadAssetAtPath("Assets/KJK/Material/DamageTakenMat.mat", typeof(Material));
+        EnemyDefaultMaterial = (Material)AssetDatabase.LoadAssetAtPath("Assets/KJK/Material/EnemyDefaultMat.mat", typeof(Material));
+        scoreManager = new ScoreManager(); // << MonoBehaviour가 달린것은 new로 생성 X
         EnemyRenderer = GetComponent<Renderer>();
         Debug.Log("Material loaded");
         hp = 3;
@@ -60,23 +63,19 @@ public class FlyingEnemyChase : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-
-        if (other.tag == "Bullet")
-        {
-            Debug.Log("collided with bullet");
-            TakeDamage(bulletDamage);
-        }
     }
 
     public void TakeDamage(int amount)
     {
         Flash();
         hp -= amount;
+        Debug.Log($"{gameObject.name} take damaged {amount} & current hp: {hp}");
 
         if (hp <= 0)
         {
             Debug.Log("killed!");
             scoreManager.IncreaseKillCount();
+            Instantiate(_enemyDeathParticle, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
     }

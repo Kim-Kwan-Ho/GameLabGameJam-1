@@ -230,6 +230,7 @@ MonoBehaviour:
   moveSpeed: 5
   hoverHeight: 1
   hp: 0
+  _enemyDeathParticle: {fileID: 381891898412548092, guid: d08b086d774e70e4783e68f4b9eabad0, type: 3}
 --- !u!54 &93104784879430836
 Rigidbody:
   m_ObjectHideFlags: 0

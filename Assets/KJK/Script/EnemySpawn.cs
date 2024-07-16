@@ -6,11 +6,8 @@ public class EnemySpawner : MonoBehaviour
     public Transform centerPosition;
     public float spawnInterval = 1.0f;
 
-    private GameObject obj;
-
     void Start()
     {
-        obj = enemyPrefab; // Use the public enemyPrefab field instead of AssetDatabase (if you're not in the Editor context)
         InvokeRepeating(nameof(SpawnEnemy), 0.1f, spawnInterval);
     }
 
@@ -18,7 +15,7 @@ public class EnemySpawner : MonoBehaviour
     {
         // Generate a random position on the surface of a 3x3x3 cube centered at the centerPosition
         Vector3 spawnPosition = GetRandomPositionOnCubeSurface();
-        Instantiate(obj, spawnPosition, Quaternion.identity);
+        Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
     }
 
     Vector3 GetRandomPositionOnCubeSurface()

@@ -14,7 +14,7 @@ public class WeaponBullet : MonoBehaviour
     {
         _direction = dir;
         _damage = damage;
-        _bulletGobs[level-1].SetActive(true);
+        _bulletGobs[level - 1].SetActive(true);
     }
 
     private void FixedUpdate()
@@ -31,8 +31,11 @@ public class WeaponBullet : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        // Enemy Take Damage
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            FlyingEnemyChase enemy = other.GetComponent<FlyingEnemyChase>();
+            enemy.TakeDamage(_damage);
+        }
         Destroy(this.gameObject);
-        Debug.Log(other.gameObject.name + " - " + _damage);
     }
 }
