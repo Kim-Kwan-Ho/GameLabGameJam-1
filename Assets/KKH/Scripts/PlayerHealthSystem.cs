@@ -16,9 +16,8 @@ public class PlayerHealthSystem : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.CompareTag("Enemy"))
+        if (collider.gameObject.CompareTag("Enemy") || collider.gameObject.CompareTag("Obstacle")) ;
         {
-            Debug.Log("Q");
             //Destroy(this.gameObject); // 게임종료
             _meshRenderer.enabled = false;
             _deathParticle.SetActive(true);
