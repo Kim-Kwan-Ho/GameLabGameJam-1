@@ -8,6 +8,7 @@ public class RazerMaker : MonoBehaviour
     public Transform center;
     public GameObject[] razers; //0 for z, 1 for y
     private bool cooltime = false;
+    public static bool isSpecial = false;
     void Start()
     {
         
@@ -16,7 +17,7 @@ public class RazerMaker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!cooltime)
+        if (!cooltime && !isSpecial)
         {
             StartCoroutine(RandRazer());
             cooltime = true;
@@ -26,11 +27,11 @@ public class RazerMaker : MonoBehaviour
     IEnumerator RandRazer()
     {
 
-        int randomXYZ = Random.Range(0, 4);
+        int randPattern = Random.Range(0, 4);
         float randY = Random.Range(1, 20);
         float randX = Random.Range(-9, 10);
         float randZ = Random.Range(-9, 10);
-        if (randomXYZ == 0)
+        if (randPattern == 0)
         {
             int dirRandom = Random.Range(0, 4); //0=PY, 1=NY, 2=NZ, 3=PZ
 
@@ -62,7 +63,7 @@ public class RazerMaker : MonoBehaviour
                     break;
             }
         }
-        else if(randomXYZ == 1)
+        else if(randPattern == 1)
         {
             int dirRandom = Random.Range(0, 4); //0=PX, 1=NX, 2=PY, 3=NY
 
@@ -91,7 +92,7 @@ public class RazerMaker : MonoBehaviour
                     break;
             }    
         }
-        else if (randomXYZ == 2)
+        else if (randPattern == 2)
         {
             int dirRandom = Random.Range(0, 4); //0=PX, 1=NX, 2=PZ, 3=NZ
             Vector3 position;
@@ -120,7 +121,7 @@ public class RazerMaker : MonoBehaviour
             }
 
         }
-        else if (randomXYZ == 3)
+        else if (randPattern == 3)
         {
             int dirRandom = Random.Range(0, 6); 
             switch(dirRandom)

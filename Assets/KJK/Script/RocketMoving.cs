@@ -24,6 +24,11 @@ public class RocketMoving : MonoBehaviour
         {
             transform.Translate(Vector3.forward * 30 * Time.deltaTime);
         }
+
+        if(transform.position.y > 40 || transform.position.y < -20 || transform.position.z > 30 || transform.position.z < -30 || transform.position.x > 30 || transform.position.x < -30)
+        {
+            Destroy(gameObject);
+        }
     }
 
     IEnumerator lockInTarget()
@@ -33,4 +38,6 @@ public class RocketMoving : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         fire = true;
     }
+
+    
 }
