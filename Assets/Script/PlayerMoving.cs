@@ -14,34 +14,35 @@ public class PlayerMoving : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-            Move();
-
-
+        Move();
     }
 
     void Move()
     {
-        Vector3 movement = Vector3.zero;
+        Vector3 movementUpDown = Vector3.zero;
+        Vector3 movementLeftRight = Vector3.zero;
+
 
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            movement = transform.up;
+            movementUpDown = transform.up;
         }
+        else if (Input.GetKey(KeyCode.DownArrow))
+        {
+            movementUpDown = -transform.up;
+        }
+
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            movement = transform.right;
+            movementLeftRight = transform.right;
         }
-        if (Input.GetKey(KeyCode.DownArrow))
+        else if (Input.GetKey(KeyCode.LeftArrow))
         {
-            movement = -transform.up;
-        }
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            movement = -transform.right;
+            movementLeftRight = -transform.right;
         }
 
-        rb.velocity = movement * speed;
+        rb.velocity = (movementUpDown + movementLeftRight) * speed;
 
     }
-    
+
 }

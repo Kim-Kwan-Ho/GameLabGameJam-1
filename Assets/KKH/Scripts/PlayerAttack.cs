@@ -82,7 +82,7 @@ public class PlayerAttack : MonoBehaviour
         _attackable = false;
         _attackCoolTime = _attackSpeed;
         WeaponBullet bullet = Instantiate(_bulletPrefab, transform.position, Quaternion.identity).GetComponent<WeaponBullet>();
-        bullet.Shoot(_enemy.transform.position - transform.position, _damage);
+        bullet.Shoot(_enemy.transform.position - transform.position, _damage, _damageLevel);
 
     }
 
