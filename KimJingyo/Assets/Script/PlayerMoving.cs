@@ -20,40 +20,34 @@ public class PlayerMoving : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(view == viewState.SIDE)
-        {
             SideView();
-        }
-        else if(view == viewState.TOP)
-        {
-            TopView();
-        }
+
+
     }
 
     void SideView()
     {
-        rb.constraints = RigidbodyConstraints.FreezePositionZ;
+        Vector3 movement = Vector3.zero;
+
         if (Input.GetKey(KeyCode.W))
         {
-            rb.velocity = new Vector3(0, speed, 0);
+            movement = transform.up;
+            Debug.Log("W");
         }
-        else if(Input.GetKey(KeyCode.A))
+        else if (Input.GetKey(KeyCode.A))
         {
-            rb.velocity = new Vector3(-speed, 0, 0);
+            movement = -transform.right;
         }
-        else if(Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(KeyCode.S))
         {
-            rb.velocity = new Vector3(0, -speed, 0);
+            movement = -transform.up;
         }
-        else if(Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D))
         {
-            rb.velocity = new Vector3(speed, 0, 0);
+            movement = transform.right;
         }
-        else
-        {
-            rb.velocity = new Vector3(0, 0, 0);
-        
-        }
+
+        rb.velocity = movement * speed;
 
     }
 

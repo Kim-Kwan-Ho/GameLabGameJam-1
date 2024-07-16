@@ -9,6 +9,7 @@ public class CameraMoving : MonoBehaviour
 
     private float angle = 0.0f;  // 현재의 각도
     private bool isOrbiting = false;  // 코루틴 실행 중 여부 확인용 변수
+    public GameObject player;
 
     void Start()
     {
@@ -18,6 +19,7 @@ public class CameraMoving : MonoBehaviour
             enabled = false;
             return;
         }
+        player = GameObject.FindGameObjectWithTag("Player");
 
         // 초기 각도 설정
         this.transform.position = new Vector3(0, target.position.y, target.position.z - distance);
@@ -59,6 +61,7 @@ public class CameraMoving : MonoBehaviour
                 float radians = angle * Mathf.Deg2Rad;  // 라디안으로 변환
                 transform.position = new Vector3(0, Mathf.Sin(radians) * distance, -Mathf.Cos(radians) * distance) + target.position;
                 yield return null;
+                player.transform.rotation = Quaternion.Euler(90, 0, 0);
             }
         }
         else
@@ -75,18 +78,18 @@ public class CameraMoving : MonoBehaviour
 
                 float radians = angle * Mathf.Deg2Rad;  // 라디안으로 변환
                 transform.position = new Vector3(0, Mathf.Sin(radians) * distance, -Mathf.Cos(radians) * distance) + target.position;
-
+                player.transform.rotation = Quaternion.Euler(0, 0, 0);
                 yield return null;
             }
         }
-        if(PlayerMoving.view == PlayerMoving.viewState.TOP)
+        /*if(PlayerMoving.view == PlayerMoving.viewState.TOP)
         {
             PlayerMoving.view = PlayerMoving.viewState.SIDE;
         }
         else
         {
             PlayerMoving.view = PlayerMoving.viewState.TOP;
-        }
+        }*/
         isOrbiting = false;
         Time.timeScale = 1;
     }

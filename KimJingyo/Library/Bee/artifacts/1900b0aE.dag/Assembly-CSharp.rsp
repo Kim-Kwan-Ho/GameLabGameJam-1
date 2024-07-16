@@ -354,6 +354,8 @@
 -analyzer:"C:/Program Files/Unity 2022.3.34f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/Script/CameraMoving.cs"
 "Assets/Script/PlayerMoving.cs"
+"Assets/Script/RazerMaker.cs"
+"Assets/Script/RazerMoving.cs"
 -langversion:9.0
 /deterministic
 /optimize+

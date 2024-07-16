@@ -66,6 +66,8 @@
   <ItemGroup>
     <Compile Include="Assets\Script\CameraMoving.cs" />
     <Compile Include="Assets\Script\PlayerMoving.cs" />
+    <Compile Include="Assets\Script\RazerMoving.cs" />
+    <Compile Include="Assets\Script\RazerMaker.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
