@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class GameUI : MonoBehaviour
 {
-    static GameUI instance;
-    [SerializeField] private ScoreManager scoreManager;
     [SerializeField] private PlayerHealthSystem healthSystem;
     [SerializeField] private PlayerAttack attackSystem;
 
@@ -84,6 +82,11 @@ public class GameUI : MonoBehaviour
     // 스코어 출력
     private void DrawScore()
     {
-        scoreText.text = string.Format("Score  {0:D6}", scoreManager.score);
+        scoreText.text = string.Format("Score  {0:D6}", ScoreManager.instance.score);
+    }
+
+    private void RankCompare()
+    {
+
     }
 }
