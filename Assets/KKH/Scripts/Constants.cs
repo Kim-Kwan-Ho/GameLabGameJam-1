@@ -1,4 +1,4 @@
 public static class Constants
 {
-    public const int PLAYER_MAXLEVEL = 5;
+    public const int PLAYER_MAXLEVEL = 3;
 }
