@@ -10,30 +10,49 @@ public class RazerMaker : MonoBehaviour
     private bool cooltime = false;
     public float genCooltime = 3f;
     public static bool isSpecial = false;
+    private bool _continue = true;
     void Start()
     {
-        
+        GameSceneManager.Instance.GameSceneEvent.EpicPatternEnd += OnEpicPatternEnd;
+        GameSceneManager.Instance.GameSceneEvent.GameOver += OnGameOver;
+        GameSceneManager.Instance.GameSceneEvent.GameResume += OnGameResume;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(PlayerMoving.playerMode == PlayerMoving.PlayerMode.D3)
+        if(_continue)
         {
-            if (!cooltime && !isSpecial)
+            if(PlayerMoving.playerMode == PlayerMoving.PlayerMode.D3)
             {
-                StartCoroutine(RandRazer());
-                cooltime = true;
+                if (!cooltime && !isSpecial)
+                {
+                    StartCoroutine(RandRazer());
+                    cooltime = true;
+                }
+            }
+            else if(PlayerMoving.playerMode == PlayerMoving.PlayerMode.D2)
+            {
+                if (!cooltime && !isSpecial)
+                {
+                    StartCoroutine(TwoDRandRazer());
+                    cooltime = true;
+                }
             }
         }
-        else if(PlayerMoving.playerMode == PlayerMoving.PlayerMode.D2)
-        {
-            if (!cooltime && !isSpecial)
-            {
-                StartCoroutine(TwoDRandRazer());
-                cooltime = true;
-            }
-        }
+    }
+
+    private void OnEpicPatternEnd(GameSceneEventArgs gameSceneEventArgs)
+    {
+        _continue = false;
+    }
+    private void OnGameOver(GameSceneEventArgs gameSceneEventArgs)
+    {
+        _continue = false;
+    }
+    private void OnGameResume(GameSceneEventArgs gameSceneEventArgs)
+    {
+        _continue = true;
     }
 
     IEnumerator RandRazer()
@@ -322,4 +341,6 @@ public class RazerMaker : MonoBehaviour
         yield return new WaitForSeconds(genCooltime);
         cooltime = false;
     }
+
+
 }

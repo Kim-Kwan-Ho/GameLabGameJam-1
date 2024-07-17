@@ -1123,6 +1123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameSceneEvent: {fileID: 0}
+  _healthItem: {fileID: 812291962651381905, guid: 4c2717357552b494ca802723bd8b29b2, type: 3}
 --- !u!114 &435921775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1745,6 +1746,7 @@ MonoBehaviour:
   spawnInterval: 3
   epicSpawnTiming: 0
   stageInterval: 15
+  _minSpawnInterval: 0.5
 --- !u!4 &808843556
 Transform:
   m_ObjectHideFlags: 0

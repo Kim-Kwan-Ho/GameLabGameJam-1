@@ -15,7 +15,7 @@ public class _Test_calling : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.F1))
         {
-            GameSceneManager.Instance.GameSceneEvent.CallOnGameStart();
+            GameSceneManager.Instance.GameSceneEvent.CallOnGameResume();
         }
         else if(Input.GetKeyDown(KeyCode.F2))
         {

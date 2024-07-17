@@ -113,7 +113,7 @@ public class EpicPatternStart : MonoBehaviour
             Vector3 position;
             int count = 0;
             RazerMaker.isSpecial = true;
-            while(count < 10)
+            while(count < 3)
             {
                 int randXYZ = Random.Range(0, 6);
                 int randRot = Random.Range(0, 4);
@@ -205,7 +205,7 @@ public class EpicPatternStart : MonoBehaviour
 
     private void EndEpicPattern()
     {
-        GameSceneManager.Instance.GameSceneEvent.CallOnGameStart();
+        GameSceneManager.Instance.GameSceneEvent.CallEpicPatternEnd();
     }
 
 }
