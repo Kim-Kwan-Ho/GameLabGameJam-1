@@ -14,7 +14,6 @@ public class EnemyMovement : MonoBehaviour
     private Material EnemyDefaultMaterial;
     private Renderer EnemyRenderer;
     public float hp;
-    int bulletDamage = 1;
 
     [Header("Death Particle")]
     [SerializeField] private GameObject _enemyDeathParticle;
@@ -25,9 +24,24 @@ public class EnemyMovement : MonoBehaviour
         DamageMaterial = Resources.Load<Material>("Materials/DamageTakenMat");
         EnemyDefaultMaterial = Resources.Load<Material>("Materials/EnemyDefaultMat");
         EnemyRenderer = GetComponent<Renderer>();
-        Debug.Log("Material loaded");
-        hp = 3;
     }
+
+    private void OnEnable()
+    {
+        GameSceneManager.Instance.GameSceneEvent.WarningSignal += OnWarningSignalStart;
+    }
+
+    private void OnDisable()
+    {
+        GameSceneManager.Instance.GameSceneEvent.WarningSignal -= OnWarningSignalStart;
+    }
+
+    private void OnWarningSignalStart(GameSceneEventArgs gameSceneEventArgs)
+    {
+        Instantiate(_enemyDeathParticle, transform.position, Quaternion.identity);
+        Destroy(this.gameObject);
+    }
+
     void Update()
     {
         if (player == null) return;

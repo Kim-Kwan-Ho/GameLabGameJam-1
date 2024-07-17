@@ -19,8 +19,6 @@ public class EpicEnemyMovement : MonoBehaviour
     public float chaseRange = 100f;
     public float hoverHeight = 1.0f;
 
-    //should be replaced
-    int bulletDamage = 1;
 
     [Header("Death Particle")]
     [SerializeField] private GameObject _enemyDeathParticle;
@@ -28,14 +26,30 @@ public class EpicEnemyMovement : MonoBehaviour
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        DamageMaterial = Resources.Load<Material>("Assets/KJK/Material/EpicEnemyDamagedMat.mat");
-        EnemyDefaultMaterial = Resources.Load<Material>("Assets/KJK/Material/EpicEnemyBodyMat.mat");
+        DamageMaterial = Resources.Load<Material>("Materials/EpicEnemyDamagedMat");
+        EnemyDefaultMaterial = Resources.Load<Material>("Materials/EpicEnemyBodyMat");
         EnemyRenderer = GetComponent<Renderer>();
         scoreManager = GetComponent<ScoreManager>();
 
-        //set enemy hp
-        epicEnemyHp = 1;
     }
+
+
+    private void OnEnable()
+    {
+        GameSceneManager.Instance.GameSceneEvent.WarningSignal += OnWarningSignalStart;
+    }
+
+    private void OnDisable()
+    {
+        GameSceneManager.Instance.GameSceneEvent.WarningSignal -= OnWarningSignalStart;
+    }
+
+    private void OnWarningSignalStart(GameSceneEventArgs gameSceneEventArgs)
+    {
+        Instantiate(_enemyDeathParticle, transform.position, Quaternion.identity);
+        Destroy(this.gameObject);
+    }
+
     void Update()
     {
         if (player == null) return;
@@ -73,12 +87,9 @@ public class EpicEnemyMovement : MonoBehaviour
     {
         Flash();
         epicEnemyHp -= amount;
-        Debug.Log($"{gameObject.name} take damaged {amount} & current hp: {epicEnemyHp}");
-
 
         if (epicEnemyHp <= 0)
         {
-            Debug.Log("killed!");
             Instantiate(_enemyDeathParticle,  transform.position, Quaternion.identity);
             ItemDrop();
             Destroy(this.gameObject);

@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerHealthSystem : MonoBehaviour
 {
     private MeshRenderer _meshRenderer;
+    public int Health{get {return _health;}}
     [SerializeField] private int _health = 3;
 
     [SerializeField] private GameObject _deathParticle;
@@ -28,7 +29,6 @@ public class PlayerHealthSystem : MonoBehaviour
     private void PlayerTakeHit()
     {
         _health--;
-        Debug.Log("Health: " + _health);
         if (_health <= 0)
         {
             PlayerDeath();
@@ -43,5 +43,19 @@ public class PlayerHealthSystem : MonoBehaviour
         GetComponent<PlayerAttack>().enabled = false;
         GetComponent<PlayerMoving>().enabled = false;
         _deathParticle.SetActive(true);
+
+        GameSceneManager.Instance.GameSceneEvent.CallGameOver();
+    }
+
+    public void RecoverHealth()
+    {
+        if (_health >= Constants.PLAYER_MAXHP)
+        {
+            // 점수 추가
+        }
+        else
+        {
+            _health++;
+        }
     }
 }
