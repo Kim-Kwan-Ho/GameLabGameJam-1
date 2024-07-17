@@ -56,10 +56,7 @@ public class EnemyMovement : MonoBehaviour
             targetPosition = player.position + Vector3.up * hoverHeight;
             MoveTowardsTarget();
         }
-
-
     }
-
     bool IsPlayerInRange()
     {
         Vector3 distanceToPlayer = player.position - transform.position;

@@ -15,14 +15,6 @@ public class GameUI : MonoBehaviour
     [SerializeField] private GameObject[] ui_speedLevel;
     [SerializeField] private GameObject[] ui_lifeLevel;
 
-    [SerializeField] private GameObject _settingPanel;
-    // Start is called before the first frame update
-    void Start()
-    {
-        _settingPanel.SetActive(false);
-    }
-
-    // Update is called once per frame
     void Update()
     {
         //DrawTimer();
@@ -30,19 +22,9 @@ public class GameUI : MonoBehaviour
         //LifeCheck(healthSystem.Health);
         PowerCheck(attackSystem.DamageLevel);
         SpeedCheck(attackSystem.AttackSpeedLevel);
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (!_settingPanel.activeSelf)
-                _settingPanel.SetActive(true);
-            else
-                _settingPanel.SetActive(false);
-        }
     }
 
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
+
     // 타이머 출력
     /*private void DrawTimer()
     { 

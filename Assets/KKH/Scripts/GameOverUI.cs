@@ -43,10 +43,9 @@ public class GameOverUI : MonoBehaviour
         _saveButton.SetActive(false);
     }
 
-    public void SceneMoveToTitle()
+    public void QuitGame()
     {
-        //SceneManager.LoadScene("TitleScene");
-        FadeManager.Instance.ChangeScene("TitleScene");
+        Application.Quit();
     }
     public void SceneRestart()
     {
