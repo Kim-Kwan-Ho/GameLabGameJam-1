@@ -84,7 +84,6 @@ public class EnemyMovement : MonoBehaviour
         if (defaultEnemyHp <= 0)
         {
             Debug.Log("killed!");
-            scoreManager.IncreaseKillCount();
             Instantiate(_enemyDeathParticle, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }

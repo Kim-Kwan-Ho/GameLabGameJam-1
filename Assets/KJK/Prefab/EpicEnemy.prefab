@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6306686065564630510}
   - component: {fileID: 8762518804793442287}
   - component: {fileID: 2329589083501467844}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Spike (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 4746518817534206352}
   - component: {fileID: 959245103685933497}
   - component: {fileID: 5832385287889943019}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Spike (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 1180758546083817671}
   - component: {fileID: 2229587871840163139}
   - component: {fileID: 5712207217696394252}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Spike (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -334,9 +334,9 @@ GameObject:
   - component: {fileID: 9211670865549992908}
   - component: {fileID: 3726847907193280671}
   - component: {fileID: 4926318895977883115}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EpicEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
