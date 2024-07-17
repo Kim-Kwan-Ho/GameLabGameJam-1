@@ -6,15 +6,16 @@ using UnityEngine;
 
 public class RankCompareUI : MonoBehaviour
 {
-    [SerializeField] private float[] bestScore = new float[7];
-    [SerializeField] private string[] bestName = new string[7];
+    /*[SerializeField] private float[] bestScore = new float[7];
+    [SerializeField] private string[] bestName = new string[7];*/
 
     [SerializeField] private int nextRank = 7;
 
     [SerializeField] private TextMeshProUGUI _nextRankNameText;
     [SerializeField] private TextMeshProUGUI _nextRankScoreText;
+    [SerializeField] private TextMeshProUGUI _nextRankText;
 
-    void Start()
+    /*void Start()
     {
         // Get Saved Rank
         for (int i = 0; i < 7; i++)
@@ -27,10 +28,10 @@ public class RankCompareUI : MonoBehaviour
             else
             {
                 bestScore[i] = 0;
-                bestName[i] = "none";
+                bestName[i] = "NAN";
             }
         }
-    }
+    }*/
 
     void Update()
     {
@@ -42,7 +43,7 @@ public class RankCompareUI : MonoBehaviour
     {
         for (int i = 6; i >= 0; i--)
         {
-            if (ScoreManager.instance.score < bestScore[i])
+            if (ScoreManager.instance.score < RankManager.Instance.bestScore[i])
                 return;
 
             nextRank = i;
@@ -51,8 +52,17 @@ public class RankCompareUI : MonoBehaviour
 
     private void DrawNextRank()
     {
-        int rank = Math.Clamp(nextRank - 1, 0, bestName.Length - 1);
-        _nextRankNameText.text = bestName[rank];
-        _nextRankScoreText.text = string.Format("{0:D6}", (int)bestScore[rank]);
+        int rank = Math.Clamp(nextRank - 1, 0, RankManager.Instance.bestName.Length - 1);
+        if (nextRank == 0)
+        {
+            _nextRankNameText.text = "You Are 1st!";
+            _nextRankScoreText.text = string.Format("{0:D6}", (int)ScoreManager.instance.score);
+            _nextRankText.text = "";
+        }
+        else
+        {
+            _nextRankNameText.text = RankManager.Instance.bestName[rank];
+            _nextRankScoreText.text = string.Format("{0:D6}", (int)RankManager.Instance.bestScore[rank]);
+        }
     }
 }
