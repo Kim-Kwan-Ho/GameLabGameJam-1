@@ -1528,6 +1528,7 @@ MonoBehaviour:
   _minSpawnInterval: 0.5
   _enemyStartHp: 3
   _epicEnemyStartHp: 5
+  _playerAttack: {fileID: 0}
 --- !u!4 &934197816
 Transform:
   m_ObjectHideFlags: 0

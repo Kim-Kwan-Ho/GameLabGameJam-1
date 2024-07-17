@@ -20,7 +20,7 @@ public class PlayerAttack : MonoBehaviour
 
     [Header("Enemy & Scanner")]
     [SerializeField] private float _searchSize = 5f;
-    [SerializeField] private GameObject _enemy; // 이건 enemy 완성 후 설정
+    [SerializeField] private GameObject _enemy; 
     [SerializeField] private float _searchTime = 0.1f;
 
 
@@ -109,6 +109,12 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+    public void SetEpicMonsterTarget(GameObject epicMonster)
+    {
+        _enemy = epicMonster;
+        StopCoroutine(CoSearchEnemy());
+        _isSearching = false;
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

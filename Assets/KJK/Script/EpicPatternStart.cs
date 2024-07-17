@@ -177,37 +177,31 @@ public class EpicPatternStart : MonoBehaviour
                         position = new Vector3(0, 10, -20);
                         GameObject Wall0 = Instantiate(special[2], position, Quaternion.Euler(-90*randRot, -90,-90));
                         Wall0.GetComponent<Wall1_4Moving>().wallType = Wall1_4Moving.WallType.PZ;
-                        Debug.Log("PZ");
                         break;
                     case 1:
                         position = new Vector3(0, 10, 20);
                         GameObject Wall1 = Instantiate(special[2], position, Quaternion.Euler(-90*randRot, -90 ,-90));
                         Wall1.GetComponent<Wall1_4Moving>().wallType = Wall1_4Moving.WallType.NZ;
-                        Debug.Log("NZ");
                         break;
                     case 2:
                         position = new Vector3(0, -10, 0);
                         GameObject Wall2 = Instantiate(special[2], position, Quaternion.Euler(0,90*randRot,0));
                         Wall2.GetComponent<Wall1_4Moving>().wallType = Wall1_4Moving.WallType.PY;
-                        Debug.Log("PY");
                         break;
                     case 3:
                         position = new Vector3(0, 30, 0);
                         GameObject Wall3 = Instantiate(special[2], position, Quaternion.Euler(0,90*randRot,0));
                         Wall3.GetComponent<Wall1_4Moving>().wallType = Wall1_4Moving.WallType.NY;
-                        Debug.Log("NY");
                         break;
                     case 4:
                         position = new Vector3(20, 10, 0);
                         GameObject Wall4 = Instantiate(special[2], position, Quaternion.Euler(90*randRot, 0, 90));
                         Wall4.GetComponent<Wall1_4Moving>().wallType = Wall1_4Moving.WallType.NX;
-                        Debug.Log("NX");
                         break;
                     case 5:
                         position = new Vector3(-20, 10, 0);
                         GameObject Wall5 = Instantiate(special[2], position, Quaternion.Euler(90*randRot, 0, 90));
                         Wall5.GetComponent<Wall1_4Moving>().wallType = Wall1_4Moving.WallType.PX;
-                        Debug.Log("PX");
                         break;
                 }
                 count++;

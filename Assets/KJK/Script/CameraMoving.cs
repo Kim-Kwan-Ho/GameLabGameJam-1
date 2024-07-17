@@ -31,7 +31,6 @@ public class CameraMoving : MonoBehaviour
     {
         if (target == null)
         {
-            Debug.LogError("Target is not assigned.");
             enabled = false;
             return;
         }

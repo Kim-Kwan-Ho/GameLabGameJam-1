@@ -15,8 +15,10 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float _minSpawnInterval = 0.5f;
     [SerializeField] private int _enemyStartHp = 3;
     [SerializeField] private int _epicEnemyStartHp = 5;
+    [SerializeField] private PlayerAttack _playerAttack;
     void Start()
     {
+        _playerAttack = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttack>();
         spawnInterval -= (Constants.LEVEL_ENEMY_SPAWNTIME * GameSceneManager.GameLevel);
         epicSpawnTiming = stageInterval / 2;
         Invoke(nameof(SpawnEpicEnemy), epicSpawnTiming);
@@ -67,6 +69,7 @@ public class EnemySpawner : MonoBehaviour
         _epicEnemyStartHp += (GameSceneManager.GameLevel % 2 == 0)
             ? (GameSceneManager.GameLevel / 2) * Constants.LEVEL_EPICENEMY_HPINCREASE : 0;
         enemy.SetHp(_epicEnemyStartHp);
+        _playerAttack.SetEpicMonsterTarget(enemy.gameObject);
     }
     Vector3 GetRandomPositionOnCubeSurface()
     {

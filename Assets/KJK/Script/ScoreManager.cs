@@ -45,11 +45,8 @@ public class ScoreManager : MonoBehaviour
     {
         if (startScoring)
         {
-            // 시간 및 점수 계산
             currentTime += Time.deltaTime;
-
             score = ((int)currentTime * Constants.SCORE_TIME) + _killScore + _itemScore;
-            //Debug.Log(score);
         }
     }
 
