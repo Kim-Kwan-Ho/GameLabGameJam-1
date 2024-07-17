@@ -6,7 +6,7 @@ public class EpicPatternStart : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] private float EpicPatternTime = 15f;
-    private int specialCount = 3;
+    private int specialCount = 1;
     private int maxCount = 3;
     public GameObject[] special;
     private void Start()
@@ -62,7 +62,7 @@ public class EpicPatternStart : MonoBehaviour
             yield return new WaitForSeconds(10f);
         }
 
-        if(specialCount == 2)
+        else if(specialCount == 2)
         {
             specialCount++;
             RazerMaker.isSpecial = true;
@@ -107,7 +107,7 @@ public class EpicPatternStart : MonoBehaviour
             RazerMaker.isSpecial = false;
         }
 
-        if(specialCount == 3)
+        else if(specialCount == 3)
         {
             specialCount++;
             Vector3 position;
@@ -197,7 +197,7 @@ public class EpicPatternStart : MonoBehaviour
         }
         if(specialCount > maxCount)
         {
-            specialCount = 3;
+            specialCount = 1;
         }
         Time.timeScale += 0.1f;
         EndEpicPattern();

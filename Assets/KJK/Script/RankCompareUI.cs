@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -42,7 +43,7 @@ public class RankCompareUI : MonoBehaviour
         for (int i = 6; i >= 0; i--)
         {
             if (ScoreManager.instance.score < bestScore[i])
-                return; 
+                return;
 
             nextRank = i;
         }
@@ -50,7 +51,8 @@ public class RankCompareUI : MonoBehaviour
 
     private void DrawNextRank()
     {
-        _nextRankNameText.text = bestName[nextRank - 1];
-        _nextRankScoreText.text = string.Format("{0:D6}", (int)bestScore[nextRank - 1]);
+        int rank = Math.Clamp(nextRank - 1, 0, bestName.Length - 1);
+        _nextRankNameText.text = bestName[rank];
+        _nextRankScoreText.text = string.Format("{0:D6}", (int)bestScore[rank]);
     }
 }
