@@ -1,8 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Build;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -12,17 +9,18 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private float _attackSpeed = 0.85f;
     private float _attackCoolTime = 0;
     private bool _attackable = true;
+    public int DamageLevel { get { return _damageLevel; } }
     private int _damageLevel = 1;
+    public int AttackSpeedLevel { get { return _attackSpeedLevel; } }
     private int _attackSpeedLevel = 1;
-    
-    
-    
+
+
+
 
 
     [Header("Enemy & Scanner")]
     [SerializeField] private float _searchSize = 5f;
     [SerializeField] private GameObject _enemy; // 이건 enemy 완성 후 설정
-    [SerializeField] private LayerMask _enemyLayer;
     [SerializeField] private float _searchTime = 0.1f;
 
 
@@ -64,7 +62,7 @@ public class PlayerAttack : MonoBehaviour
 
     private IEnumerator CoSearchEnemy()
     {
-        Collider[] col = Physics.OverlapSphere(transform.position, _searchSize, _enemyLayer);
+        Collider[] col = Physics.OverlapSphere(transform.position, _searchSize, 1 << 10);
         if (col.Length >= 1 && col[0] != null)
         {
             _isSearching = false;
@@ -82,7 +80,7 @@ public class PlayerAttack : MonoBehaviour
         _attackable = false;
         _attackCoolTime = _attackSpeed;
         WeaponBullet bullet = Instantiate(_bulletPrefab, transform.position, Quaternion.identity).GetComponent<WeaponBullet>();
-        bullet.Shoot(_enemy.transform.position - transform.position, _damage);
+        bullet.Shoot(_enemy.transform.position - transform.position, _damage, _damageLevel);
 
     }
 
@@ -115,13 +113,11 @@ public class PlayerAttack : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        RaycastHit hit;
-
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, _searchSize);
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Item"))
         {
@@ -135,6 +131,10 @@ public class PlayerAttack : MonoBehaviour
                     DamageLevelUp();
                     break;
                 case EItemType.Score: // 스코어 추가
+                    break;
+                case EItemType.Health:
+                    GetComponent<PlayerHealthSystem>().RecoverHealth();
+                    GameSceneManager.Instance.GameSceneEvent.CallOnGameResume();
                     break;
             }
             Destroy(other.gameObject);

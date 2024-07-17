@@ -4,8 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Item
   - Enemy
+  - Item
+  - Obstacle
+  - obstacle
+  - EpicEnemy
   layers:
   - Default
   - TransparentFX
@@ -19,8 +22,8 @@ TagManager:
   - 
   - Enemy
   - Bullet
-  - 
-  - 
+  - Magnetic
+  - Item
   - 
   - 
   - 

@@ -1675,9 +1675,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 4446445485482116534, guid: 188b7080a158f954b897ad729f4a4a61, type: 3}
+  epicEnemyPrefab: {fileID: 8851774836360762326, guid: c005acc729d3ef6469e11928cc94bc48, type: 3}
   centerPosition: {fileID: 1329720079}
-  spawnRadius: 30
   spawnInterval: 3
+  epicSpawnTiming: 7
+  stageInterval: 15
 --- !u!4 &934197816
 Transform:
   m_ObjectHideFlags: 0
