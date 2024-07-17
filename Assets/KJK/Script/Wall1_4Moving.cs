@@ -18,7 +18,7 @@ public enum WallType
 
     // Update is called once per frame
 
-    public float speed = 10f;
+    public float speed = 15f;
     private bool stop = false;
 
     void Update()

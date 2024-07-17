@@ -48,9 +48,9 @@ public class RocketMoving : MonoBehaviour
 
     IEnumerator lockInTarget()
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.7f);
         lockIn = true;
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.7f);
         fire = true;
     }
 

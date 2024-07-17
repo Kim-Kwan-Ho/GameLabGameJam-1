@@ -8,11 +8,12 @@ public class RazerMaker : MonoBehaviour
     public Transform center;
     public GameObject[] razers; //0 for z, 1 for y
     private bool cooltime = false;
-    public float genCooltime = 3f;
+    public static float genCooltime = 3f;
     public static bool isSpecial = false;
     private bool _continue = true;
     void Start()
     {
+        GameSceneManager.Instance.GameSceneEvent.WarningSignal += OnWarningSignal;
         GameSceneManager.Instance.GameSceneEvent.EpicPatternEnd += OnEpicPatternEnd;
         GameSceneManager.Instance.GameSceneEvent.GameOver += OnGameOver;
         GameSceneManager.Instance.GameSceneEvent.GameResume += OnGameResume;
@@ -41,7 +42,10 @@ public class RazerMaker : MonoBehaviour
             }
         }
     }
-
+    private void OnWarningSignal(GameSceneEventArgs gameSceneEventArgs)
+    {
+        isSpecial = true;
+    }
     private void OnEpicPatternEnd(GameSceneEventArgs gameSceneEventArgs)
     {
         _continue = false;
@@ -53,6 +57,7 @@ public class RazerMaker : MonoBehaviour
     private void OnGameResume(GameSceneEventArgs gameSceneEventArgs)
     {
         _continue = true;
+        isSpecial = false;
     }
 
     IEnumerator RandRazer()
@@ -189,10 +194,41 @@ public class RazerMaker : MonoBehaviour
 
     IEnumerator TwoDRandRazer()
     {
-        int randPattern;
+        int randPattern = Random.Range(0, 3);
         int randX = Random.Range(-9, 10);
         int randY = Random.Range(1, 20);
         int randZ = Random.Range(-9, 10);
+        if(randPattern == 0)
+        {
+            int dirRandom = Random.Range(0, 6); 
+            switch(dirRandom)
+            {
+                case 0:
+                    Vector3 position0 = new Vector3(randX, 20, randZ);
+                    GameObject razer = Instantiate(razers[3], position0, Quaternion.identity);
+                    break;
+                case 1:
+                    Vector3 position1 = new Vector3(randX, 0, randZ);
+                    GameObject razer1 = Instantiate(razers[3], position1, Quaternion.identity);
+                    break;
+                case 2:
+                    Vector3 position2 = new Vector3(10, randY, randZ);
+                    GameObject razer2 = Instantiate(razers[3], position2, Quaternion.identity);
+                    break;
+                case 3:
+                    Vector3 position3 = new Vector3(-10, randY, randZ);
+                    GameObject razer3 = Instantiate(razers[3], position3, Quaternion.identity);
+                    break;
+                case 4:
+                    Vector3 position4 = new Vector3(randX, randY, 10);
+                    GameObject razer4 = Instantiate(razers[3], position4, Quaternion.identity);
+                    break;
+                case 5:
+                    Vector3 position5 = new Vector3(randX, randY, -10);
+                    GameObject razer5 = Instantiate(razers[3], position5, Quaternion.identity);
+                    break;
+            }
+        }
         Vector3 position;
         if(CameraMoving.viewState == CameraMoving.ViewState.PZ || CameraMoving.viewState == CameraMoving.ViewState.NZ)
         {
