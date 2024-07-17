@@ -9,11 +9,13 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private float _attackSpeed = 0.85f;
     private float _attackCoolTime = 0;
     private bool _attackable = true;
+    public int DamageLevel { get { return _damageLevel; } }
     private int _damageLevel = 1;
+    public int AttackSpeedLevel { get { return _attackSpeedLevel; } }
     private int _attackSpeedLevel = 1;
-    
-    
-    
+
+
+
 
 
     [Header("Enemy & Scanner")]
@@ -60,7 +62,7 @@ public class PlayerAttack : MonoBehaviour
 
     private IEnumerator CoSearchEnemy()
     {
-        Collider[] col = Physics.OverlapSphere(transform.position, _searchSize, 1<<10);
+        Collider[] col = Physics.OverlapSphere(transform.position, _searchSize, 1 << 10);
         if (col.Length >= 1 && col[0] != null)
         {
             _isSearching = false;
@@ -129,6 +131,10 @@ public class PlayerAttack : MonoBehaviour
                     DamageLevelUp();
                     break;
                 case EItemType.Score: // 스코어 추가
+                    break;
+                case EItemType.Health:
+                    GetComponent<PlayerHealthSystem>().RecoverHealth();
+                    GameSceneManager.Instance.GameSceneEvent.CallOnGameResume();
                     break;
             }
             Destroy(other.gameObject);

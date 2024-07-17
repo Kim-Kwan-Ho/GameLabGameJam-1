@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class GameSceneEventArgs : MonoBehaviour
 {
-    public Action<GameSceneEventArgs> GameStart;
+    public Action<GameSceneEventArgs> GameResume;
     public Action<GameSceneEventArgs> WarningSignal;
     public Action<GameSceneEventArgs> EpicPatternStart;
     public Action<GameSceneEventArgs> GameOver;
 
 
 
-    public void CallOnGameStart()
+    public void CallOnGameResume()
     {
-        GameStart?.Invoke(this);
+        GameResume?.Invoke(this);
     }
     public void CallWarningSignal()
     {

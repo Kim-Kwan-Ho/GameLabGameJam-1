@@ -19,7 +19,21 @@ public class RazerMoving : MonoBehaviour
     {
         
     }
+    private void OnEnable()
+    {
+        GameSceneManager.Instance.GameSceneEvent.WarningSignal += OnWarningSignalStart;
+    }
 
+    private void OnDisable()
+    {
+        GameSceneManager.Instance.GameSceneEvent.WarningSignal -= OnWarningSignalStart;
+    }
+
+    private void OnWarningSignalStart(GameSceneEventArgs gameSceneEventArgs)
+    {
+        //Instantiate(_enemyDeathParticle, transform.position, Quaternion.identity);
+        Destroy(this.gameObject);
+    }
     // Update is called once per frame
     void Update()
     {

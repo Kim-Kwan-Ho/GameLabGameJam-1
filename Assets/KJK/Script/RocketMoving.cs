@@ -9,6 +9,21 @@ public class RocketMoving : MonoBehaviour
     private bool fire = false;
 
     // Update is called once per frame
+    private void OnEnable()
+    {
+        GameSceneManager.Instance.GameSceneEvent.WarningSignal += OnWarningSignalStart;
+    }
+
+    private void OnDisable()
+    {
+        GameSceneManager.Instance.GameSceneEvent.WarningSignal -= OnWarningSignalStart;
+    }
+
+    private void OnWarningSignalStart(GameSceneEventArgs gameSceneEventArgs)
+    {
+        //Instantiate(_enemyDeathParticle, transform.position, Quaternion.identity);
+        Destroy(this.gameObject);
+    }
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
