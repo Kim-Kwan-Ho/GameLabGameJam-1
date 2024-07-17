@@ -1991,6 +1991,25 @@ MonoBehaviour:
   - 
   InputName: {fileID: 10665285}
   InputScore: {fileID: 175332849}
+  parentObject: {fileID: 4917851064867374083}
+  rankingInfos:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  rankingChildren:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1001 &3804110829702271767
 PrefabInstance:
   m_ObjectHideFlags: 0
