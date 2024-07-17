@@ -7,6 +7,7 @@ public class GameSceneEventArgs : MonoBehaviour
     public Action<GameSceneEventArgs> GameResume;
     public Action<GameSceneEventArgs> WarningSignal;
     public Action<GameSceneEventArgs> EpicPatternStart;
+    public Action<GameSceneEventArgs> EpicPatternEnd;
     public Action<GameSceneEventArgs> GameOver;
 
 
@@ -22,6 +23,11 @@ public class GameSceneEventArgs : MonoBehaviour
     public void CallEpicPatternStart()
     {
         EpicPatternStart?.Invoke(this);
+    }
+
+    public void CallEpicPatternEnd()
+    {
+        EpicPatternEnd?.Invoke(this);
     }
     public void CallGameOver()
     {
