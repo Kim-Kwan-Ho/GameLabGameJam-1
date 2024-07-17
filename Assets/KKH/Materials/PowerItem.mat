@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: AttackSpeedItem
+  m_Name: PowerItem
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -79,6 +79,6 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.5613208, g: 0.7421498, b: 1, a: 1}
-    - _EmissionColor: {r: 0.18560876, g: 0.23949112, b: 0.9150943, a: 1}
+    - _Color: {r: 0.990566, g: 0.22398707, b: 0.1728818, a: 1}
+    - _EmissionColor: {r: 0.9137255, g: 0.18431371, b: 0.2770776, a: 1}
   m_BuildTextureStacks: []

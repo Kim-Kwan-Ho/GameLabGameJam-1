@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6259179698728649406}
   - component: {fileID: 7583949404917843175}
   - component: {fileID: -4255117643980888563}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: EnemyDeathParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

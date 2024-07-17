@@ -38,7 +38,7 @@ public class ItemSpawner : MonoBehaviour
         float ranY = Random.Range(-_mid, _mid);
         float ranZ = Random.Range(-_mid, _mid);
 
-        Instantiate(_items[ranI], new Vector3(_centerPos.x - ranX, _centerPos.y - ranY, _centerPos.z - ranZ), Quaternion.identity);
+        Instantiate(_items[ranI], new Vector3(_centerPos.x - ranX, _centerPos.y - ranY, _centerPos.z - ranZ), Quaternion.Euler(Vector3.up));
     }
 
 
