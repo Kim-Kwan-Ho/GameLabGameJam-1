@@ -19,7 +19,7 @@ public class WeaponBullet : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.position += _direction * _speed * Time.deltaTime;
+        transform.position += _direction * _speed * Time.fixedDeltaTime;
     }
 
     private void Update()
@@ -37,8 +37,9 @@ public class WeaponBullet : MonoBehaviour
             enemy.TakeDamage(_damage);
         }
 
-        if(other.gameObject.CompareTag("EpicEnemy"))
+        if (other.gameObject.CompareTag("EpicEnemy"))
         {
+            Debug.Log(other.GetInstanceID());
             EpicEnemyMovement epicEnemy = other.GetComponent<EpicEnemyMovement>();
             epicEnemy.TakeDamage(_damage);
         }

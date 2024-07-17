@@ -28,13 +28,11 @@ public class EpicEnemyMovement : MonoBehaviour
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        DamageMaterial = Resources.Load<Material>("Materials/EpicEnemyDamagedMat.mat");
-        EnemyDefaultMaterial = Resources.Load<Material>("Materials/EpicEnemyBodyMat.mat");
+        DamageMaterial = Resources.Load<Material>("Materials/EpicEnemyDamagedMat");
+        EnemyDefaultMaterial = Resources.Load<Material>("Materials/EpicEnemyBodyMat");
         EnemyRenderer = GetComponent<Renderer>();
         scoreManager = GetComponent<ScoreManager>();
 
-        //set enemy hp
-        epicEnemyHp = 1;
     }
 
 
@@ -91,12 +89,9 @@ public class EpicEnemyMovement : MonoBehaviour
     {
         Flash();
         epicEnemyHp -= amount;
-        Debug.Log($"{gameObject.name} take damaged {amount} & current hp: {epicEnemyHp}");
-
 
         if (epicEnemyHp <= 0)
         {
-            Debug.Log("killed!");
             Instantiate(_enemyDeathParticle,  transform.position, Quaternion.identity);
             ItemDrop();
             Destroy(this.gameObject);
