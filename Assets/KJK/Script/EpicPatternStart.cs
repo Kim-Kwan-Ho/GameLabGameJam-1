@@ -62,10 +62,9 @@ public class EpicPatternStart : MonoBehaviour
             yield return new WaitForSeconds(10f);
         }
 
-        if(specialCount == 2)
+        else if(specialCount == 2)
         {
             specialCount++;
-            RazerMaker.isSpecial = true;
             int count = 0;
             while(count < 20)
             {
@@ -104,15 +103,13 @@ public class EpicPatternStart : MonoBehaviour
                 count++;
             }
             yield return new WaitForSeconds(1f);
-            RazerMaker.isSpecial = false;
         }
 
-        if(specialCount == 3)
+        else if(specialCount == 3)
         {
             specialCount++;
             Vector3 position;
             int count = 0;
-            RazerMaker.isSpecial = true;
             while(count < 3)
             {
                 int randXYZ = Random.Range(0, 6);
@@ -193,13 +190,11 @@ public class EpicPatternStart : MonoBehaviour
                 count++;
                 yield return new WaitForSeconds(5f);
             }
-            RazerMaker.isSpecial = false;
         }
         if(specialCount > maxCount)
         {
             specialCount = 1;
         }
-        Time.timeScale += 0.1f;
         EndEpicPattern();
     }
 

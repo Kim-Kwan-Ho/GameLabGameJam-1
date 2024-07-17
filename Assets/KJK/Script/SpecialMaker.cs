@@ -12,6 +12,7 @@ public class SpecialMaker : MonoBehaviour
     private int maxCount = 2;
 
 
+
     // Update is called once per frame
     void Update()
     {
@@ -59,7 +60,7 @@ public class SpecialMaker : MonoBehaviour
 
         if(specialCount == 2)
         {
-            RazerMaker.isSpecial = true;
+
             int count = 0;
             while(count < 20)
             {
@@ -98,7 +99,6 @@ public class SpecialMaker : MonoBehaviour
                 count++;
             }
             yield return new WaitForSeconds(1f);
-            RazerMaker.isSpecial = false;
         }
 
         if(specialCount > maxCount)

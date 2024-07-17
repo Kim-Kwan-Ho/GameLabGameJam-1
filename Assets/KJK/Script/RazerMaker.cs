@@ -9,13 +9,13 @@ public class RazerMaker : MonoBehaviour
     public GameObject[] razers; //0 for z, 1 for y
     private bool cooltime = false;
     public float genCooltime = 3f;
-    public static bool isSpecial = false;
     private bool _continue = true;
     void Start()
     {
         GameSceneManager.Instance.GameSceneEvent.EpicPatternEnd += OnEpicPatternEnd;
         GameSceneManager.Instance.GameSceneEvent.GameOver += OnGameOver;
         GameSceneManager.Instance.GameSceneEvent.GameResume += OnGameResume;
+        GameSceneManager.Instance.GameSceneEvent.WarningSignal += OnWarningSignal;
     }
 
     // Update is called once per frame
@@ -25,7 +25,7 @@ public class RazerMaker : MonoBehaviour
         {
             if(PlayerMoving.playerMode == PlayerMoving.PlayerMode.D3)
             {
-                if (!cooltime && !isSpecial)
+                if (!cooltime)
                 {
                     StartCoroutine(RandRazer());
                     cooltime = true;
@@ -33,13 +33,17 @@ public class RazerMaker : MonoBehaviour
             }
             else if(PlayerMoving.playerMode == PlayerMoving.PlayerMode.D2)
             {
-                if (!cooltime && !isSpecial)
+                if (!cooltime)
                 {
                     StartCoroutine(TwoDRandRazer());
                     cooltime = true;
                 }
             }
         }
+    }
+    private void OnWarningSignal(GameSceneEventArgs gameSceneEventArgs)
+    {
+        _continue = false;
     }
 
     private void OnEpicPatternEnd(GameSceneEventArgs gameSceneEventArgs)
