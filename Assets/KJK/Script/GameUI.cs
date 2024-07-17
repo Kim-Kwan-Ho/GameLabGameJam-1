@@ -27,7 +27,7 @@ public class GameUI : MonoBehaviour
     {
         //DrawTimer();
         DrawScore();
-        LifeCheck(healthSystem.Health);
+        //LifeCheck(healthSystem.Health);
         PowerCheck(attackSystem.DamageLevel);
         SpeedCheck(attackSystem.AttackSpeedLevel);
     }
@@ -43,17 +43,17 @@ public class GameUI : MonoBehaviour
     }*/
 
     // 라이프 체크
-    public void LifeCheck(int lifeCount)
-    {
-        // 현재 임시로 라이프값 3 입력함
-        for (int i = 0; i < 3; i++)
-        {
-            if (i < lifeCount)
-                ui_lifeLevel[i].SetActive(true);
-            else
-                ui_lifeLevel[i].SetActive(false);
-        }
-    }
+    //public void LifeCheck(int lifeCount)
+    //{
+    //    // 현재 임시로 라이프값 3 입력함
+    //    for (int i = 0; i < 3; i++)
+    //    {
+    //        if (i < lifeCount)
+    //            ui_lifeLevel[i].SetActive(true);
+    //        else
+    //            ui_lifeLevel[i].SetActive(false);
+    //    }
+    //}
 
     // 파워
     public void PowerCheck(int powerLevel)
