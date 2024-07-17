@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class GameUI : MonoBehaviour
 {
+    static GameUI instance;
     [SerializeField] private ScoreManager scoreManager;
 
     //[SerializeField] private TextMeshProUGUI timerText; // 타이머 출력 text
@@ -12,6 +13,7 @@ public class GameUI : MonoBehaviour
 
     [SerializeField] private GameObject[] ui_powerLevel;
     [SerializeField] private GameObject[] ui_speedLevel;
+    [SerializeField] private GameObject[] ui_lifeLevel;
 
 
     // Start is called before the first frame update
@@ -41,20 +43,37 @@ public class GameUI : MonoBehaviour
     public void LifeCheck(int lifeCount)
     {
         // 현재 임시로 라이프값 3 입력함
-        /*for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++)
         {
-            /*if (i < lifeCount)
-                
+            if (i < lifeCount)
+                ui_lifeLevel[i - 1].SetActive(true);
             else
-            #1#
-
-        }*/
+                ui_lifeLevel[i - 1].SetActive(false);
+        }
     }
 
     // 파워
     public void PowerCheck(int powerLevel)
     {
+        for (int i = 0; i < 3; i++)
+        {
+            if (i < powerLevel)
+                ui_powerLevel[i - 1].SetActive(true);
+            else
+                ui_powerLevel[i - 1].SetActive(false);
+        }
+    }
 
+    // 스피드
+    public void SpeedCheck(int speedLevel)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            if (i < speedLevel)
+                ui_speedLevel[i - 1].SetActive(true);
+            else
+                ui_speedLevel[i - 1].SetActive(false);
+        }
     }
 
     // 스코어 출력
