@@ -1017,6 +1017,12 @@ MonoBehaviour:
   - 
   InputName: {fileID: 6505827091802037909}
   InputScore: {fileID: 937776736494752816}
+  parentObject: {fileID: 0}
+  rankingInfos: []
+  rankingChildren:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &8842588121352463584
 GameObject:
   m_ObjectHideFlags: 0

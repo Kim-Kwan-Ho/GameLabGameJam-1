@@ -8,7 +8,7 @@ public class Items : MonoBehaviour
 
     [SerializeField] private float _lifeTime = 7f;
     [SerializeField] private float _rotSpeed = 10f;
-
+    [SerializeField] private GameObject _particleGob;
     private void Update()
     {
         transform.Rotate(new Vector3(0, _rotSpeed, 0) * Time.deltaTime);
@@ -21,6 +21,11 @@ public class Items : MonoBehaviour
     public void SetItem(float lifeTime)
     {
         _lifeTime = lifeTime;
+    }
+
+    private void OnDestroy()
+    {
+        Instantiate(_particleGob, transform.position, transform.rotation);
     }
 }
 

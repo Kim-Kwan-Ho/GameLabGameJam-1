@@ -440,8 +440,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.72
-  m_Center: {x: 0, y: 0.27, z: 0}
+  m_Radius: 0.51
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1257260742767088889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -457,3 +457,4 @@ MonoBehaviour:
   ItemType: 2
   _lifeTime: 7
   _rotSpeed: 40
+  _particleGob: {fileID: 381891898412548092, guid: a75034c65d12e5145a236c83ac7a041f, type: 3}
