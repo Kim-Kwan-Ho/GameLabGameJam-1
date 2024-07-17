@@ -10,7 +10,8 @@ public class TitleScene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        RankManager.Instance.ReadRankData();
+        RankManager.Instance.UpdateRankUI();
     }
 
     // Update is called once per frame
