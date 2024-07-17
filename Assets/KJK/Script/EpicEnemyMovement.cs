@@ -33,6 +33,10 @@ public class EpicEnemyMovement : MonoBehaviour
 
     }
 
+    public void SetHp(float hp)
+    {
+        epicEnemyHp = hp;
+    }
 
     private void OnEnable()
     {

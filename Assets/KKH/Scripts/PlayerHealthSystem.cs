@@ -1,14 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerHealthSystem : MonoBehaviour
 {
     private MeshRenderer _meshRenderer;
-    public int Health{get {return _health;}}
+    public int Health { get { return _health; } }
     [SerializeField] private int _health = 3;
 
     [SerializeField] private GameObject _deathParticle;
+    [SerializeField] private Material[] _materials = new Material[2];
+    [SerializeField] private float _hitEffectTime = 0.2f;
+    public Action HealthDecreaseEvent;
+    public Action HealthIncreaseEvent;
 
 
     private void Awake()
@@ -18,7 +24,7 @@ public class PlayerHealthSystem : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.CompareTag("Enemy") || col.gameObject.CompareTag("Obstacle")) 
+        if (col.gameObject.CompareTag("Enemy") || col.gameObject.CompareTag("Obstacle"))
         {
             Destroy(col.gameObject); // 게임종료
             PlayerTakeHit();
@@ -28,12 +34,20 @@ public class PlayerHealthSystem : MonoBehaviour
 
     private void PlayerTakeHit()
     {
+        StartCoroutine(PlayerHitEffect());
         _health--;
+        HealthDecreaseEvent?.Invoke();
         if (_health <= 0)
         {
             PlayerDeath();
         }
-   
+    }
+
+    private IEnumerator PlayerHitEffect()
+    {
+        _meshRenderer.material = _materials[1];
+        yield return new WaitForSeconds(_hitEffectTime);
+        _meshRenderer.material = _materials[0];
     }
 
     private void PlayerDeath()
@@ -55,7 +69,12 @@ public class PlayerHealthSystem : MonoBehaviour
         }
         else
         {
+            HealthIncreaseEvent?.Invoke();
             _health++;
         }
     }
+
+
+
+
 }

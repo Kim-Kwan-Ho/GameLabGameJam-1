@@ -1,7 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using System;
-using UnityEditor.IMGUI.Controls;
 
 public class CameraMoving : MonoBehaviour
 {

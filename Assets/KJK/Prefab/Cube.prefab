@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6cc40965f836a94887f0505552aa8a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startPlayerMode: 0
   speed: 10
 --- !u!114 &1484777055448453410
 MonoBehaviour:
@@ -181,7 +182,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27909dd184f317040a9cd4334824e84b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _health: 3
   _deathParticle: {fileID: 1305957731346107395}
+  _materials:
+  - {fileID: 2100000, guid: 837dca51768c61d41a8097dabe062869, type: 2}
+  - {fileID: 2100000, guid: 36b3ddc53d5f4c44d94f3270815b9f10, type: 2}
+  _hitEffectTime: 0.3
 --- !u!1 &8870477278070213627
 GameObject:
   m_ObjectHideFlags: 0
@@ -328,6 +334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5bb642dce58f2d4e8b131eb40fa3fea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _magPower: 1
 --- !u!1001 &5343346216263049010
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -122,6 +122,7 @@ public class PlayerAttack : MonoBehaviour
         if (other.gameObject.CompareTag("Item"))
         {
             Items item = other.gameObject.GetComponent<Items>();
+            item.InstantiateParticle();
             switch (item.ItemType)
             {
                 case EItemType.AttackSpeed:

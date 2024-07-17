@@ -42,6 +42,10 @@ public class EnemyMovement : MonoBehaviour
         Destroy(this.gameObject);
     }
 
+    public void SetHp(int hp)
+    {
+        this.hp = hp;
+    }
     void Update()
     {
         if (player == null) return;
@@ -80,11 +84,9 @@ public class EnemyMovement : MonoBehaviour
     {
         Flash();
         hp -= amount;
-        Debug.Log($"{gameObject.name} take damaged {amount} & current hp: {hp}");
 
         if (hp <= 0)
         {
-            Debug.Log("killed!");
             //scoreManager.IncreaseKillCount();
             Instantiate(_enemyDeathParticle, transform.position, Quaternion.identity);
             Destroy(this.gameObject);

@@ -13,7 +13,8 @@ public class EnemySpawner : MonoBehaviour
     public float epicSpawnTiming;
     public float stageInterval = 15.0f;
     [SerializeField] private float _minSpawnInterval = 0.5f;
-
+    [SerializeField] private int _enemyStartHp = 3;
+    [SerializeField] private int _epicEnemyStartHp = 5;
     void Start()
     {
         spawnInterval -= (Constants.LEVEL_ENEMY_SPAWNTIME * GameSceneManager.GameLevel);
@@ -54,12 +55,18 @@ public class EnemySpawner : MonoBehaviour
     {
         // Generate a random position on the surface of a 3x3x3 cube centered at the centerPosition
         Vector3 spawnPosition = GetRandomPositionOnCubeSurface();
-        Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+        EnemyMovement enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity).GetComponent<EnemyMovement>();
+        _enemyStartHp += (GameSceneManager.GameLevel % 2 == 0)
+            ? (GameSceneManager.GameLevel / 2) * Constants.LEVEL_ENEMY_HPINCREASE : 0;
+        enemy.SetHp(_enemyStartHp);
     }
     void SpawnEpicEnemy()
     {
         Vector3 spawnPosition = GetRandomPositionOnCubeSurface();
-        Instantiate(epicEnemyPrefab, spawnPosition, Quaternion.identity);
+        EpicEnemyMovement enemy = Instantiate(epicEnemyPrefab, spawnPosition, Quaternion.identity).GetComponent<EpicEnemyMovement>();
+        _epicEnemyStartHp += (GameSceneManager.GameLevel % 2 == 0)
+            ? (GameSceneManager.GameLevel / 2) * Constants.LEVEL_EPICENEMY_HPINCREASE : 0;
+        enemy.SetHp(_epicEnemyStartHp);
     }
     Vector3 GetRandomPositionOnCubeSurface()
     {

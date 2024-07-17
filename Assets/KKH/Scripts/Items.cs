@@ -23,7 +23,7 @@ public class Items : MonoBehaviour
         _lifeTime = lifeTime;
     }
 
-    private void OnDestroy()
+    public void InstantiateParticle()
     {
         Instantiate(_particleGob, transform.position, transform.rotation);
     }
