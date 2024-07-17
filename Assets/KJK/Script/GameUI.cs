@@ -60,24 +60,24 @@ public class GameUI : MonoBehaviour
     // 파워
     public void PowerCheck(int powerLevel)
     {
-        for (int i = 1; i < 4; i++)
+        for (int i = 0; i < 3; i++)
         {
             if (i < powerLevel)
-                ui_powerLevel[i - 1].SetActive(true);
+                ui_powerLevel[i].SetActive(true);
             else
-                ui_powerLevel[i - 1].SetActive(false);
+                ui_powerLevel[i].SetActive(false);
         }
     }
 
     // 스피드
     public void SpeedCheck(int speedLevel)
     {
-        for (int i = 1; i < 4; i++)
+        for (int i = 0; i < 3; i++)
         {
             if (i < speedLevel)
-                ui_speedLevel[i - 1].SetActive(true);
+                ui_speedLevel[i].SetActive(true);
             else
-                ui_speedLevel[i - 1].SetActive(false);
+                ui_speedLevel[i].SetActive(false);
         }
     }
 
