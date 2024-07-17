@@ -10,12 +10,12 @@ public class ItemSpawner : MonoBehaviour
     [Header("Spawn Settings")]
     [SerializeField] private Vector3 _centerPos = new Vector3(0, 10, 0);
     [SerializeField] private float _mid = 9.5f;
-    [SerializeField] private float _spawnTime = 15;
+    [SerializeField] private float _spawnNLifeTime = 15;
     private float _coolTime = 0;
 
     private void Awake()
     {
-        _coolTime = _spawnTime;
+        _coolTime = _spawnNLifeTime;
     }
 
     private void Update()
@@ -32,13 +32,14 @@ public class ItemSpawner : MonoBehaviour
 
     private void SpawnItem()
     {
-        _coolTime = _spawnTime;
+        _coolTime = _spawnNLifeTime;
         int ranI = Random.Range(0, _items.Length);
         float ranX = Random.Range(-_mid, _mid);
         float ranY = Random.Range(-_mid, _mid);
         float ranZ = Random.Range(-_mid, _mid);
 
-        Instantiate(_items[ranI], new Vector3(_centerPos.x - ranX, _centerPos.y - ranY, _centerPos.z - ranZ), Quaternion.Euler(Vector3.up));
+        Items item = Instantiate(_items[ranI], new Vector3(_centerPos.x - ranX, _centerPos.y - ranY, _centerPos.z - ranZ), Quaternion.Euler(Vector3.up)).GetComponent<Items>();
+        item.SetItem(_spawnNLifeTime);
     }
 
 

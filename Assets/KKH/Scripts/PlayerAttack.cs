@@ -115,7 +115,7 @@ public class PlayerAttack : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, _searchSize);
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Item"))
         {

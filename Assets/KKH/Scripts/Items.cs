@@ -19,6 +19,12 @@ public class Items : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
+
+    public void SetItem(float lifeTime)
+    {
+        _lifeTime = lifeTime;
+    }
 }
 
 

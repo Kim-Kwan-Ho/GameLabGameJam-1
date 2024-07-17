@@ -22,9 +22,8 @@ public class FlyingEnemyChase : MonoBehaviour
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        DamageMaterial = (Material)AssetDatabase.LoadAssetAtPath("Assets/KJK/Material/DamageTakenMat.mat", typeof(Material));
-        EnemyDefaultMaterial = (Material)AssetDatabase.LoadAssetAtPath("Assets/KJK/Material/EnemyDefaultMat.mat", typeof(Material));
-        scoreManager = new ScoreManager(); // << MonoBehaviour가 달린것은 new로 생성 X
+        DamageMaterial = Resources.Load<Material>("Materials/DamageTakenMat");
+        EnemyDefaultMaterial = Resources.Load<Material>("Materials/EnemyDefaultMat");
         EnemyRenderer = GetComponent<Renderer>();
         Debug.Log("Material loaded");
         hp = 3;
@@ -72,7 +71,7 @@ public class FlyingEnemyChase : MonoBehaviour
         if (hp <= 0)
         {
             Debug.Log("killed!");
-            scoreManager.IncreaseKillCount();
+            //scoreManager.IncreaseKillCount();
             Instantiate(_enemyDeathParticle, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }

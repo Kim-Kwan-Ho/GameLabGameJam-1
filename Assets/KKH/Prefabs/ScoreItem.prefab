@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7783869995418626325}
   - component: {fileID: 950192910188938899}
   - component: {fileID: 2146818579946274226}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Capsule (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 8047203133075362487}
   - component: {fileID: 2404321943160192754}
   - component: {fileID: 1715877612481242751}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 5892416132443429785}
   - component: {fileID: 673145513374364869}
   - component: {fileID: 5151815945687771307}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Sphere (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 3781170726212109687}
   - component: {fileID: 6562771794499212695}
   - component: {fileID: 7946524071094671368}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -345,7 +345,7 @@ GameObject:
   - component: {fileID: 2634815801241039851}
   - component: {fileID: 148360992783791225}
   - component: {fileID: 1257260742767088889}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ScoreItem
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -436,7 +436,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

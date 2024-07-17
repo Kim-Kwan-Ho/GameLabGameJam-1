@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerHealthSystem : MonoBehaviour
 {
     private MeshRenderer _meshRenderer;
+    [SerializeField] private int _health = 3;
 
     [SerializeField] private GameObject _deathParticle;
 
@@ -18,11 +19,22 @@ public class PlayerHealthSystem : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Enemy") || col.gameObject.CompareTag("Obstacle")) 
         {
-            //Destroy(this.gameObject); // 게임종료
-            PlayerDeath();
+            Destroy(col.gameObject); // 게임종료
+            PlayerTakeHit();
         }
     }
 
+
+    private void PlayerTakeHit()
+    {
+        _health--;
+        Debug.Log("Health: " + _health);
+        if (_health <= 0)
+        {
+            PlayerDeath();
+        }
+   
+    }
 
     private void PlayerDeath()
     {
@@ -31,6 +43,5 @@ public class PlayerHealthSystem : MonoBehaviour
         GetComponent<PlayerAttack>().enabled = false;
         GetComponent<PlayerMoving>().enabled = false;
         _deathParticle.SetActive(true);
-
     }
 }

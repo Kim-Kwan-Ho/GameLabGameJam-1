@@ -45,9 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _items:
-  - {fileID: 5678590633693614520, guid: 5b6b416ddd40c6141821a6efb2115fb5, type: 3}
-  - {fileID: 7757262197801190662, guid: 9dad9e3bc0bb4744aae8ae187c98078d, type: 3}
   - {fileID: 6855377152471989962, guid: 3a68abe374416a74e8343d2681ac7386, type: 3}
   _centerPos: {x: 0, y: 10, z: 0}
-  _mid: 9
-  _spawnTime: 15
+  _mid: 7
+  _spawnNLifeTime: 2

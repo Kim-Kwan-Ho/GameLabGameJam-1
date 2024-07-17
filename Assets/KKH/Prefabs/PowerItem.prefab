@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5447920910213176394}
   - component: {fileID: 226810543402308766}
   - component: {fileID: 5940574689566519484}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 4008229846766884796}
   - component: {fileID: 1422095590083641942}
   - component: {fileID: 2647168272563165144}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: PowerItem
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -206,7 +206,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
