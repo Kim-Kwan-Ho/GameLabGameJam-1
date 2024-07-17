@@ -71,7 +71,7 @@ public class RankManager : MonoBehaviour
             TextMeshProUGUI scoreText = rankingChildren[2].GetComponent<TextMeshProUGUI>();
             
             rankText.text = (i + 1).ToString();
-            nameText.text = bestName[i].ToString() + i;
+            nameText.text = bestName[i].ToString();
             scoreText.text = bestScore[i].ToString(); 
         }
 
