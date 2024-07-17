@@ -19,7 +19,6 @@ public class PlayerAttack : MonoBehaviour
     [Header("Enemy & Scanner")]
     [SerializeField] private float _searchSize = 5f;
     [SerializeField] private GameObject _enemy; // 이건 enemy 완성 후 설정
-    [SerializeField] private LayerMask _enemyLayer;
     [SerializeField] private float _searchTime = 0.1f;
 
 
@@ -61,7 +60,7 @@ public class PlayerAttack : MonoBehaviour
 
     private IEnumerator CoSearchEnemy()
     {
-        Collider[] col = Physics.OverlapSphere(transform.position, _searchSize, _enemyLayer);
+        Collider[] col = Physics.OverlapSphere(transform.position, _searchSize, 1<<10);
         if (col.Length >= 1 && col[0] != null)
         {
             _isSearching = false;

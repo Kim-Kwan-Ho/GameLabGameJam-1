@@ -346,7 +346,7 @@ GameObject:
   - component: {fileID: 148360992783791225}
   - component: {fileID: 1257260742767088889}
   m_Layer: 0
-  m_Name: ScoreItem 1
+  m_Name: ScoreItem
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -362,7 +362,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -46.385242, y: -0.28399724, z: -81.38714}
-  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3781170726212109687}
@@ -456,4 +456,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemType: 2
   _lifeTime: 7
-  _rotSpeed: 10
+  _rotSpeed: 40
