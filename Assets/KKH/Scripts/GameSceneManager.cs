@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 
@@ -9,6 +10,9 @@ public class GameSceneManager : MonoBehaviour
     public static int GameLevel = 1;
 
     [SerializeField] private GameObject _healthItem;
+
+
+    [SerializeField] private float _epicPatternTime = 15f;
     private void Awake()
     {
         GameSceneEvent = GetComponent<GameSceneEventArgs>();
@@ -22,11 +26,14 @@ public class GameSceneManager : MonoBehaviour
         }
 
         GameSceneEvent.EpicPatternEnd += OnEpicPatternEnd;
+        GameSceneEvent.GameResume += StartEpicPatternTimer;
+        StartCoroutine(StartEpicPattern());
     }
 
     private void OnDestroy()
     {
         GameSceneEvent.EpicPatternEnd -= OnEpicPatternEnd;
+        GameSceneEvent.GameResume -= StartEpicPatternTimer;
     }
 
     private void OnEpicPatternEnd(GameSceneEventArgs gameSceneEventArgs)
@@ -35,5 +42,13 @@ public class GameSceneManager : MonoBehaviour
         Instantiate(_healthItem, new Vector3(0, 10, 0), Quaternion.identity);
     }
 
-
+    private void StartEpicPatternTimer(GameSceneEventArgs gameSceneEventArgs)
+    {
+        StartCoroutine(StartEpicPattern());
+    }
+    private IEnumerator StartEpicPattern()
+    {
+        yield return new WaitForSeconds(_epicPatternTime);
+        GameSceneEvent.CallWarningSignal();
+    }
 }

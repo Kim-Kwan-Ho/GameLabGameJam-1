@@ -107,7 +107,7 @@ public class PlayerAttack : MonoBehaviour
         else
         {
             _attackSpeedLevel++;
-            _attackSpeed = 1 - (_attackSpeedLevel * 0.15f);
+            _attackSpeed = 1 - (_attackSpeedLevel * 0.2f);
         }
     }
 
