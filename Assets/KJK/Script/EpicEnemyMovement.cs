@@ -2,18 +2,24 @@ using System.Collections;
 using UnityEditor;
 using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour
+public class EpicEnemyMovement : MonoBehaviour
 {
+    public GameObject[] ItemPrefabs;
+
     public Transform player;
-    public float chaseRange = 100f;
-    public float moveSpeed = 3.0f;
-    public float hoverHeight = 1.0f;
     private Vector3 targetPosition;
     private ScoreManager scoreManager;
     private Material DamageMaterial;
     private Material EnemyDefaultMaterial;
     private Renderer EnemyRenderer;
-    public float hp;
+
+    //Enemy Stats
+    public float epicEnemyHp;
+    public float epicMoveSpeed = 1.0f;
+    public float chaseRange = 100f;
+    public float hoverHeight = 1.0f;
+
+    //should be replaced
     int bulletDamage = 1;
 
     [Header("Death Particle")]
@@ -22,11 +28,13 @@ public class EnemyMovement : MonoBehaviour
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        DamageMaterial = Resources.Load<Material>("Materials/DamageTakenMat");
-        EnemyDefaultMaterial = Resources.Load<Material>("Materials/EnemyDefaultMat");
+        DamageMaterial = Resources.Load<Material>("Assets/KJK/Material/EpicEnemyDamagedMat.mat");
+        EnemyDefaultMaterial = Resources.Load<Material>("Assets/KJK/Material/EpicEnemyBodyMat.mat");
         EnemyRenderer = GetComponent<Renderer>();
-        Debug.Log("Material loaded");
-        hp = 3;
+        scoreManager = GetComponent<ScoreManager>();
+
+        //set enemy hp
+        epicEnemyHp = 1;
     }
     void Update()
     {
@@ -39,7 +47,6 @@ public class EnemyMovement : MonoBehaviour
             MoveTowardsTarget();
         }
 
-
     }
 
     bool IsPlayerInRange()
@@ -51,7 +58,7 @@ public class EnemyMovement : MonoBehaviour
     void MoveTowardsTarget()
     {
         Vector3 direction = (targetPosition - transform.position).normalized;
-        transform.position += direction * moveSpeed * Time.deltaTime;
+        transform.position += direction * epicMoveSpeed * Time.deltaTime;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -65,16 +72,22 @@ public class EnemyMovement : MonoBehaviour
     public void TakeDamage(int amount)
     {
         Flash();
-        hp -= amount;
-        Debug.Log($"{gameObject.name} take damaged {amount} & current hp: {hp}");
+        epicEnemyHp -= amount;
+        Debug.Log($"{gameObject.name} take damaged {amount} & current hp: {epicEnemyHp}");
 
-        if (hp <= 0)
+
+        if (epicEnemyHp <= 0)
         {
             Debug.Log("killed!");
-            //scoreManager.IncreaseKillCount();
-            Instantiate(_enemyDeathParticle, transform.position, Quaternion.identity);
+            Instantiate(_enemyDeathParticle,  transform.position, Quaternion.identity);
+            ItemDrop();
             Destroy(this.gameObject);
         }
+    }
+    void ItemDrop()
+    {
+        int randomIndex = Random.Range(0, ItemPrefabs.Length);
+        Instantiate(ItemPrefabs[randomIndex], transform.position, Quaternion.identity);
     }
 
     public void Flash()
@@ -87,7 +100,8 @@ public class EnemyMovement : MonoBehaviour
         EnemyRenderer.material = DamageMaterial;
 
         yield return new WaitForSeconds(0.1f);
-
         EnemyRenderer.material = EnemyDefaultMaterial;
     }
+
+   
 }

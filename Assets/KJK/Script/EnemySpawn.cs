@@ -1,13 +1,21 @@
+using System.Collections;
+using UnityEditor;
 using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
+    public GameObject epicEnemyPrefab;
     public Transform centerPosition;
     public float spawnInterval = 1.0f;
+    public float epicSpawnTiming;
+    public float stageInterval = 15.0f;
 
     void Start()
     {
-        InvokeRepeating(nameof(SpawnEnemy), 0.1f, spawnInterval);
+        epicSpawnTiming = stageInterval / 2; 
+        Invoke(nameof(SpawnEpicEnemy), epicSpawnTiming);
+        StartCoroutine(StageStart());
+        
     }
 
     void SpawnEnemy()
@@ -16,7 +24,11 @@ public class EnemySpawner : MonoBehaviour
         Vector3 spawnPosition = GetRandomPositionOnCubeSurface();
         Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
     }
-
+    void SpawnEpicEnemy()
+    {
+        Vector3 spawnPosition = GetRandomPositionOnCubeSurface();
+        Instantiate(epicEnemyPrefab, spawnPosition, Quaternion.identity);
+    }
     Vector3 GetRandomPositionOnCubeSurface()
     {
         // Cube dimensions
@@ -58,5 +70,14 @@ public class EnemySpawner : MonoBehaviour
         Gizmos.color = Color.red;
         Vector3 size = new Vector3(20, 20, 20);
         Gizmos.DrawWireCube(centerPosition.position, size);
+    }
+
+    IEnumerator StageStart()
+    {
+        InvokeRepeating(nameof(SpawnEnemy), 0.1f, spawnInterval);
+
+        yield return new WaitForSeconds(stageInterval);
+
+        CancelInvoke(nameof(SpawnEnemy));
     }
 } 
