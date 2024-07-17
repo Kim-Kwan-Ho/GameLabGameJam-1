@@ -6,8 +6,10 @@ using UnityEngine.UI;
 
 public class RankManager : MonoBehaviour
 {
-    [SerializeField] private float[] bestScore = new float[8];      // 하이스코어 점수(7등까지)
-    [SerializeField] private string[] bestName = new string[8];     // 하이스코어 이름
+    public static RankManager Instance;
+
+    public float[] bestScore = new float[8];      // 하이스코어 점수(7등까지)
+    public string[] bestName = new string[8];     // 하이스코어 이름
 
     public InputField InputName;
     public InputField InputScore;
@@ -15,6 +17,18 @@ public class RankManager : MonoBehaviour
     public GameObject parentObject;
     public GameObject[] rankingInfos;
     public GameObject[] rankingChildren = new GameObject[3];
+
+    private void Awake()
+    {
+        RankManager.Instance = this;
+    }
+
+    void Start()
+    {
+        // Get Saved Rank
+        ReadRankData();
+    }
+
     void Update()
     {
 
@@ -33,13 +47,13 @@ public class RankManager : MonoBehaviour
             else
             {
                 bestScore[i] = 0;
-                bestName[i] = "none";
+                bestName[i] = "NAN";
             }
         }
     }
 
     // 랭킹 저장하기
-    private void WriteRankData()
+    public void WriteRankData()
     {
         for (int i = 0; i < 7; i++)
         {
@@ -50,7 +64,7 @@ public class RankManager : MonoBehaviour
         //UpdateRankUI();
     }
 
-    private void UpdateRankUI()
+    public void UpdateRankUI()
     {
         //fetch the info from bestScore and bestName arrays
         //access the children of GameObject -> access rank, name and score to update the ranking info
@@ -79,7 +93,7 @@ public class RankManager : MonoBehaviour
     }
 
     // 플레이어의 점수와 랭킹 비교 후 랭킹 정렬
-    private void CompareRankScore(string name, float score)
+    public void CompareRankScore(string name, float score)
     {
         float tmpScore;
         string tmpName;
@@ -108,7 +122,7 @@ public class RankManager : MonoBehaviour
         for (int i = 0; i < 7; i++)
         {
             PlayerPrefs.SetFloat(i + "BestScore", 0);
-            PlayerPrefs.SetString(i + "BestName", "none");
+            PlayerPrefs.SetString(i + "BestName", "NAN");
         }
     }
 
