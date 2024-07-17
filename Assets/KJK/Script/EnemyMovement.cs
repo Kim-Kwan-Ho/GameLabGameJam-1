@@ -1,29 +1,19 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Networking;
 
-public class EnemyMovement : MonoBehaviour
+public class FlyingEnemyChase : MonoBehaviour
 {
     public Transform player;
+    public float chaseRange = 100f;
+    public float moveSpeed = 3.0f;
+    public float hoverHeight = 1.0f;
     private Vector3 targetPosition;
     private ScoreManager scoreManager;
     private Material DamageMaterial;
     private Material EnemyDefaultMaterial;
     private Renderer EnemyRenderer;
-
-    //Enemy Stats
-    public float defaultEnemyHp;
-    public float epicEnemyHp; 
-    
-    public float defaultMoveSpeed = 3.0f;
-    public float epicMoveSpeed = 3.0f;
-
-    public float chaseRange = 100f;
-    public float hoverHeight = 1.0f;
-   
-    //should be replaced
+    public float hp;
     int bulletDamage = 1;
 
     [Header("Death Particle")]
@@ -32,14 +22,11 @@ public class EnemyMovement : MonoBehaviour
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        DamageMaterial = (Material)AssetDatabase.LoadAssetAtPath("Assets/KJK/Material/DamageTakenMat.mat", typeof(Material));
-        EnemyDefaultMaterial = (Material)AssetDatabase.LoadAssetAtPath("Assets/KJK/Material/EnemyDefaultMat.mat", typeof(Material));
+        DamageMaterial = Resources.Load<Material>("Materials/DamageTakenMat");
+        EnemyDefaultMaterial = Resources.Load<Material>("Materials/EnemyDefaultMat");
         EnemyRenderer = GetComponent<Renderer>();
-        scoreManager = GetComponent<ScoreManager>();
-
-        //set enemy hp
-        defaultEnemyHp = 3;
-        epicEnemyHp = 10;
+        Debug.Log("Material loaded");
+        hp = 3;
     }
     void Update()
     {
@@ -52,6 +39,7 @@ public class EnemyMovement : MonoBehaviour
             MoveTowardsTarget();
         }
 
+
     }
 
     bool IsPlayerInRange()
@@ -63,7 +51,7 @@ public class EnemyMovement : MonoBehaviour
     void MoveTowardsTarget()
     {
         Vector3 direction = (targetPosition - transform.position).normalized;
-        transform.position += direction * defaultMoveSpeed * Time.deltaTime;
+        transform.position += direction * moveSpeed * Time.deltaTime;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -77,13 +65,13 @@ public class EnemyMovement : MonoBehaviour
     public void TakeDamage(int amount)
     {
         Flash();
-        defaultEnemyHp -= amount;
-        Debug.Log($"{gameObject.name} take damaged {amount} & current hp: {defaultEnemyHp}");
+        hp -= amount;
+        Debug.Log($"{gameObject.name} take damaged {amount} & current hp: {hp}");
 
-        
-        if (defaultEnemyHp <= 0)
+        if (hp <= 0)
         {
             Debug.Log("killed!");
+            //scoreManager.IncreaseKillCount();
             Instantiate(_enemyDeathParticle, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
