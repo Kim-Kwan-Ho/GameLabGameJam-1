@@ -29,7 +29,6 @@ public class PlayerHealthSystem : MonoBehaviour
     private void PlayerTakeHit()
     {
         _health--;
-        Debug.Log("Health: " + _health);
         if (_health <= 0)
         {
             PlayerDeath();
@@ -44,6 +43,8 @@ public class PlayerHealthSystem : MonoBehaviour
         GetComponent<PlayerAttack>().enabled = false;
         GetComponent<PlayerMoving>().enabled = false;
         _deathParticle.SetActive(true);
+
+        GameSceneManager.Instance.GameSceneEvent.CallGameOver();
     }
 
     public void RecoverHealth()

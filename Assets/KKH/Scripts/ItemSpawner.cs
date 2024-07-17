@@ -21,11 +21,13 @@ public class ItemSpawner : MonoBehaviour
     private void Start()
     {
         GameSceneManager.Instance.GameSceneEvent.WarningSignal += OnWarningSignalStart;
+        GameSceneManager.Instance.GameSceneEvent.GameOver += OnGameOver;
         GameSceneManager.Instance.GameSceneEvent.GameResume += OnGameResume;
     }
     private void OnDestroy()
     {
         GameSceneManager.Instance.GameSceneEvent.WarningSignal -= OnWarningSignalStart;
+        GameSceneManager.Instance.GameSceneEvent.GameOver -= OnGameOver;
         GameSceneManager.Instance.GameSceneEvent.GameResume -= OnGameResume;
     }
 
@@ -33,7 +35,10 @@ public class ItemSpawner : MonoBehaviour
     {
         _canSpawn = false;
     }
-
+    private void OnGameOver(GameSceneEventArgs gameSceneEventArgs)
+    {
+        _canSpawn = false;
+    }
     private void OnGameResume(GameSceneEventArgs gameSceneEventArgs)
     {
         _canSpawn = true;

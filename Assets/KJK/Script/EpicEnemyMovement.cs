@@ -19,8 +19,6 @@ public class EpicEnemyMovement : MonoBehaviour
     public float chaseRange = 100f;
     public float hoverHeight = 1.0f;
 
-    //should be replaced
-    int bulletDamage = 1;
 
     [Header("Death Particle")]
     [SerializeField] private GameObject _enemyDeathParticle;

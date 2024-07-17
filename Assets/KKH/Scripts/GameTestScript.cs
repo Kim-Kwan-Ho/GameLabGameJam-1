@@ -22,5 +22,10 @@ public class GameTestScript : MonoBehaviour
         {
             GameSceneManager.Instance.GameSceneEvent.CallEpicPatternStart();
         }
+
+        if (Input.GetKeyDown(KeyCode.F5))
+        {
+            GameSceneManager.Instance.GameSceneEvent.CallEpicPatternEnd();
+        }
     }
 }

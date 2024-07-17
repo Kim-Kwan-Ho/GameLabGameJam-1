@@ -2347,6 +2347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameSceneEvent: {fileID: 0}
+  _healthItem: {fileID: 812291962651381905, guid: 4c2717357552b494ca802723bd8b29b2, type: 3}
 --- !u!114 &1181070718
 MonoBehaviour:
   m_ObjectHideFlags: 0
