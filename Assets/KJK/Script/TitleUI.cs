@@ -19,7 +19,7 @@ public class TitleScene : MonoBehaviour
     {
         if (Input.anyKeyDown)
         {
-            SceneManager.LoadScene(SceneToLoad);
+            FadeManager.Instance.ChangeScene(SceneToLoad);
         }
     }
 }

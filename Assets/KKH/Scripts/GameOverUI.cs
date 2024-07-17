@@ -45,10 +45,12 @@ public class GameOverUI : MonoBehaviour
 
     public void SceneMoveToTitle()
     {
-        SceneManager.LoadScene("TitleScene");
+        //SceneManager.LoadScene("TitleScene");
+        FadeManager.Instance.ChangeScene("TitleScene");
     }
     public void SceneRestart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        FadeManager.Instance.ChangeScene("GameScene");
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

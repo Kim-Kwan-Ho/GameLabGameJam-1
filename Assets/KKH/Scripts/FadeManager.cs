@@ -46,9 +46,7 @@ public class FadeManager : MonoBehaviour
             yield return null;
         }
         _fadeImage.color = targetColor;
-
-        //SceneManager.LoadScene(sceneName);
-        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene(sceneName);
         StartCoroutine(FadeIn());
     }
 
