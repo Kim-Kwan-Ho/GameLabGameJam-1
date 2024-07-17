@@ -39,7 +39,6 @@ public class WeaponBullet : MonoBehaviour
 
         if (other.gameObject.CompareTag("EpicEnemy"))
         {
-            Debug.Log(other.GetInstanceID());
             EpicEnemyMovement epicEnemy = other.GetComponent<EpicEnemyMovement>();
             epicEnemy.TakeDamage(_damage);
         }

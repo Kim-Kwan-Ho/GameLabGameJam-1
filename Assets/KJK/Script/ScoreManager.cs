@@ -11,20 +11,28 @@ public class ScoreManager : MonoBehaviour
     public float currentTime = 0f;      // 현재 경과한 시간
     public int killCount = 0;           // 처치한 적의 수
 
+
+    private float _timeScore;
+    private int _itemScore = 0;
+    private int _killScore = 0;
     void Awake()
     {
         ScoreManager.instance = this;
-        
     }
 
     void Start()
     {
         GameSceneManager.Instance.GameSceneEvent.GameOver += StopScoring;
+        GameSceneManager.Instance.GameSceneEvent.EpicPatternEnd += StopScoring;
+        GameSceneManager.Instance.GameSceneEvent.GameResume += StartScoring;
+
     }
 
     private void OnDestroy()
     {
         GameSceneManager.Instance.GameSceneEvent.GameOver -= StopScoring;
+        GameSceneManager.Instance.GameSceneEvent.EpicPatternEnd -= StopScoring;
+        GameSceneManager.Instance.GameSceneEvent.GameResume -= StartScoring;
     }
 
     public void IncreaseKillCount()
@@ -34,19 +42,33 @@ public class ScoreManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    { 
-        if (startScoring) 
-        { 
+    {
+        if (startScoring)
+        {
             // 시간 및 점수 계산
             currentTime += Time.deltaTime;
 
-            score = ((int)currentTime * 100) + (killCount * 100);
+            score = ((int)currentTime * Constants.SCORE_TIME) + _killScore + _itemScore;
             //Debug.Log(score);
         }
     }
 
+
+    public void IncreaseItemScore(int amount)
+    {
+        _itemScore += amount;
+    }
+
+    public void IncreaseKillScore(int amount)
+    {
+        _killScore += _killScore;
+    }
     private void StopScoring(GameSceneEventArgs gameSceneEventArgs)
     {
         startScoring = false;
+    }
+    private void StartScoring(GameSceneEventArgs gameSceneEventArgs)
+    {
+        startScoring = true;
     }
 }

@@ -362,7 +362,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -46.385242, y: -0.28399724, z: -81.38714}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3781170726212109687}
@@ -456,5 +456,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemType: 2
   _lifeTime: 7
-  _rotSpeed: 40
+  _rotSpeed: 50
   _particleGob: {fileID: 381891898412548092, guid: a75034c65d12e5145a236c83ac7a041f, type: 3}

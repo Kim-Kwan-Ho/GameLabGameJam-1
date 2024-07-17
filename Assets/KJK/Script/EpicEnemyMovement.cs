@@ -94,7 +94,8 @@ public class EpicEnemyMovement : MonoBehaviour
 
         if (epicEnemyHp <= 0)
         {
-            Instantiate(_enemyDeathParticle,  transform.position, Quaternion.identity);
+            ScoreManager.instance.IncreaseKillScore(Constants.SCORE_EPICENEMYDESTROYED);
+            Instantiate(_enemyDeathParticle, transform.position, Quaternion.identity);
             ItemDrop();
             Destroy(this.gameObject);
         }
@@ -118,5 +119,5 @@ public class EpicEnemyMovement : MonoBehaviour
         EnemyRenderer.material = EnemyDefaultMaterial;
     }
 
-   
+
 }

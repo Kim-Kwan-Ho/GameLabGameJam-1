@@ -65,7 +65,7 @@ public class PlayerHealthSystem : MonoBehaviour
     {
         if (_health >= Constants.PLAYER_MAXHP)
         {
-            // 점수 추가
+            ScoreManager.instance.IncreaseItemScore(Constants.SCORE_HPITEM);
         }
         else
         {

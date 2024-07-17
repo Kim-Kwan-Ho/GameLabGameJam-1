@@ -56,8 +56,8 @@ public class EnemySpawner : MonoBehaviour
         // Generate a random position on the surface of a 3x3x3 cube centered at the centerPosition
         Vector3 spawnPosition = GetRandomPositionOnCubeSurface();
         EnemyMovement enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity).GetComponent<EnemyMovement>();
-        _enemyStartHp += (GameSceneManager.GameLevel % 2 == 0)
-            ? (GameSceneManager.GameLevel / 2) * Constants.LEVEL_ENEMY_HPINCREASE : 0;
+        //_enemyStartHp += (GameSceneManager.GameLevel % 2 == 0)
+        //    ? (GameSceneManager.GameLevel / 2) * Constants.LEVEL_ENEMY_HPINCREASE : 0;
         enemy.SetHp(_enemyStartHp);
     }
     void SpawnEpicEnemy()

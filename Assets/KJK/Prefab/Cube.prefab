@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6cc40965f836a94887f0505552aa8a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPlayerMode: 0
+  startPlayerMode: 1
   speed: 10
 --- !u!114 &1484777055448453410
 MonoBehaviour:
@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 558372030613173471}
   - component: {fileID: 675857987392189948}
   - component: {fileID: 3234360981327868155}
-  m_Layer: 3
+  m_Layer: 12
   m_Name: Magnetic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -289,11 +289,11 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.71
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &675857987392189948
 Rigidbody:

@@ -88,21 +88,19 @@ public class PlayerAttack : MonoBehaviour
     {
         if (_damageLevel >= Constants.PLAYER_MAXLEVEL)
         {
-            // 점수 추가
+            ScoreManager.instance.IncreaseItemScore(Constants.SCORE_UPGRADEITEM);
         }
         else
         {
             _damageLevel++;
             _damage = _damageLevel;
         }
-
     }
-
     private void AttackSpeedLevelUp()
     {
         if (_attackSpeedLevel >= Constants.PLAYER_MAXLEVEL)
         {
-            // 점수 추가
+            ScoreManager.instance.IncreaseItemScore(Constants.SCORE_UPGRADEITEM);
         }
         else
         {
@@ -131,7 +129,8 @@ public class PlayerAttack : MonoBehaviour
                 case EItemType.Damage:
                     DamageLevelUp();
                     break;
-                case EItemType.Score: // 스코어 추가
+                case EItemType.Score:
+                    ScoreManager.instance.IncreaseItemScore(Constants.SCORE_SCOREITEM);
                     break;
                 case EItemType.Health:
                     GetComponent<PlayerHealthSystem>().RecoverHealth();
