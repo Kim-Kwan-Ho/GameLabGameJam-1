@@ -169,7 +169,7 @@ MonoBehaviour:
   _enemy: {fileID: 0}
   _enemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   _searchTime: 0.1
 --- !u!114 &2475182737001071438
 MonoBehaviour:
