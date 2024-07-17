@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System;
+using UnityEditor.IMGUI.Controls;
 
 public class CameraMoving : MonoBehaviour
 {
@@ -10,6 +11,23 @@ public class CameraMoving : MonoBehaviour
     private bool isOrbiting = false;  // 코루틴 실행 중 여부 확인용 변수
     public float cooltime = 1.0f;  // 쿨타임
     public GameObject player;
+
+    public enum ViewState
+    {
+        PX,
+        NX,
+        PY,
+        NY,
+        PZ,
+        NZ
+    }
+
+    public static ViewState viewState = ViewState.NZ;
+    public ViewState GetViewState()
+    {
+        return viewState;
+    }
+    public ViewState currentViewState;
 
     void Start()
     {
@@ -23,6 +41,7 @@ public class CameraMoving : MonoBehaviour
 
         // 초기 각도 설정
         this.transform.position = new Vector3(0, target.position.y, target.position.z - distance);
+        currentViewState = viewState;
     }
 
     void Update()
@@ -47,7 +66,31 @@ public class CameraMoving : MonoBehaviour
             StartCoroutine(OrbitCooldown());
             StartCoroutine(OrbitAround(3));
         }
-        //transform.LookAt(target);
+        
+        if(transform.position.y < 0)
+        {
+            viewState = ViewState.NY;
+        }
+        else if(transform.position.y > 20)
+        {
+            viewState = ViewState.PY;
+        }
+        else if(transform.position.z < -10)
+        {
+            viewState = ViewState.NZ;
+        }
+        else if(transform.position.z > 10)
+        {
+            viewState = ViewState.PZ;
+        }
+        else if(transform.position.x < -10)
+        {
+            viewState = ViewState.NX;
+        }
+        else if(transform.position.x > 10)
+        {
+            viewState = ViewState.PX;
+        }
     }
 
     IEnumerator OrbitAround(int caseNum)
@@ -149,6 +192,7 @@ public class CameraMoving : MonoBehaviour
         }
         
         Time.timeScale = curTimescale;
+        currentViewState = viewState;
     }
     IEnumerator OrbitCooldown()
     {

@@ -4,11 +4,20 @@ using UnityEngine;
 
 public class PlayerMoving : MonoBehaviour
 {
+    public enum PlayerMode
+    {
+        D3,
+        D2
+    }
+    [SerializeField] private PlayerMode startPlayerMode = PlayerMode.D3;
+
+    public static PlayerMode playerMode;
     Rigidbody rb;
     public float speed = 5.0f;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        playerMode = startPlayerMode;
     }
 
     // Update is called once per frame
