@@ -8,6 +8,7 @@ public class RazerMaker : MonoBehaviour
     public Transform center;
     public GameObject[] razers; //0 for z, 1 for y
     private bool cooltime = false;
+    public float genCooltime = 3f;
     public static bool isSpecial = false;
     void Start()
     {
@@ -318,7 +319,7 @@ public class RazerMaker : MonoBehaviour
         }
 
            
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(genCooltime);
         cooltime = false;
     }
 }
