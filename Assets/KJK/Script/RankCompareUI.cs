@@ -13,6 +13,7 @@ public class RankCompareUI : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI _nextRankNameText;
     [SerializeField] private TextMeshProUGUI _nextRankScoreText;
+    [SerializeField] private TextMeshProUGUI _nextRankText;
 
     /*void Start()
     {
@@ -54,9 +55,9 @@ public class RankCompareUI : MonoBehaviour
         int rank = Math.Clamp(nextRank - 1, 0, RankManager.Instance.bestName.Length - 1);
         if (nextRank == 0)
         {
-            _nextRankNameText.text = "You!";
+            _nextRankNameText.text = "You Are 1st!";
             _nextRankScoreText.text = string.Format("{0:D6}", (int)ScoreManager.instance.score);
-
+            _nextRankText.text = "";
         }
         else
         {
