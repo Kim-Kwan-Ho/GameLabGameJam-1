@@ -12,7 +12,7 @@ public class ItemSpawner : MonoBehaviour
     [SerializeField] private float _mid = 9.5f;
     [SerializeField] private float _spawnNLifeTime = 15;
     private float _coolTime = 0;
-    private bool _canSpawn = true;
+    private bool _canSpawn = false;
 
     private void Awake()
     {
@@ -23,6 +23,13 @@ public class ItemSpawner : MonoBehaviour
         GameSceneManager.Instance.GameSceneEvent.WarningSignal += OnWarningSignalStart;
         GameSceneManager.Instance.GameSceneEvent.GameOver += OnGameOver;
         GameSceneManager.Instance.GameSceneEvent.GameResume += OnGameResume;
+        StartCoroutine(CoStartDelay());
+    }
+
+    private IEnumerator CoStartDelay()
+    {
+        yield return new WaitForSeconds(Constants.GAME_STARTDELAY);
+        _canSpawn = true;
     }
     private void OnDestroy()
     {

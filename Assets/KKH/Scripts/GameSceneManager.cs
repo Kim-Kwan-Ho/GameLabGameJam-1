@@ -27,9 +27,13 @@ public class GameSceneManager : MonoBehaviour
 
         GameSceneEvent.EpicPatternEnd += OnEpicPatternEnd;
         GameSceneEvent.GameResume += StartEpicPatternTimer;
+        StartCoroutine(CoStartDelay());
+    }
+    private IEnumerator CoStartDelay()
+    {
+        yield return new WaitForSeconds(Constants.GAME_STARTDELAY);
         StartCoroutine(StartEpicPattern());
     }
-
     private void OnDestroy()
     {
         GameSceneEvent.EpicPatternEnd -= OnEpicPatternEnd;

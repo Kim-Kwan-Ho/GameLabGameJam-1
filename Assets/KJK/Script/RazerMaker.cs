@@ -10,15 +10,21 @@ public class RazerMaker : MonoBehaviour
     private bool cooltime = false;
     public static float genCooltime = 3f;
     public static bool isSpecial = false;
-    private bool _continue = true;
+    private bool _continue = false;
     void Start()
     {
         GameSceneManager.Instance.GameSceneEvent.WarningSignal += OnWarningSignal;
         GameSceneManager.Instance.GameSceneEvent.EpicPatternEnd += OnEpicPatternEnd;
         GameSceneManager.Instance.GameSceneEvent.GameOver += OnGameOver;
         GameSceneManager.Instance.GameSceneEvent.GameResume += OnGameResume;
+        _continue = false;
+        StartCoroutine(CoStartDelay());
     }
-
+    private IEnumerator CoStartDelay()
+    {
+        yield return new WaitForSeconds(Constants.GAME_STARTDELAY);
+        _continue = true;
+    }
     // Update is called once per frame
     void Update()
     {

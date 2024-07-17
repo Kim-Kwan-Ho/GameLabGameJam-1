@@ -116,6 +116,7 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator StageStart()
     {
+        yield return new WaitForSeconds(Constants.GAME_STARTDELAY);
         InvokeRepeating(nameof(SpawnEnemy), 0.1f, spawnInterval);
         yield return null;
     }

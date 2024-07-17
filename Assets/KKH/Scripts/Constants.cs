@@ -11,5 +11,6 @@ public static class Constants
     public const int SCORE_SCOREITEM = 500;
     public const int SCORE_UPGRADEITEM = 200;
     public const int SCORE_HPITEM = 1000;
+    public const int GAME_STARTDELAY = 2;
 
 }

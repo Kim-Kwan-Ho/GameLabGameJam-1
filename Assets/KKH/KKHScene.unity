@@ -1469,7 +1469,6 @@ MonoBehaviour:
   - {fileID: 6506001385662169876, guid: 0399a41fe6163f7418c14638b0bb437e, type: 3}
   - {fileID: 6506001385662169876, guid: bf29fcb587a5b0544a468dacba57e1f6, type: 3}
   - {fileID: 5830160811784522756, guid: 831682c05ade70a4daa5600cbebf5bae, type: 3}
-  genCooltime: 3
 --- !u!114 &735404165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1525,6 +1524,7 @@ MonoBehaviour:
   _minSpawnInterval: 0.5
   _enemyStartHp: 3
   _epicEnemyStartHp: 5
+  _playerAttack: {fileID: 0}
 --- !u!4 &934197816
 Transform:
   m_ObjectHideFlags: 0
