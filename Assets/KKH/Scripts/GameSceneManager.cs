@@ -17,7 +17,6 @@ public class GameSceneManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _levelText;
     private void Awake()
     {
-        GameSceneEvent = GetComponent<GameSceneEventArgs>();
         if (Instance == null)
         {
             Instance = this;
@@ -26,6 +25,8 @@ public class GameSceneManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        GameSceneEvent = GetComponent<GameSceneEventArgs>();
+
 
         GameSceneEvent.EpicPatternEnd += OnEpicPatternEnd;
         GameSceneEvent.GameResume += StartEpicPatternTimer;

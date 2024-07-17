@@ -50,6 +50,7 @@ public class GameOverUI : MonoBehaviour
     }
     public void SceneRestart()
     {
+        GameSceneManager.GameLevel = 1;
         FadeManager.Instance.ChangeScene("GameScene");
         //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
