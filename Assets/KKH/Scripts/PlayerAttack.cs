@@ -115,11 +115,6 @@ public class PlayerAttack : MonoBehaviour
         StopCoroutine(CoSearchEnemy());
         _isSearching = false;
     }
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, _searchSize);
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -140,6 +135,7 @@ public class PlayerAttack : MonoBehaviour
                     break;
                 case EItemType.Health:
                     GetComponent<PlayerHealthSystem>().RecoverHealth();
+                    GameSceneManager.GameLevel++;
                     GameSceneManager.Instance.GameSceneEvent.CallOnGameResume();
                     break;
             }

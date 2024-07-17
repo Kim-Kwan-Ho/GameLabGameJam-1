@@ -56,7 +56,7 @@ public class RankCompareUI : MonoBehaviour
         if (nextRank == 0)
         {
             _nextRankNameText.text = "You Are 1st!";
-            _nextRankScoreText.text = string.Format("{0:D6}", (int)ScoreManager.instance.score);
+            _nextRankScoreText.text = "";
             _nextRankText.text = "";
         }
         else

@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 
@@ -13,6 +14,7 @@ public class GameSceneManager : MonoBehaviour
 
 
     [SerializeField] private float _epicPatternTime = 15f;
+    [SerializeField] private TextMeshProUGUI _levelText;
     private void Awake()
     {
         GameSceneEvent = GetComponent<GameSceneEventArgs>();
@@ -40,9 +42,12 @@ public class GameSceneManager : MonoBehaviour
         GameSceneEvent.GameResume -= StartEpicPatternTimer;
     }
 
+    private void Update()
+    {
+        _levelText.text = "STAGE " + GameLevel.ToString();
+    }
     private void OnEpicPatternEnd(GameSceneEventArgs gameSceneEventArgs)
     {
-        GameLevel++;
         Instantiate(_healthItem, new Vector3(0, 10, 0), Quaternion.identity);
     }
 
