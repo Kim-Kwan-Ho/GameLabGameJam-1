@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class GameUI : MonoBehaviour
 {
-    static GameUI instance;
-    [SerializeField] private ScoreManager scoreManager;
+    [SerializeField] private PlayerHealthSystem healthSystem;
+    [SerializeField] private PlayerAttack attackSystem;
 
     //[SerializeField] private TextMeshProUGUI timerText; // 타이머 출력 text
     [SerializeField] private TextMeshProUGUI scoreText; // 스코어 출력 text
@@ -27,6 +27,9 @@ public class GameUI : MonoBehaviour
     {
         //DrawTimer();
         DrawScore();
+        LifeCheck(healthSystem.Health);
+        PowerCheck(attackSystem.DamageLevel);
+        SpeedCheck(attackSystem.AttackSpeedLevel);
     }
 
     // 타이머 출력
@@ -46,9 +49,9 @@ public class GameUI : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             if (i < lifeCount)
-                ui_lifeLevel[i - 1].SetActive(true);
+                ui_lifeLevel[i].SetActive(true);
             else
-                ui_lifeLevel[i - 1].SetActive(false);
+                ui_lifeLevel[i].SetActive(false);
         }
     }
 
@@ -58,9 +61,9 @@ public class GameUI : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             if (i < powerLevel)
-                ui_powerLevel[i - 1].SetActive(true);
+                ui_powerLevel[i].SetActive(true);
             else
-                ui_powerLevel[i - 1].SetActive(false);
+                ui_powerLevel[i].SetActive(false);
         }
     }
 
@@ -70,15 +73,20 @@ public class GameUI : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             if (i < speedLevel)
-                ui_speedLevel[i - 1].SetActive(true);
+                ui_speedLevel[i].SetActive(true);
             else
-                ui_speedLevel[i - 1].SetActive(false);
+                ui_speedLevel[i].SetActive(false);
         }
     }
 
     // 스코어 출력
     private void DrawScore()
     {
-        scoreText.text = string.Format("Score  {0:D6}", scoreManager.score);
+        scoreText.text = string.Format("Score  {0:D6}", ScoreManager.instance.score);
+    }
+
+    private void RankCompare()
+    {
+
     }
 }
