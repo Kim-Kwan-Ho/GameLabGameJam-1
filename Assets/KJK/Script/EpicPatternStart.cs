@@ -6,7 +6,7 @@ public class EpicPatternStart : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] private float EpicPatternTime = 15f;
-    private int specialCount = 3;
+    private int specialCount = 1;
     private int maxCount = 3;
     public GameObject[] special;
     private void Start()
@@ -197,7 +197,7 @@ public class EpicPatternStart : MonoBehaviour
         }
         if(specialCount > maxCount)
         {
-            specialCount = 3;
+            specialCount = 1;
         }
         Time.timeScale += 0.1f;
         EndEpicPattern();
