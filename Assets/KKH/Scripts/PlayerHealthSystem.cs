@@ -14,15 +14,23 @@ public class PlayerHealthSystem : MonoBehaviour
         _meshRenderer = GetComponent<MeshRenderer>();
     }
 
-    private void OnTriggerEnter(Collider collider)
+    private void OnTriggerEnter(Collider col)
     {
-        if (collider.gameObject.CompareTag("Enemy") || collider.gameObject.CompareTag("Obstacle")) ;
+        if (col.gameObject.CompareTag("Enemy") || col.gameObject.CompareTag("Obstacle")) 
         {
             //Destroy(this.gameObject); // 게임종료
-            _meshRenderer.enabled = false;
-            _deathParticle.SetActive(true);
-
-
+            PlayerDeath();
         }
+    }
+
+
+    private void PlayerDeath()
+    {
+        _meshRenderer.enabled = false;
+        GetComponent<Collider>().enabled = false;
+        GetComponent<PlayerAttack>().enabled = false;
+        GetComponent<PlayerMoving>().enabled = false;
+        _deathParticle.SetActive(true);
+
     }
 }

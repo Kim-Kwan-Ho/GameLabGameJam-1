@@ -1,8 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Build;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -115,8 +112,6 @@ public class PlayerAttack : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        RaycastHit hit;
-
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, _searchSize);
     }

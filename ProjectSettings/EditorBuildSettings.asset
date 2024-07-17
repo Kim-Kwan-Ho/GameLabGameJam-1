@@ -5,10 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/KJK/Scenes/TitleScene.unity
     guid: de2f43fc0a5058d42a11d747f9c99257
-  - enabled: 1
+  - enabled: 0
     path: Assets/KJK/Scenes/ui_scene.unity
     guid: 9b78aeed905ac12449d7428053553e48
+  - enabled: 1
+    path: Assets/KKH/KKHScene.unity
+    guid: 49175a7daa958e140a751f59e8ce97be
   m_configObjects: {}
