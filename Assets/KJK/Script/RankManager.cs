@@ -89,7 +89,7 @@ public class RankManager : MonoBehaviour
             
             rankText.text = (i + 1).ToString();
             nameText.text = bestName[i].ToString();
-            scoreText.text = bestScore[i].ToString(); 
+            scoreText.text = string.Format("{0:D6}", (int)bestScore[i]); 
         }
 
         
