@@ -33,7 +33,7 @@ public class WeaponBullet : MonoBehaviour
 
         if (other.gameObject.CompareTag("Enemy"))
         {
-            FlyingEnemyChase enemy = other.GetComponent<FlyingEnemyChase>();
+            EnemyMovement enemy = other.GetComponent<EnemyMovement>();
             enemy.TakeDamage(_damage);
         }
         Destroy(this.gameObject);

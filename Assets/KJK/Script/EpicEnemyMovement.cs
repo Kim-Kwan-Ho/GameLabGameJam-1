@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class EnemyMovement : MonoBehaviour
+public class EpicEnemyMovement : MonoBehaviour
 {
     public Transform player;
     private Vector3 targetPosition;
@@ -14,15 +14,11 @@ public class EnemyMovement : MonoBehaviour
     private Renderer EnemyRenderer;
 
     //Enemy Stats
-    public float defaultEnemyHp;
-    public float epicEnemyHp; 
-    
-    public float defaultMoveSpeed = 3.0f;
-    public float epicMoveSpeed = 3.0f;
-
+    public float epicEnemyHp;
+    public float epicMoveSpeed = 1.0f;
     public float chaseRange = 100f;
     public float hoverHeight = 1.0f;
-   
+
     //should be replaced
     int bulletDamage = 1;
 
@@ -38,7 +34,6 @@ public class EnemyMovement : MonoBehaviour
         scoreManager = GetComponent<ScoreManager>();
 
         //set enemy hp
-        defaultEnemyHp = 3;
         epicEnemyHp = 10;
     }
     void Update()
@@ -63,7 +58,7 @@ public class EnemyMovement : MonoBehaviour
     void MoveTowardsTarget()
     {
         Vector3 direction = (targetPosition - transform.position).normalized;
-        transform.position += direction * defaultMoveSpeed * Time.deltaTime;
+        transform.position += direction * epicMoveSpeed * Time.deltaTime;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -77,11 +72,11 @@ public class EnemyMovement : MonoBehaviour
     public void TakeDamage(int amount)
     {
         Flash();
-        defaultEnemyHp -= amount;
-        Debug.Log($"{gameObject.name} take damaged {amount} & current hp: {defaultEnemyHp}");
+        epicEnemyHp -= amount;
+        Debug.Log($"{gameObject.name} take damaged {amount} & current hp: {epicEnemyHp}");
 
-        
-        if (defaultEnemyHp <= 0)
+
+        if (epicEnemyHp <= 0)
         {
             Debug.Log("killed!");
             scoreManager.IncreaseKillCount();
