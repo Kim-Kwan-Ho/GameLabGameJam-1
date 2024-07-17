@@ -8,6 +8,7 @@ TagManager:
   - Item
   - Obstacle
   - obstacle
+  - EpicEnemy
   layers:
   - Default
   - TransparentFX

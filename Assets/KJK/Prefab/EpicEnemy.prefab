@@ -336,7 +336,7 @@ GameObject:
   - component: {fileID: 4926318895977883115}
   m_Layer: 10
   m_Name: EpicEnemy
-  m_TagString: Enemy
+  m_TagString: EpicEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -442,6 +442,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef67614c29f1377428893f83e7c6f7c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemPrefabs:
+  - {fileID: 5678590633693614520, guid: 5b6b416ddd40c6141821a6efb2115fb5, type: 3}
+  - {fileID: 7757262197801190662, guid: 9dad9e3bc0bb4744aae8ae187c98078d, type: 3}
   player: {fileID: 0}
   epicEnemyHp: 10
   epicMoveSpeed: 3

@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEditor;
 using UnityEngine;
 
-public class FlyingEnemyChase : MonoBehaviour
+public class EnemyMovement : MonoBehaviour
 {
     public Transform player;
     public float chaseRange = 100f;

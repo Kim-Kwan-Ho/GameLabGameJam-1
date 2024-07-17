@@ -36,6 +36,12 @@ public class WeaponBullet : MonoBehaviour
             EnemyMovement enemy = other.GetComponent<EnemyMovement>();
             enemy.TakeDamage(_damage);
         }
+
+        if(other.gameObject.CompareTag("EpicEnemy"))
+        {
+            EpicEnemyMovement epicEnemy = other.GetComponent<EpicEnemyMovement>();
+            epicEnemy.TakeDamage(_damage);
+        }
         Destroy(this.gameObject);
     }
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EpicEnemyMovement : MonoBehaviour
 {
+    public GameObject[] ItemPrefabs;
+
     public Transform player;
     private Vector3 targetPosition;
     private ScoreManager scoreManager;
@@ -26,13 +28,13 @@ public class EpicEnemyMovement : MonoBehaviour
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        DamageMaterial = (Material)AssetDatabase.LoadAssetAtPath("Assets/KJK/Material/DamageTakenMat.mat", typeof(Material));
-        EnemyDefaultMaterial = (Material)AssetDatabase.LoadAssetAtPath("Assets/KJK/Material/EnemyDefaultMat.mat", typeof(Material));
+        DamageMaterial = Resources.Load<Material>("Assets/KJK/Material/EpicEnemyDamagedMat.mat");
+        EnemyDefaultMaterial = Resources.Load<Material>("Assets/KJK/Material/EpicEnemyBodyMat.mat");
         EnemyRenderer = GetComponent<Renderer>();
         scoreManager = GetComponent<ScoreManager>();
 
         //set enemy hp
-        epicEnemyHp = 10;
+        epicEnemyHp = 1;
     }
     void Update()
     {
@@ -77,10 +79,15 @@ public class EpicEnemyMovement : MonoBehaviour
         if (epicEnemyHp <= 0)
         {
             Debug.Log("killed!");
-            scoreManager.IncreaseKillCount();
-            Instantiate(_enemyDeathParticle, transform.position, Quaternion.identity);
+            Instantiate(_enemyDeathParticle,  transform.position, Quaternion.identity);
+            ItemDrop();
             Destroy(this.gameObject);
         }
+    }
+    void ItemDrop()
+    {
+        int randomIndex = Random.Range(0, ItemPrefabs.Length);
+        Instantiate(ItemPrefabs[randomIndex], transform.position, Quaternion.identity);
     }
 
     public void Flash()
@@ -93,7 +100,8 @@ public class EpicEnemyMovement : MonoBehaviour
         EnemyRenderer.material = DamageMaterial;
 
         yield return new WaitForSeconds(0.1f);
-
         EnemyRenderer.material = EnemyDefaultMaterial;
     }
+
+   
 }
