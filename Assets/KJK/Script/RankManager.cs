@@ -20,7 +20,10 @@ public class RankManager : MonoBehaviour
 
     private void Awake()
     {
-        RankManager.Instance = this;
+        if (Instance == null)
+            RankManager.Instance = this;
+        else if (Instance != this)
+            Destroy(gameObject);
     }
 
     void Start()
@@ -35,7 +38,7 @@ public class RankManager : MonoBehaviour
     }
 
     // 랭킹 불러오기
-    private void ReadRankData()
+    public void ReadRankData()
     {
         for (int i = 0; i < 7; i++)
         {

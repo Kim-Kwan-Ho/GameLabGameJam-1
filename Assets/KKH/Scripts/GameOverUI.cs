@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameOverUI : MonoBehaviour
@@ -40,5 +41,14 @@ public class GameOverUI : MonoBehaviour
         RankManager.Instance.WriteRankData();
         RankManager.Instance.UpdateRankUI();
         _saveButton.SetActive(false);
+    }
+
+    public void SceneMoveToTitle()
+    {
+        SceneManager.LoadScene("TitleScene");
+    }
+    public void SceneRestart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
