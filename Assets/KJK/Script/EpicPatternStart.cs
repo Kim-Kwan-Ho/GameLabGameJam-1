@@ -32,7 +32,7 @@ public class EpicPatternStart : MonoBehaviour
         {
             specialCount++;
             int count = 0;
-            int dirRandom; //0=PX, 1=Y, 2=Z 
+            int dirRandom = 0; //0=PX, 1=Y, 2=Z 
             RazerMaker.isSpecial = false;
             RazerMaker.genCooltime = 1.5f;
             if(CameraMoving.viewState == CameraMoving.ViewState.PX || CameraMoving.viewState == CameraMoving.ViewState.NX)
@@ -47,7 +47,7 @@ public class EpicPatternStart : MonoBehaviour
                     dirRandom = 2;
                 }
             }
-            else
+            else if(CameraMoving.viewState == CameraMoving.ViewState.PZ || CameraMoving.viewState == CameraMoving.ViewState.NZ)
             {
                 dirRandom = Random.Range(0, 2);
             }
@@ -60,11 +60,6 @@ public class EpicPatternStart : MonoBehaviour
                     position = new Vector3(20, 10, 0);
                     GameObject wall1 = Instantiate(special[0], position, Quaternion.Euler(0, 90, 0));
                     wall1.GetComponent<MovingWallMoving>().wallType = MovingWallMoving.WallType.NX;
-
-                    while(count < 5)
-                    {
-                        position = new Vector3(Random.Range(-20, 20), 10, Random.Range(-20, 20));
-                    }
                     break;
                 case 1:
                     Vector3 position1 = new Vector3(0, 30, 0);
