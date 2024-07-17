@@ -1726,7 +1726,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &808843555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1740,8 +1740,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 4446445485482116534, guid: 188b7080a158f954b897ad729f4a4a61, type: 3}
+  epicEnemyPrefab: {fileID: 0}
   centerPosition: {fileID: 11632562}
   spawnInterval: 3
+  epicSpawnTiming: 0
+  stageInterval: 15
 --- !u!4 &808843556
 Transform:
   m_ObjectHideFlags: 0
@@ -2399,6 +2402,7 @@ MonoBehaviour:
   special:
   - {fileID: 4188276736032647069, guid: daa50880ddff0944486e4d0a81dc35c4, type: 3}
   - {fileID: 5830160811784522756, guid: 831682c05ade70a4daa5600cbebf5bae, type: 3}
+  - {fileID: 5848631661313758501, guid: 85bce5aa33ff6cc4f90be76c88a737fc, type: 3}
 --- !u!1 &1503044175
 GameObject:
   m_ObjectHideFlags: 0
