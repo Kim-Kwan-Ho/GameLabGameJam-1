@@ -170,7 +170,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 320, y: 0.8709717}
   m_SizeDelta: {x: 349.2046, y: 100}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &1540319235831569254
@@ -327,7 +327,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100, y: 0}
+  m_AnchoredPosition: {x: 709.19, y: 0}
   m_SizeDelta: {x: 349.2046, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &2978385248123485044
@@ -642,8 +642,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2436272687138390610}
   - {fileID: 8777974447469748805}
-  - {fileID: 1071651625388702384}
   - {fileID: 3787159607856151325}
   - {fileID: 4169892065274960794}
   m_Father: {fileID: 8481123918600008943}
@@ -764,7 +764,7 @@ RectTransform:
   - {fileID: 6172852305326706661}
   - {fileID: 3519670342147820803}
   - {fileID: 7405920758989218877}
-  m_Father: {fileID: 4373835456262157126}
+  m_Father: {fileID: 8355417692546982716}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -1253,7 +1253,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2436272687138390610}
+  - {fileID: 1071651625388702384}
   m_Father: {fileID: 8481123918600008943}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1509,13 +1509,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7372712772482318543}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2330574535190990370}
-  m_Father: {fileID: 8355417692546982716}
+  m_Father: {fileID: 4373835456262157126}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -1790,15 +1790,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreManager: {fileID: 0}
+  healthSystem: {fileID: 0}
+  attackSystem: {fileID: 0}
   scoreText: {fileID: 7642035958259082251}
   ui_powerLevel:
-  - {fileID: 5650716265451509408}
-  - {fileID: 3209048331573379498}
   - {fileID: 6932373796707547980}
+  - {fileID: 3209048331573379498}
+  - {fileID: 5650716265451509408}
   ui_speedLevel:
-  - {fileID: 7269510368038714590}
-  - {fileID: 7899901233245659229}
   - {fileID: 6737268035435453060}
+  - {fileID: 7899901233245659229}
+  - {fileID: 7269510368038714590}
   ui_lifeLevel:
   - {fileID: 7642663480424458378}
   - {fileID: 5586165260062699960}

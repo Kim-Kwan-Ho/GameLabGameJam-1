@@ -28,7 +28,7 @@ public class ScoreManager : MonoBehaviour
             currentTime += Time.unscaledDeltaTime;
 
             score = (int)(currentTime * 100f) + (killCount * 100); // 
-            Debug.Log(score);
+            //Debug.Log(score);
         }
     }
 }
