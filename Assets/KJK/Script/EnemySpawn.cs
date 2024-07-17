@@ -9,13 +9,32 @@ public class EnemySpawner : MonoBehaviour
     public float spawnInterval = 1.0f;
     public float epicSpawnTiming;
     public float stageInterval = 15.0f;
-
+    private bool _canSpawn = true;
     void Start()
     {
-        epicSpawnTiming = stageInterval / 2; 
+        epicSpawnTiming = stageInterval / 2;
         Invoke(nameof(SpawnEpicEnemy), epicSpawnTiming);
         StartCoroutine(StageStart());
-        
+
+        GameSceneManager.Instance.GameSceneEvent.WarningSignal += OnWarningSignalStart;
+        GameSceneManager.Instance.GameSceneEvent.GameResume += OnGameResume;
+    }
+    private void OnDestroy()
+    {
+        GameSceneManager.Instance.GameSceneEvent.WarningSignal -= OnWarningSignalStart;
+        GameSceneManager.Instance.GameSceneEvent.GameResume -= OnGameResume;
+    }
+
+    private void OnWarningSignalStart(GameSceneEventArgs gameSceneEventArgs)
+    {
+        CancelInvoke(nameof(SpawnEpicEnemy));
+        CancelInvoke(nameof(SpawnEnemy));
+    }
+
+    private void OnGameResume(GameSceneEventArgs gameSceneEventArgs)
+    {
+        Invoke(nameof(SpawnEpicEnemy), epicSpawnTiming);
+        StartCoroutine(StageStart());
     }
 
     void SpawnEnemy()
@@ -75,9 +94,6 @@ public class EnemySpawner : MonoBehaviour
     IEnumerator StageStart()
     {
         InvokeRepeating(nameof(SpawnEnemy), 0.1f, spawnInterval);
-
-        yield return new WaitForSeconds(stageInterval);
-
-        CancelInvoke(nameof(SpawnEnemy));
+        yield return null;
     }
-} 
+}

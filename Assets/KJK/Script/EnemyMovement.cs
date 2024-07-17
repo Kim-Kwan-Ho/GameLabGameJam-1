@@ -28,6 +28,23 @@ public class EnemyMovement : MonoBehaviour
         Debug.Log("Material loaded");
         hp = 3;
     }
+
+    private void OnEnable()
+    {
+        GameSceneManager.Instance.GameSceneEvent.WarningSignal += OnWarningSignalStart;
+    }
+
+    private void OnDisable()
+    {
+        GameSceneManager.Instance.GameSceneEvent.WarningSignal -= OnWarningSignalStart;
+    }
+
+    private void OnWarningSignalStart(GameSceneEventArgs gameSceneEventArgs)
+    {
+        Instantiate(_enemyDeathParticle, transform.position, Quaternion.identity);
+        Destroy(this.gameObject);
+    }
+
     void Update()
     {
         if (player == null) return;

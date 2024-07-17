@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PowerItem 1
+  m_Name: HealthItem
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -80,6 +80,6 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 0.98823535, b: 0, a: 1}
-    - _EmissionColor: {r: 0.9622642, g: 0.62137103, b: 0.41304737, a: 1}
+    - _Color: {r: 1, g: 0, b: 0.1434412, a: 1}
+    - _EmissionColor: {r: 1, g: 0.2732204, b: 0.25, a: 1}
   m_BuildTextureStacks: []
