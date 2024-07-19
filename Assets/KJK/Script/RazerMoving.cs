@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RazerMoving : MonoBehaviour
 {
-    public float speed = 10f;
+    public float speed = 1f;
     public enum RazerType
     {
         PX,
