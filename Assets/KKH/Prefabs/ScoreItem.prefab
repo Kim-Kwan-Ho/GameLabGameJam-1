@@ -455,6 +455,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemType: 2
-  _lifeTime: 7
+  _lifeTime: 100
   _rotSpeed: 50
   _particleGob: {fileID: 381891898412548092, guid: a75034c65d12e5145a236c83ac7a041f, type: 3}

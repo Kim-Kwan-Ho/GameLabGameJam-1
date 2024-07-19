@@ -8,7 +8,7 @@ public class PlayerMagnetic : MonoBehaviour
     [SerializeField] private float _magPower = 1f;
 
     private Dictionary<int, Transform> _itemDic = new Dictionary<int, Transform>();
-
+    private bool _isScoreItem = false;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -25,7 +25,6 @@ public class PlayerMagnetic : MonoBehaviour
 
     }
 
-
     private IEnumerator CoPullToPlayer(int id, Transform trs)
     {
         float time = 0;
@@ -35,6 +34,7 @@ public class PlayerMagnetic : MonoBehaviour
             if (trs == null)
             {
                 _itemDic.Remove(id);
+                
                 break;
             }
             else

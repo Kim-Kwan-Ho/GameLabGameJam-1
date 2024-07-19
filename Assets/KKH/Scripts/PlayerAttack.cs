@@ -132,6 +132,7 @@ public class PlayerAttack : MonoBehaviour
                     break;
                 case EItemType.Score:
                     ScoreManager.instance.IncreaseItemScore(Constants.SCORE_SCOREITEM);
+                    GameObject.FindObjectOfType<ItemSpawner>().SetItemState();
                     break;
                 case EItemType.Health:
                     GetComponent<PlayerHealthSystem>().RecoverHealth();

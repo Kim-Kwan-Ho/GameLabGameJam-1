@@ -10,20 +10,22 @@ public class ItemSpawner : MonoBehaviour
     [Header("Spawn Settings")]
     [SerializeField] private Vector3 _centerPos = new Vector3(0, 10, 0);
     [SerializeField] private float _mid = 9.5f;
-    [SerializeField] private float _spawnNLifeTime = 15;
+    [SerializeField] private float _spawnNLifeTime = 3;
     private float _coolTime = 0;
-    private bool _canSpawn = false;
+    private bool _canSpawn = true;
+    private bool _scoreItemDestroyed = false;
 
     private void Awake()
     {
         _coolTime = _spawnNLifeTime;
+        _scoreItemDestroyed = false;
     }
     private void Start()
     {
         GameSceneManager.Instance.GameSceneEvent.WarningSignal += OnWarningSignalStart;
         GameSceneManager.Instance.GameSceneEvent.GameOver += OnGameOver;
         GameSceneManager.Instance.GameSceneEvent.GameResume += OnGameResume;
-        StartCoroutine(CoStartDelay());
+        //StartCoroutine(CoStartDelay());
     }
 
     private IEnumerator CoStartDelay()
@@ -52,18 +54,33 @@ public class ItemSpawner : MonoBehaviour
     }
     private void Update()
     {
-        if (!_canSpawn)
-            return;
-        if (_coolTime > 0)
+        
+        /*if (_coolTime > 0)
         {
             _coolTime -= Time.deltaTime;
             return;
-        }
-        SpawnItem();
+        }*/
 
+        if (!_canSpawn) //게임 재개 여부 검사
+            return;
+
+        if (!_scoreItemDestroyed) //점수 아이템 파괴에 따른 재생성 여부 검사
+            return;
+
+        SpawnItem();
+        /*if (_coolTime <= 0)
+        {
+            SpawnItem();
+        }
+        */
+
+        
     }
 
-
+    public void SetItemState()
+    {
+        _scoreItemDestroyed = true;
+    }
     private void SpawnItem()
     {
         _coolTime = _spawnNLifeTime;
@@ -74,6 +91,7 @@ public class ItemSpawner : MonoBehaviour
 
         Items item = Instantiate(_items[ranI], new Vector3(_centerPos.x - ranX, _centerPos.y - ranY, _centerPos.z - ranZ), Quaternion.Euler(Vector3.up)).GetComponent<Items>();
         item.SetItem(_spawnNLifeTime);
+        _scoreItemDestroyed = false;
     }
 
 

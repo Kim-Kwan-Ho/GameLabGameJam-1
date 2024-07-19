@@ -106,14 +106,6 @@ public class EnemySpawner : MonoBehaviour
         return position;
     }
 
-    void OnDrawGizmos()
-    {
-        // Draw a 3x3x3 cube centered at the centerPosition
-        Gizmos.color = Color.red;
-        Vector3 size = new Vector3(20, 20, 20);
-        Gizmos.DrawWireCube(centerPosition.position, size);
-    }
-
     IEnumerator StageStart()
     {
         yield return new WaitForSeconds(Constants.GAME_STARTDELAY);
