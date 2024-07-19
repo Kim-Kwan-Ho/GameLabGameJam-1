@@ -43,6 +43,7 @@ public class CameraMoving : MonoBehaviour
 
     void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.W) && !isOrbiting)
         {
             StartCoroutine(OrbitCooldown());
@@ -62,7 +63,7 @@ public class CameraMoving : MonoBehaviour
         {
             StartCoroutine(OrbitCooldown());
             StartCoroutine(OrbitAround(3));
-        }
+        }*/
         
         if(transform.position.y < 0)
         {

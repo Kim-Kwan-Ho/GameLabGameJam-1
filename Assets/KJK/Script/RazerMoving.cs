@@ -60,9 +60,9 @@ public class RazerMoving : MonoBehaviour
                 break;
         }
 
-        if(transform.position.y > 40 || transform.position.y < -20 || transform.position.z > 30 || transform.position.z < -30 || transform.position.x > 30 || transform.position.x < -30)
+        /*if(transform.position.y > 40 || transform.position.y < -20 || transform.position.z > 30 || transform.position.z < -30 || transform.position.x > 30 || transform.position.x < -30)
         {
             Destroy(gameObject);
-        }
+        }*/
     }
 }

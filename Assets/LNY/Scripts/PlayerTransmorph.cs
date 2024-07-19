@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 
-public class PlayerPolymorph : MonoBehaviour
+public class PlayerTransmorph : MonoBehaviour
 {
     public GameObject[] shapeOptions;
     private int currentShapeIndex = 0;
@@ -15,6 +15,7 @@ public class PlayerPolymorph : MonoBehaviour
         {
             SwitchShape();
         }
+
     }
 
     void SwitchShape()
