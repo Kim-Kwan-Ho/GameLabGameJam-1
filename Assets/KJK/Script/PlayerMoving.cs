@@ -31,13 +31,12 @@ public class PlayerMoving : MonoBehaviour
     private float[] setAngles = { 0f, 90f, 180f, 270f, 360f };
 
     //Transform
-    public Transform leftAlign;
     Quaternion targetRotation;
     float rotSpeed = 1.0f;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        //rb = GetComponent<Rigidbody>();
         playerMode = startPlayerMode;
     }
 
@@ -72,8 +71,8 @@ public class PlayerMoving : MonoBehaviour
             movementLeftRight = -transform.right;
         }
 
-        rb.velocity = (movementUpDown + movementLeftRight) * speed;*/
-
+        rb.velocity = (movementUpDown + movementLeftRight) * speed;
+        */
     }
 
     public void Rotate()
@@ -82,6 +81,7 @@ public class PlayerMoving : MonoBehaviour
         float horizontalInput = 0f;
         float verticalInput = 0f;
 
+        /*
         if (Input.GetKey(KeyCode.W))
         {
             verticalInput = -1f;
@@ -105,7 +105,7 @@ public class PlayerMoving : MonoBehaviour
             xRotation = 0f;
             yRotation = 0f;
             transform.rotation = Quaternion.identity;
-        }
+        }*/
 
         if (Input.GetKeyDown(KeyCode.V))
         {
