@@ -26,7 +26,14 @@ public class PlayerMoving : MonoBehaviour
 
     private float xRotation = 0f;
     private float yRotation = 0f;
+    private float zRotation = 0f;
 
+    private float[] setAngles = { 0f, 90f, 180f, 270f, 360f };
+
+    //Transform
+    public Transform leftAlign;
+    Quaternion targetRotation;
+    float rotSpeed = 1.0f;
 
     void Start()
     {
@@ -43,7 +50,7 @@ public class PlayerMoving : MonoBehaviour
 
     void Move()
     {
-        Vector3 movementUpDown = Vector3.zero;
+        /*Vector3 movementUpDown = Vector3.zero;
         Vector3 movementLeftRight = Vector3.zero;
 
 
@@ -65,52 +72,32 @@ public class PlayerMoving : MonoBehaviour
             movementLeftRight = -transform.right;
         }
 
-        rb.velocity = (movementUpDown + movementLeftRight) * speed;
+        rb.velocity = (movementUpDown + movementLeftRight) * speed;*/
 
     }
 
     public void Rotate()
     {
 
-        /*if (Input.GetKeyDown(KeyCode.W))
-        {
-            transform.Rotate(90.0f, 0.0f, 0.0f, Space.Self);
-        }
-
-        else if (Input.GetKeyDown(KeyCode.S))
-        {
-            transform.Rotate(-90.0f, 0.0f, 0.0f, Space.World );
-        }
-
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            transform.Rotate(0.0f, 90.0f, 0.0f, Space.Self);
-        }
-
-        else if (Input.GetKeyDown(KeyCode.D))
-        {
-            transform.Rotate(0.0f, -90.0f, 0.0f, Space.Self);
-        }*/
-
         float horizontalInput = 0f;
         float verticalInput = 0f;
 
         if (Input.GetKey(KeyCode.W))
         {
-            verticalInput = -1f; // Forward
+            verticalInput = -1f;
         }
         else if (Input.GetKey(KeyCode.S))
         {
-            verticalInput = 1f; // Backward
+            verticalInput = 1f;
         }
 
         if (Input.GetKey(KeyCode.A))
         {
-            horizontalInput = 1f; // Left
+            horizontalInput = 1f;
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            horizontalInput = -1f; // Right
+            horizontalInput = -1f;
         }
 
         if (Input.GetKeyDown(KeyCode.R))
@@ -120,21 +107,58 @@ public class PlayerMoving : MonoBehaviour
             transform.rotation = Quaternion.identity;
         }
 
-        /*// Apply inversions to input values
-        verticalInput *= invertX ? -1 : 1;
-        horizontalInput *= invertY ? -1 : 1;*/
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            Snap();
+            //transform.rotation = Quaternion.identity;
+            Debug.Log("The Snap key is pressed");
+            return;
 
-        // Calculate the target X rotation based on the vertical input
+        }
+
         xRotation -= verticalInput * rotationSpeed * rotationSensitivityX * Time.deltaTime;
-
-        // Calculate the target Y rotation based on the horizontal input
         yRotation += horizontalInput * rotationSpeed * rotationSensitivityY * Time.deltaTime;
+        
+        if (transform.rotation.z == 0)
+        {
+            targetRotation = Quaternion.Euler(xRotation, yRotation, 0);
+        }
+        else
+        {
+            targetRotation = Quaternion.Euler(xRotation, yRotation, zRotation);
+        }
 
-        // Create a quaternion for the rotation
-        Quaternion targetRotation = Quaternion.Euler(xRotation, yRotation, 0);
-
-        // Smoothly interpolate towards the target rotation
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, smoothTime);
+    }
+
+    public void Snap()
+    {
+        Vector3 currentRotation = transform.eulerAngles;
+        xRotation = FindNearestAngle(currentRotation.x); 
+        yRotation = FindNearestAngle(currentRotation.y);
+        zRotation = FindNearestAngle(currentRotation.z);
+        //Quaternion targetRotation = Quaternion.Euler(currentRotation.x, nearestAngle, currentRotation.z);
+        //transform.rotation = targetRotation;
+    }
+
+    float FindNearestAngle(float currentAngle)
+    {
+        currentAngle = Mathf.Repeat(currentAngle, 360f);
+
+        float nearest = setAngles[0];
+        float minDifference = Mathf.Abs(currentAngle - nearest);
+
+        foreach (float angle in setAngles)
+        {
+            float difference = Mathf.Abs(currentAngle - angle);
+            if (difference < minDifference)
+            {
+                minDifference = difference;
+                nearest = angle;
+            }
+        }
+
+        return nearest;
     }
 }
 
