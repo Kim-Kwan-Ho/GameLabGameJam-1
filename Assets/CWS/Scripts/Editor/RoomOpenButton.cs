@@ -13,7 +13,7 @@ public class RoomOpenButton : Editor
         RoomController generator = (RoomController)target;
         if (GUILayout.Button("Door Active"))
         {
-            generator.DoorOpen();
+            generator.ActiveDoor();
         }
     }
 }

@@ -11,6 +11,7 @@ public class DoorPassColliderEvent : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log("Call Door Pass Event");
             CallDoorPass();
         }
     }

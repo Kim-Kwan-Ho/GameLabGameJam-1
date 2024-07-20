@@ -13,7 +13,7 @@ public class WallOpenButton : Editor
         WallDoorOpen generator = (WallDoorOpen)target;
         if (GUILayout.Button("Door Active"))
         {
-            generator.OpenDoor();
+            generator.ActiveDoor();
         }
     }
 }

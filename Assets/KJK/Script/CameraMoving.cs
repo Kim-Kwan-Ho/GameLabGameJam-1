@@ -197,4 +197,31 @@ public class CameraMoving : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         isOrbiting = false;
     }
+
+    public void MoveRoomCam(Vector3Int moveDir)
+    {
+        StartCoroutine(IE_MoveRoom(moveDir));
+    }
+
+    IEnumerator IE_MoveRoom(Vector3Int moveDir)
+    {
+        Vector3 destination = transform.position + (moveDir * 21);
+
+        while (Vector3.Distance(transform.position, destination) > 0.01f)
+        {
+            transform.position = Vector3.Lerp(transform.position, destination, 0.05f);
+            yield return null;
+        }
+
+        Vector3 correctionVector = LevelManager.Instance.GetCorrectionVector();
+        player.transform.position += LevelManager.Instance.GetCorrectionVector();
+        target = LevelManager.Instance.GetNewCenter();
+        LevelManager.Instance.RemoveOldRoom();
+        LevelManager.Instance.ResetRoomPos(correctionVector);
+        transform.position = destination + correctionVector;
+        
+        Time.timeScale = 1;
+
+        yield break;
+    }
 }

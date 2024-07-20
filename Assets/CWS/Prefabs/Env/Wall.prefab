@@ -329,6 +329,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _door: {fileID: 6583992998651508300}
   _wallClosedCollider: {fileID: 4514893234471098447}
+  DoorPassEvent: {fileID: 3918314627839199892}
   isDoorActive: 1
   passDirection: {x: 0, y: 0, z: 0}
 --- !u!1 &6526813699446280811
