@@ -5,6 +5,9 @@ using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
+    Rigidbody rb;
+    public float speed = 3f;
+
     //Rotation related variables
     public float rotationSpeed = 100f;
     public float smoothTime = 0.1f;
@@ -17,7 +20,7 @@ public class PlayerController : MonoBehaviour
     private float yRotation = 0f;
     private float zRotation = 0f;
 
-    private bool canRotate = false; 
+    private bool canRotate = false;
     private float[] setAngles = { 0f, 90f, 180f, 270f, 360f };
 
     //Transform
@@ -26,14 +29,42 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
 
+        Debug.Log(rb);
     }
 
     void Update()
     {
+        Move();
         Rotate();
     }
+    public void Move()
+    {
+        Vector3 movementUpDown = Vector3.zero;
+        Vector3 movementLeftRight = Vector3.zero;
 
+
+        if (Input.GetKey(KeyCode.W))
+        {
+            movementUpDown = transform.up;
+        }
+        else if (Input.GetKey(KeyCode.S))
+        {
+            movementUpDown = -transform.up;
+        }
+
+        if (Input.GetKey(KeyCode.D))
+        {
+            movementLeftRight = transform.right;
+        }
+        else if (Input.GetKey(KeyCode.A))
+        {
+            movementLeftRight = -transform.right;
+        }
+
+        rb.velocity = (movementUpDown + movementLeftRight) * speed;
+    }
     public void Rotate()
     {
 

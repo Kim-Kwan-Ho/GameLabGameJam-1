@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RazerMoving : MonoBehaviour
 {
     public float speed = 1f;
+    public Transform center;
     public enum RazerType
     {
         PX,
@@ -60,9 +62,9 @@ public class RazerMoving : MonoBehaviour
                 break;
         }
 
-        /*if(transform.position.y > 40 || transform.position.y < -20 || transform.position.z > 30 || transform.position.z < -30 || transform.position.x > 30 || transform.position.x < -30)
+        if(transform.position.z <= 20)
         {
             Destroy(gameObject);
-        }*/
+        }
     }
 }
