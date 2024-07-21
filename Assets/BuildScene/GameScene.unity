@@ -2355,7 +2355,7 @@ PrefabInstance:
       addedObject: {fileID: 1570628770}
     - targetCorrespondingSourceObject: {fileID: 3686219256674576777, guid: 26097d03afa6e5b45b71f5b20f4326ae, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1570628772}
+      addedObject: {fileID: 1570628774}
   m_SourcePrefab: {fileID: 100100000, guid: 26097d03afa6e5b45b71f5b20f4326ae, type: 3}
 --- !u!4 &853985768 stripped
 Transform:
@@ -3310,7 +3310,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Flags: 0
   speed: 0.3
---- !u!114 &1570628772
+--- !u!114 &1570628774
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3319,11 +3319,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1570628769}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6cc40965f836a94887f0505552aa8a9, type: 3}
+  m_Script: {fileID: 11500000, guid: 9256c74c043832e43a72d82ee8717efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPlayerMode: 0
-  speed: 5
   rotationSpeed: 100
   smoothTime: 0.1
   rotationSensitivityX: 1

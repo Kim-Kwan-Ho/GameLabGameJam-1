@@ -48,8 +48,8 @@ public class PlayerMoving : MonoBehaviour
     }
 
     void Move()
-    {
-        /*Vector3 movementUpDown = Vector3.zero;
+    {/*
+        Vector3 movementUpDown = Vector3.zero;
         Vector3 movementLeftRight = Vector3.zero;
 
 
@@ -129,6 +129,7 @@ public class PlayerMoving : MonoBehaviour
         }
 
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, smoothTime);
+        
     }
 
     public void Snap()
