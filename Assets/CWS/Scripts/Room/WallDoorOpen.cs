@@ -9,7 +9,7 @@ public class WallDoorOpen : MonoBehaviour
     [SerializeField] private GameObject _door;
     [SerializeField] private GameObject _wallClosedCollider;
 
-    public DoorPassColliderEvent DoorPassEvent;
+    public DoorPassColliderEventArgs DoorPassEvent;
     public bool isDoorActive = true;
     public Vector3Int passDirection = Vector3Int.zero;
 
@@ -42,7 +42,7 @@ public class WallDoorOpen : MonoBehaviour
         _wallClosedCollider.SetActive(isDoorActive);
     }
 
-    public void MoveRoom(DoorPassColliderEvent doorPassColliderEvent)
+    public void MoveRoom(DoorPassColliderEventArgs doorPassColliderEvent)
     {
         // 이동하는 동안 일시정지
         Time.timeScale = 0;

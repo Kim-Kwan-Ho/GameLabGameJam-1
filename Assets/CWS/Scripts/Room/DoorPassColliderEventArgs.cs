@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorPassColliderEvent : MonoBehaviour
+public class DoorPassColliderEventArgs : MonoBehaviour
 {
-    public Action<DoorPassColliderEvent> DoorPass;
+    public Action<DoorPassColliderEventArgs> DoorPass;
 
     void OnTriggerEnter(Collider other)
     {

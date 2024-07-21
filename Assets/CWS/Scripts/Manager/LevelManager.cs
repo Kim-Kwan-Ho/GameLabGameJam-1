@@ -7,7 +7,7 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance;
 
-    [SerializeField] private MapCreator MapCreator;
+    public MapCreator MapCreator;
 
     public Transform RoomParentTransform;
     public CameraMoving CameraController;

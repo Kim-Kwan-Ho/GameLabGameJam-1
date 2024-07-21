@@ -7,11 +7,12 @@ using Random = UnityEngine.Random;
 
 public class MapCreator : MonoBehaviour
 {
+    public MapCreateEventArgs MapCreateEvent;
+
     [SerializeField] private int[] roomCodeQueue = new int[20];
 
     private int mapSize;
     private bool isValidMap = false;
-    private int validRoomCount = 0;
 
     private List<List<List<int>>> map = new List<List<List<int>>>();
     private List<int> roomRandomizeQueue = new List<int>();
@@ -46,7 +47,6 @@ public class MapCreator : MonoBehaviour
         {
             // 맵을 -1로 초기화
             ResetMap();
-            validRoomCount = 0;
 
             // 원점(2), 골인지점(1) 지정
             SetOriginRoom(_origin);
@@ -54,10 +54,16 @@ public class MapCreator : MonoBehaviour
 
             // 맵 랜덤 생성 후 타당성 확인
             RandomizeMap();
-            ValidationMap();
+            ValidationMap(_origin, _goal);
         }
         
+        MapCreateEvent.CallMapCreateComplete();
         Debug.Log($"Map Randomized (Map size: {_mapSize}, Room count: {(int)Mathf.Pow(_mapSize, 3)})");
+    }
+
+    public bool CheckMapCreation()
+    {
+        return isValidMap;
     }
 
     private void SetOriginRoom(Vector3Int _origin)
@@ -85,12 +91,10 @@ public class MapCreator : MonoBehaviour
                 {
                     if (LevelManager.Instance.levelMap[i0][i1][i2] == -1)
                         LevelManager.Instance.levelMap[i0][i1][i2] = GetRandomRoom();
-
-                    if (LevelManager.Instance.levelMap[i0][i1][i2] != 0)
-                        validRoomCount++;
                 }
             }
         }
+        Debug.Log("Randomize Map Code");
     }
 
     private void ResetMap()
@@ -108,7 +112,28 @@ public class MapCreator : MonoBehaviour
         }
     }
 
-    private void ValidationMap()
+    private int GetRandomRoom()
+    {
+        // 랜덤 큐가 비어있으면 리셋으로 보충
+        if (roomRandomizeQueue.Count <= 0)
+            ResetRandomizeQueue();
+
+        // 방 큐로부터 랜덤한 방 뽑기
+        int randomIndex = Random.Range(0, roomRandomizeQueue.Count);
+        int result = roomRandomizeQueue[randomIndex];
+        roomRandomizeQueue.RemoveAt(randomIndex);
+
+        return result;
+    }
+
+    private void ResetRandomizeQueue()
+    {
+        // 방 큐 리셋
+        for (int i = 0; i < roomCodeQueue.Length; i++)
+            roomRandomizeQueue.Add(roomCodeQueue[i]);
+    }
+
+    private void ValidationMap(Vector3Int _origin, Vector3 _goal)
     {
         // BFS를 이용하여 골인 지점까지 갈 수 있는지 탐색
 
@@ -121,27 +146,103 @@ public class MapCreator : MonoBehaviour
                 for (int i2 = 0; i2 < mapSize; i2++)
                     checkRoad[i0, i1, i2] = false;
 
+        BFSNode bestNode = null;
 
+        Queue<BFSNode> queue = new Queue<BFSNode>();
+        queue.Enqueue(new BFSNode(_origin.x, _origin.y, _origin.z, null));
+        checkRoad[_origin.x, _origin.y, _origin.z] = true;
+
+        // 탐색할 것이 없을 때까지 루프
+        while (queue.Count > 0)
+        {
+            // 노드를 가져옴
+            BFSNode node = queue.Dequeue();
+
+            // 목표 지점에 도달 시
+            if (node.X == _goal.x && node.Y == _goal.y && node.Z == _goal.z)
+            {
+                isValidMap = true;
+
+                break;
+            }
+
+            for (int i = 0; i < direction.GetLength(1); i++)
+            {
+                // 모든 방향으로 노드 탐색
+                int dx = node.X + direction[0, i, 0];
+                int dy = node.Y + direction[0, i, 1];
+                int dz = node.Z + direction[0, i, 2];
+
+                // 노드가 맵 내에 존재, 노드가 갈 수 있는 노드, 한 번도 간 적 없는 노드인 경우
+                if (CheckMapRange(dx, dy, dz) && CheckMapWay(dx, dy, dz) && !checkRoad[dx, dy, dz])
+                {
+                    // 찾은 길에 대해서 노드를 만들어 Queue에 추가, 현재 노드는 찾은 노드의 이전 노드
+                    BFSNode searchNode = new BFSNode(dx, dy, dz, node);
+                    queue.Enqueue(searchNode);
+
+                    // 이미 들른 노드로 체크
+                    checkRoad[dx, dy, dz] = true;
+                }
+            }
+        }
+
+        if (isValidMap)
+            Debug.Log("Valid Map Generated.");
+        else
+            Debug.Log("Invalid Map. Regenerate Random Map.");
+
+        /*if (isValidMap)
+        {
+            Debug.Log($"[{bestNode.X}, {bestNode.Y}, {bestNode.Z}] = {LevelManager.Instance.levelMap[bestNode.X][bestNode.Y][bestNode.Z]}");
+            while (isValidMap && bestNode.PrevCount > 0)
+            {
+                bestNode = bestNode.PrevNode;
+                Debug.Log($"[{bestNode.X}, {bestNode.Y}, {bestNode.Z}] = {LevelManager.Instance.levelMap[bestNode.X][bestNode.Y][bestNode.Z]}");
+            }
+        }*/
     }
 
-    private int GetRandomRoom()
+    private bool CheckMapRange(int x, int y, int z)
     {
-        // 랜덤 큐가 비어있으면 리셋으로 보충
-        if (roomRandomizeQueue.Count <= 0)
-            ResetRandomizeQueue();
-        
-        // 방 큐로부터 랜덤한 방 뽑기
-        int randomIndex = Random.Range(0, roomRandomizeQueue.Count);
-        int result = roomRandomizeQueue[randomIndex];
-        roomRandomizeQueue.RemoveAt(randomIndex);
-
-        return result;
+        // 노드가 맵 내에 존재하는가
+        return (x >= 0 && x < mapSize &&
+                y >= 0 && y < mapSize &&
+                z >= 0 && z < mapSize);
     }
 
-    private void ResetRandomizeQueue()
+    private bool CheckMapWay(int x, int y, int z)
     {
-        // 방 큐 리셋
-        for (int i = 0; i < roomCodeQueue.Length;i++)
-            roomRandomizeQueue.Add(roomCodeQueue[i]);
+        // 갈 수 있는 노드인가
+        return LevelManager.Instance.levelMap[x][y][z] != 0;
+    }
+
+    public class BFSNode
+    {
+        public int X;
+        public int Y;
+        public int Z;
+
+        public BFSNode PrevNode;
+        public int PrevCount;
+
+        public BFSNode(int x, int y, int z, BFSNode prevNode)
+        {
+            X = x;
+            Y = y;
+            Z = z;
+            PrevNode = prevNode;
+
+            if (PrevNode == null)
+            {
+                // 이전 노드가 없으면 시작 지점이므로 Count는 0
+                PrevCount = 0;
+            }
+            else
+            {
+                // 이전 노드가 있으면 이전 노드의 '이전 노드 개수' + 1
+                // 목표지점에 해당하는 노드는 최종적으로 시작지점에서 목표지점까지의 노드 수가 담기게 된다
+                PrevCount = PrevNode.PrevCount + 1;
+            }
+        }
     }
 }

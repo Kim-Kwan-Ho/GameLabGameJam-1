@@ -22,10 +22,12 @@ public class RoomController : MonoBehaviour
 
     void Start()
     {
-        CheckLockedDoor();
-        CloseLockedDoor();
+        LevelManager.Instance.MapCreator.MapCreateEvent.MapCreateComplete += ApplyRoomState;
 
-        roomCode = LevelManager.Instance.levelMap[roomCoordinate.x][roomCoordinate.y][roomCoordinate.z];
+        if (LevelManager.Instance.MapCreator.CheckMapCreation())
+            ApplyRoomState();
+        else
+            roomCode = 2;
     }
 
     void OnTriggerEnter(Collider other)
@@ -34,20 +36,36 @@ public class RoomController : MonoBehaviour
         {
             if (!isClearedRoom)
             {
-                Debug.Log("Enter not visited room.");
+                Debug.Log("Enter not cleared room.");
                 ActiveDoor(true);
             }
             else
             {
-                Debug.Log("Enter visited room.");
+                Debug.Log("Enter cleared room.");
                 roomPassCollider.enabled = false;
             }
         }
     }
 
-    void Update()
+    void OnDestroy()
     {
-        
+        LevelManager.Instance.MapCreator.MapCreateEvent.MapCreateComplete -= ApplyRoomState;
+    }
+
+    // 맵이 생성되어 있다면 호출 가능
+    private void ApplyRoomState(MapCreateEventArgs mapCreateEventArgs)
+    {
+        roomCode = LevelManager.Instance.levelMap[roomCoordinate.x][roomCoordinate.y][roomCoordinate.z];
+
+        CheckLockedDoor();
+        CloseLockedDoor();
+    }
+    private void ApplyRoomState()
+    {
+        roomCode = LevelManager.Instance.levelMap[roomCoordinate.x][roomCoordinate.y][roomCoordinate.z];
+
+        CheckLockedDoor();
+        CloseLockedDoor();
     }
 
     private void CheckLockedDoor()
@@ -59,20 +77,36 @@ public class RoomController : MonoBehaviour
         // X
         if (roomCoordinate.x <= 0)
             wallStructs[3].isLockedWall = true;
+        else if (LevelManager.Instance.levelMap[roomCoordinate.x - 1][roomCoordinate.y][roomCoordinate.z] == 0)
+            wallStructs[3].isLockedWall = true;
+
         if (roomCoordinate.x >= LevelManager.Instance.MapSize - 1)
+            wallStructs[0].isLockedWall = true;
+        else if (LevelManager.Instance.levelMap[roomCoordinate.x + 1][roomCoordinate.y][roomCoordinate.z] == 0)
             wallStructs[0].isLockedWall = true;
 
         // Y
         if (roomCoordinate.y <= 0)
             wallStructs[4].isLockedWall = true;
+        else if (LevelManager.Instance.levelMap[roomCoordinate.x][roomCoordinate.y - 1][roomCoordinate.z] == 0)
+            wallStructs[4].isLockedWall = true;
+
         if (roomCoordinate.y >= LevelManager.Instance.MapSize - 1)
+            wallStructs[1].isLockedWall = true;
+        else if (LevelManager.Instance.levelMap[roomCoordinate.x][roomCoordinate.y + 1][roomCoordinate.z] == 0)
             wallStructs[1].isLockedWall = true;
 
         // Z
         if (roomCoordinate.z <= 0)
             wallStructs[5].isLockedWall = true;
+        else if (LevelManager.Instance.levelMap[roomCoordinate.x][roomCoordinate.y][roomCoordinate.z - 1] == 0)
+            wallStructs[5].isLockedWall = true;
+
         if (roomCoordinate.z >= LevelManager.Instance.MapSize - 1)
             wallStructs[2].isLockedWall = true;
+        else if (LevelManager.Instance.levelMap[roomCoordinate.x][roomCoordinate.y][roomCoordinate.z + 1] == 0)
+            wallStructs[2].isLockedWall = true;
+
     }
 
     public Vector3Int GetCoordinate()
