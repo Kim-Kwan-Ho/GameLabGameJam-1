@@ -31,13 +31,13 @@ public class MapCreator : MonoBehaviour
     
     /* -1: 미지정
         0: 공백
-        1: 골인지점
-        2: 평화
-        3: 쉬움
-        4: 중간
-        5: 어려움
-        6: 극악
-        7: 특수   */
+        1: 골인지점   = 초록
+        2: 평화       = 하양
+        3: 쉬움       = 파랑
+        4: 중간       = 노랑
+        5: 어려움     = 빨강
+        6: 극악       = 검정
+        7: 특수       = 하양+α  */
 
     public void GetRandomMap(int _mapSize, Vector3Int _origin, Vector3Int _goal)
     {

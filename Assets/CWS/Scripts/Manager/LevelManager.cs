@@ -19,10 +19,11 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private int mapSize = 3;
     [SerializeField] private Vector3Int origin = Vector3Int.zero;
     [SerializeField] private Vector3Int goalPoint = Vector3Int.zero;
+    public Vector3Int CurrentCoordinate = Vector3Int.zero;
     public List<List<List<int>>> levelMap = new List<List<List<int>>>();
     private List<List<List<bool>>> levelVisitedMap = new List<List<List<bool>>>();
 
-    public Room[] roomList;
+    public GameObject[] RoomList;
 
 
     void Awake()
@@ -67,7 +68,8 @@ public class LevelManager : MonoBehaviour
         RoomController newRoomController = newRoomObj.GetComponent<RoomController>();
         RoomController oldRoomController = oldRoomObj.GetComponent<RoomController>();
 
-        newRoomController.SetCoordinate(oldRoomController.GetCoordinate() + moveDir);
+        newRoomController.SetCoordinate(CurrentCoordinate + moveDir);
+        CurrentCoordinate = newRoomController.GetCoordinate();
 
         newRoomController.FadeScreenMesh.enabled = true;
         oldRoomController.FadeScreenMesh.enabled = true;
@@ -122,23 +124,5 @@ public class LevelManager : MonoBehaviour
     public Transform GetNewCenter()
     {
         return CurrentRoom.GetComponent<RoomController>().Center;
-    }
-
-    [Serializable]
-    public class Room
-    {
-        public int weight;
-        public RoomCode code;
-        public GameObject prefab;
-    }
-
-    public enum RoomCode
-    {
-        None,
-        Easy,
-        Normal,
-        Hard,
-        VeryHard,
-        
     }
 }

@@ -48,8 +48,9 @@ public class WallDoorOpen : MonoBehaviour
         Time.timeScale = 0;
 
         // 이동한 방 오브젝트 생성 및 부모 지정
+        Vector3Int moveTo = LevelManager.Instance.CurrentCoordinate + passDirection;
         GameObject newRoom = 
-            Instantiate(LevelManager.Instance.roomList[0].prefab, 
+            Instantiate(LevelManager.Instance.RoomList[LevelManager.Instance.levelMap[moveTo.x][moveTo.y][moveTo.z]], 
             LevelManager.Instance.RoomParentTransform);
 
         // 이동한 방 위치 지정
@@ -57,7 +58,7 @@ public class WallDoorOpen : MonoBehaviour
         newRoom.transform.rotation = LevelManager.Instance.RoomParentTransform.rotation;
 
         // 방 이동 실행
-        LevelManager.Instance.MoveRoom(passDirection, newRoom, gameObject.transform.parent.transform.parent.gameObject);
+        LevelManager.Instance.MoveRoom(passDirection, newRoom, gameObject.transform.parent.transform.parent.transform.parent.gameObject);
         
     }
 }
