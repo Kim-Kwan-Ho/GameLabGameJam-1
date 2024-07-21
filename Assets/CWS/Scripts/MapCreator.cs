@@ -58,7 +58,7 @@ public class MapCreator : MonoBehaviour
         }
         
         MapCreateEvent.CallMapCreateComplete();
-        Debug.Log($"Map Randomized (Map size: {_mapSize}, Room count: {(int)Mathf.Pow(_mapSize, 3)})");
+        Debug.Log($"Map Creator: Map Randomize Completed  (Map size: {_mapSize}, Room count: {(int)Mathf.Pow(_mapSize, 3)})");
     }
 
     public bool CheckMapCreation()
@@ -70,14 +70,14 @@ public class MapCreator : MonoBehaviour
     {
         // 원점을 평화 맵으로 지정 = 2
         LevelManager.Instance.levelMap[_origin.x][_origin.y][_origin.z] = 2;
-        Debug.Log($"Set Origin to 1. (Origin: [{_origin.x}, {_origin.y}, {_origin.z}])");
+        Debug.Log($"Map Creator: Set Origin to 1. (Origin: [{_origin.x}, {_origin.y}, {_origin.z}])");
     }
 
     private void SetGoalRoom(Vector3Int _goal)
     {
         // 골인 지점 지정 = 1
         LevelManager.Instance.levelMap[_goal.x][_goal.y][_goal.z] = 1;
-        Debug.Log(($"Set goal point to 0. (Goal point: [{_goal.x}][{_goal.y}][{_goal.z}])"));
+        Debug.Log(($"Map Creator: Set goal point to 0. (Goal point: [{_goal.x}][{_goal.y}][{_goal.z}])"));
     }
 
     private void RandomizeMap()
@@ -94,11 +94,12 @@ public class MapCreator : MonoBehaviour
                 }
             }
         }
-        Debug.Log("Randomize Map Code");
+        Debug.Log("Map Creator: Randomize Map Code");
     }
 
     private void ResetMap()
     {
+        Debug.Log("Map Creator: Reset the map to -1");
         // -1로 맵 초기화
         for (int i0 = 0; i0 < mapSize; i0++)
         {
@@ -187,9 +188,9 @@ public class MapCreator : MonoBehaviour
         }
 
         if (isValidMap)
-            Debug.Log("Valid Map Generated.");
+            Debug.Log("Map Creator: Valid Map Generated.");
         else
-            Debug.Log("Invalid Map. Regenerate Random Map.");
+            Debug.Log("Map Creator: Invalid Map. Regenerate Random Map.");
 
         /*if (isValidMap)
         {
