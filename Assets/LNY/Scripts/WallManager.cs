@@ -8,15 +8,17 @@ public class WallManager : MonoBehaviour
     public bool normalTriggerActivated = false;
     public float clearThreshold = 0.5f;  // Time in seconds to wait for all triggers to be activated
     public LayerMask obstacleLayer;  // LayerMask for the layers considered as obstacles (for checking non-solution BoxColliders)
+    public GameObject player;
 
     private void Start()
     {
         // Find all SolutionTriggers under the wall
         SolutionTrigger[] triggers = wall.GetComponentsInChildren<SolutionTrigger>();
-        
+        //player = GameObject.FindGameObjectWithTag("Player");
         totalSolutionTriggers = triggers.Length;
         Debug.Log("total" + totalSolutionTriggers);
         normalTriggerActivated = false;
+
     }
 
     public void OnSolutionTriggerActivated()
@@ -32,11 +34,22 @@ public class WallManager : MonoBehaviour
             ClearFunction();
             //StartCoroutine(HandleClearCondition());
         }
+
+        ReturnToPos();
+
     }
+
+    public void ReturnToPos()
+    {
+        player.transform.position = new Vector3(0.585638642f, 10.0761595f, -9.35221291f);
+    }
+
     public void OnNormalTriggerActivated()
     {
         normalTriggerActivated = true;
-        Debug.Log("wrongly Triggered");
+        //Debug.Log("wrongly Triggered");
+
+        ReturnToPos();
     }
 
 

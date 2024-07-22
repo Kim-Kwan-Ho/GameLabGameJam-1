@@ -1870,6 +1870,7 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 0
+  player: {fileID: 6942642418614769493, guid: 1ef7ae0ea341e014e8ef0c2cf4e80b78, type: 3}
 --- !u!1 &5687705692113288844
 GameObject:
   m_ObjectHideFlags: 0
