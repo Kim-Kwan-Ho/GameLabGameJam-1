@@ -31,7 +31,6 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
 
-        Debug.Log(rb);
     }
 
     void Update()
@@ -71,6 +70,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.V))
         {
             Snap();
+            RangeCalc();
             Debug.Log("The Snap key is pressed");
             return;
 
@@ -78,6 +78,13 @@ public class PlayerController : MonoBehaviour
               
     }
 
+    public void RangeCalc()
+    {
+        //만약 (0,180,0) , (0,-180,0) (0,0,0), (0,180,180), (0,180,-180) 인 케이스라면 
+        //플레이어에 붙어있는 꼭짓점 애들과 장애물에 붙어있는 꼭짓점 애들을 비교해서 range안에 있으면
+        //정답 처리
+
+    }
     public void Snap()
     {
         Vector3 currentRotation = transform.eulerAngles; // 현재의 로테이션 x,y,z값을 받아

@@ -16,46 +16,79 @@ public class PlayerHealthSystem : MonoBehaviour
     public Action HealthDecreaseEvent;
     public Action HealthIncreaseEvent;
 
-
+    public bool canTakeDamage = true;
+    public float hitCooldown = 3f;
     private void Awake()
     {
         _meshRenderer = GetComponent<MeshRenderer>();
+        canTakeDamage = true;
     }
 
     private void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.CompareTag("Enemy") || col.gameObject.CompareTag("Obstacle"))
         {
-            Destroy(col.gameObject); // 게임종료
+            // Get the parent’s parent’s parent GameObject
+            GameObject entireGameObject = col.transform.parent?.parent?.parent?.gameObject;
+
+            Destroy(entireGameObject);
             PlayerTakeHit();
+
         }
     }
 
 
     private void PlayerTakeHit()
     {
-        StartCoroutine(PlayerHitEffect());
-        _health--;
-        HealthDecreaseEvent?.Invoke();
+        //StartCoroutine(PlayerHitEffect());
+        
+        if (canTakeDamage)
+        {
+            _health--;
+            Debug.Log("Health" + _health);
+
+            if (_health > 0)
+            {
+                StartCoroutine(HitCooldownCoroutine());
+            }
+
+            HealthDecreaseEvent?.Invoke();
+
+        }
+
         if (_health <= 0)
         {
             PlayerDeath();
         }
+
     }
 
+    private IEnumerator HitCooldownCoroutine()
+    {
+        // Set canTakeDamage to false to prevent further damage
+        canTakeDamage = false;
+
+        // Wait for the specified cooldown duration
+        yield return new WaitForSeconds(hitCooldown);
+
+        // Re-enable damage
+        canTakeDamage = true;
+    }
+
+    /*
     private IEnumerator PlayerHitEffect()
     {
         _meshRenderer.material = _materials[1];
         yield return new WaitForSeconds(_hitEffectTime);
         _meshRenderer.material = _materials[0];
-    }
+    }*/
 
     private void PlayerDeath()
     {
-        _meshRenderer.enabled = false;
-        GetComponent<Collider>().enabled = false;
-        GetComponent<PlayerAttack>().enabled = false;
-        GetComponent<PlayerMoving>().enabled = false;
+        //_meshRenderer.enabled = false;
+        //GetComponent<Collider>().enabled = false;
+        //GetComponent<PlayerAttack>().enabled = false;
+        //GetComponent<PlayerMoving>().enabled = false;
         _deathParticle.SetActive(true);
 
         GameSceneManager.Instance.GameSceneEvent.CallGameOver();

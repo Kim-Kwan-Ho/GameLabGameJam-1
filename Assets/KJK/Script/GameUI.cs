@@ -20,8 +20,8 @@ public class GameUI : MonoBehaviour
         //DrawTimer();
         DrawScore();
         //LifeCheck(healthSystem.Health);
-        PowerCheck(attackSystem.DamageLevel);
-        SpeedCheck(attackSystem.AttackSpeedLevel);
+        //PowerCheck(attackSystem.DamageLevel);
+        //SpeedCheck(attackSystem.AttackSpeedLevel);
     }
 
 
@@ -48,6 +48,7 @@ public class GameUI : MonoBehaviour
     //    }
     //}
 
+    /*
     // 파워
     public void PowerCheck(int powerLevel)
     {
@@ -70,7 +71,7 @@ public class GameUI : MonoBehaviour
             else
                 ui_speedLevel[i].SetActive(false);
         }
-    }
+    }*/
 
     // 스코어 출력
     private void DrawScore()

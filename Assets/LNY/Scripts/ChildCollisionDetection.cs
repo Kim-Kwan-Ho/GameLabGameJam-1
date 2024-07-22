@@ -1,15 +1,17 @@
-/*using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ChildCollisionDetection : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        transform.parent.parent.parent.parent.GetComponent<ParentCollisionDetection>().CollisionDetected(this);
+        transform.parent.parent.parent.parent.GetComponent<ParentCollisionDetection>().CollisionDetected();
     }
 }
-*/
+
+
+/*
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,4 +27,4 @@ public class ChildCollisionDetection : MonoBehaviour
         // Trigger the event when a collision occurs
         CollisionEvent?.Invoke();
     }
-}
+}*/

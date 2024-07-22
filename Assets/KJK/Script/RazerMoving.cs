@@ -6,6 +6,7 @@ using UnityEngine;
 public class RazerMoving : MonoBehaviour
 {
     public float speed = 1f;
+    public float destroyZRange;
     public Transform center;
     public enum RazerType
     {
@@ -17,9 +18,12 @@ public class RazerMoving : MonoBehaviour
         NZ,
     }
     public RazerType razerType;
+
+
+    public int currentStage = 1;
     void Start()
     {
-        
+
     }
     private void OnEnable()
     {
@@ -62,9 +66,11 @@ public class RazerMoving : MonoBehaviour
                 break;
         }
 
-        if(transform.position.z <= 20)
+        if(transform.position.z <= destroyZRange)
         {
             Destroy(gameObject);
         }
+
     }
+ 
 }

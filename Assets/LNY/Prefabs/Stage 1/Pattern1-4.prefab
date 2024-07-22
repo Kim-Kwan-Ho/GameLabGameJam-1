@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 7139283914407245664}
   - component: {fileID: 8871974294375895668}
   - component: {fileID: 965270570352934595}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (5)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,7 +99,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -117,9 +117,9 @@ GameObject:
   - component: {fileID: 1427585103345217760}
   - component: {fileID: 7287213757492125633}
   - component: {fileID: 8386431068716562435}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -204,7 +204,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -222,9 +222,9 @@ GameObject:
   - component: {fileID: 6194736122600192037}
   - component: {fileID: 2113266091810110680}
   - component: {fileID: 5451710559427692766}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -309,7 +309,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -324,9 +324,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7920599545053744784}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: First Layer
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -364,9 +364,9 @@ GameObject:
   - component: {fileID: 3477316987368191504}
   - component: {fileID: 6775082876303430417}
   - component: {fileID: 6543778794260509400}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (7)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -482,9 +482,9 @@ GameObject:
   - component: {fileID: 1767383598815133564}
   - component: {fileID: 8870819922267613399}
   - component: {fileID: 2130090843623294788}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (4)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -569,7 +569,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -587,9 +587,9 @@ GameObject:
   - component: {fileID: 6246054845029915470}
   - component: {fileID: 6436867886517277177}
   - component: {fileID: 323780021066461212}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (5)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -674,7 +674,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -692,9 +692,9 @@ GameObject:
   - component: {fileID: 6307427213890917858}
   - component: {fileID: 8643188121475147742}
   - component: {fileID: 2244983371247610104}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (4)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -797,9 +797,9 @@ GameObject:
   - component: {fileID: 7770338490590533481}
   - component: {fileID: 2707416281987574259}
   - component: {fileID: 6280175489437787399}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -887,7 +887,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -903,9 +903,9 @@ GameObject:
   - component: {fileID: 4603147145416735524}
   - component: {fileID: 2051933613200465009}
   - component: {fileID: 6333124334759228676}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -990,7 +990,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1007,9 +1007,9 @@ GameObject:
   - component: {fileID: 4117442312249249212}
   - component: {fileID: 4429988320734899280}
   - component: {fileID: 111001305800543481}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SolutionTrigger
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1074,9 +1074,9 @@ GameObject:
   - component: {fileID: 8568245968182501981}
   - component: {fileID: 2113080123016448730}
   - component: {fileID: 1206307335364477025}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (5)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1161,7 +1161,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1176,9 +1176,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4017418287250047824}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FifthFloor
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1212,9 +1212,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3297549295840991861}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ThirdFloor
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1251,9 +1251,9 @@ GameObject:
   - component: {fileID: 2534490963797448393}
   - component: {fileID: 1032087912111278813}
   - component: {fileID: 2531911459877933437}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1338,7 +1338,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1356,9 +1356,9 @@ GameObject:
   - component: {fileID: 4146988747863411225}
   - component: {fileID: 3717761412832355436}
   - component: {fileID: 7122641955562785631}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1443,7 +1443,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1461,9 +1461,9 @@ GameObject:
   - component: {fileID: 3911316577751743713}
   - component: {fileID: 3808679611656516956}
   - component: {fileID: 8974926390535809348}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (4)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1565,9 +1565,9 @@ GameObject:
   - component: {fileID: 7827978509843658164}
   - component: {fileID: 9079500481200354184}
   - component: {fileID: 8012489570095459912}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SolutionTrigger
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1629,9 +1629,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2371566718237155843}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SecondFloor
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1667,9 +1667,9 @@ GameObject:
   - component: {fileID: 4928095120058997093}
   - component: {fileID: 7823792114497002392}
   - component: {fileID: 3601518995676034522}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pattern1-4
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1703,8 +1703,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8
+  destroyZRange: -20
   center: {fileID: 0}
   razerType: 5
+  currentStage: 1
 --- !u!114 &3601518995676034522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1717,7 +1719,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cc55f0ee343bf84995a794e7c89989e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  answerCount: 7
 --- !u!1 &5687705692113288844
 GameObject:
   m_ObjectHideFlags: 0
@@ -1730,9 +1731,9 @@ GameObject:
   - component: {fileID: 681627777683450406}
   - component: {fileID: 3462759022703373065}
   - component: {fileID: 4022957754536667973}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1817,7 +1818,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1835,9 +1836,9 @@ GameObject:
   - component: {fileID: 6318037906325249691}
   - component: {fileID: 2332867939456430446}
   - component: {fileID: 4740704526822903746}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1922,7 +1923,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
@@ -1939,9 +1940,9 @@ GameObject:
   - component: {fileID: 5536295965282013735}
   - component: {fileID: 151110581541755210}
   - component: {fileID: 2078827217405002433}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SolutionTrigger
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2006,9 +2007,9 @@ GameObject:
   - component: {fileID: 578557816787339368}
   - component: {fileID: 4164790888942252094}
   - component: {fileID: 7530429023964058108}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2093,7 +2094,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
@@ -2108,9 +2109,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4588851047014973149}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FirstFloor
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2147,9 +2148,9 @@ GameObject:
   - component: {fileID: 7124823589798933006}
   - component: {fileID: 4017588777405194054}
   - component: {fileID: 2017136920357570468}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2237,7 +2238,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -2253,9 +2254,9 @@ GameObject:
   - component: {fileID: 2119094928411950247}
   - component: {fileID: 5006392060826185619}
   - component: {fileID: 4511549757874035626}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2340,7 +2341,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -2358,9 +2359,9 @@ GameObject:
   - component: {fileID: 6368183724229096532}
   - component: {fileID: 5363575209715169822}
   - component: {fileID: 520647811862284554}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (5)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2445,7 +2446,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -2463,9 +2464,9 @@ GameObject:
   - component: {fileID: 5940397049468127201}
   - component: {fileID: 6656144018442977996}
   - component: {fileID: 5132250809213354338}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (4)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2565,9 +2566,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7063966106510026253}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FourthFloor
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2604,9 +2605,9 @@ GameObject:
   - component: {fileID: 6614352562720142360}
   - component: {fileID: 8365056070976630439}
   - component: {fileID: 4051991326872576911}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (5)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2691,7 +2692,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -2709,9 +2710,9 @@ GameObject:
   - component: {fileID: 7145362277483259993}
   - component: {fileID: 9042076741126358251}
   - component: {fileID: 3621081987693302672}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (4)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2796,7 +2797,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -2814,9 +2815,9 @@ GameObject:
   - component: {fileID: 1991713098120502119}
   - component: {fileID: 3437495567308015124}
   - component: {fileID: 8799016285818282678}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2901,7 +2902,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -2918,9 +2919,9 @@ GameObject:
   - component: {fileID: 4397083303565852954}
   - component: {fileID: 1618951499381627384}
   - component: {fileID: 3797093603380423646}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SolutionTrigger
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2986,9 +2987,9 @@ GameObject:
   - component: {fileID: 5212978631483457351}
   - component: {fileID: 9120255012811352324}
   - component: {fileID: 7100636940978221948}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (6)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3104,9 +3105,9 @@ GameObject:
   - component: {fileID: 2096195531867504952}
   - component: {fileID: 7966565150257552870}
   - component: {fileID: 134286658522522755}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3191,7 +3192,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

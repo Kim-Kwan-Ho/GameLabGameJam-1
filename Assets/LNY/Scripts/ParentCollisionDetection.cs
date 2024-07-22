@@ -5,7 +5,13 @@ using System;
 
 public class ParentCollisionDetection : MonoBehaviour
 {
-    public int answerCount = 4; // The number of collisions needed
+    public void CollisionDetected()
+    {
+        Debug.Log("Child collided");
+
+    }
+
+    /*public int answerCount = 4; // The number of collisions needed
     private int collisionCount = 0; // Counter for detected collisions
 
     private void OnEnable()
@@ -46,4 +52,5 @@ public class ParentCollisionDetection : MonoBehaviour
         Debug.Log("Doing something as collision count met the target.");
         Destroy(gameObject);
     }
+    */
 }
