@@ -26,6 +26,7 @@ public class PlayerHealthSystem : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Obstacle"))
         {
+            Debug.Log("hello");
             // Get the parent¡¯s parent¡¯s parent GameObject
             GameObject entireGameObject = col.transform.parent?.parent?.parent?.gameObject;
 

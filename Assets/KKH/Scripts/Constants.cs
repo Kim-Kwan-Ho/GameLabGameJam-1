@@ -13,4 +13,6 @@ public static class Constants
     public const int SCORE_HPITEM = 1000;
     public const int GAME_STARTDELAY = 2;
 
+
+    public const float LEVEL_WALL_SPAWNTIME = 0.2f;
 }

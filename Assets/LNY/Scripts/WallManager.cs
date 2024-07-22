@@ -16,7 +16,14 @@ public class WallManager : MonoBehaviour
         SolutionTrigger[] triggers = wall.GetComponentsInChildren<SolutionTrigger>();
         //player = GameObject.FindGameObjectWithTag("Player");
         totalSolutionTriggers = triggers.Length;
+        /*
         Debug.Log("total" + totalSolutionTriggers);
+        if(totalSolutionTriggers >= 4)
+        {
+            foreach (var trigger in  triggers) {
+                Debug.Log(trigger);
+            }
+        }*/
         normalTriggerActivated = false;
 
     }

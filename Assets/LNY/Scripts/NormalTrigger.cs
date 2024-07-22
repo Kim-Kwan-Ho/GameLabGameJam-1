@@ -16,7 +16,7 @@ public class NormalTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("entered");
+            //Debug.Log("entered");
             wallManager.OnNormalTriggerActivated();
             
             cubeRenderer.material = ChangeMaterial;

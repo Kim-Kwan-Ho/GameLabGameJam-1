@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(GameSceneEventArgs))]
 public class GameSceneManager : MonoBehaviour
 {
+    public static WallSpawner wallSpawner;
     public static GameSceneManager Instance;
     public GameSceneEventArgs GameSceneEvent;
     public static int GameLevel = 1;
@@ -13,7 +14,7 @@ public class GameSceneManager : MonoBehaviour
     [SerializeField] private GameObject _healthItem;
 
 
-    [SerializeField] private float _epicPatternTime = 15f;
+    [SerializeField] private float _stageTime = 15f;
     [SerializeField] private TextMeshProUGUI _levelText;
     private void Awake()
     {
@@ -27,38 +28,34 @@ public class GameSceneManager : MonoBehaviour
         }
         GameSceneEvent = GetComponent<GameSceneEventArgs>();
 
-
-        GameSceneEvent.EpicPatternEnd += OnEpicPatternEnd;
-        GameSceneEvent.GameResume += StartEpicPatternTimer;
+        GameSceneEvent.GameResume += StartNextStageTimer;
         StartCoroutine(CoStartDelay());
     }
     private IEnumerator CoStartDelay()
     {
         yield return new WaitForSeconds(Constants.GAME_STARTDELAY);
-        StartCoroutine(StartEpicPattern());
+        StartCoroutine(StartNextStage());
     }
     private void OnDestroy()
     {
-        GameSceneEvent.EpicPatternEnd -= OnEpicPatternEnd;
-        GameSceneEvent.GameResume -= StartEpicPatternTimer;
+        GameSceneEvent.GameResume -= StartNextStageTimer;
     }
 
     private void Update()
     {
         _levelText.text = "STAGE " + GameLevel.ToString();
     }
-    private void OnEpicPatternEnd(GameSceneEventArgs gameSceneEventArgs)
+
+    private void StartNextStageTimer(GameSceneEventArgs gameSceneEventArgs)
     {
-        Instantiate(_healthItem, new Vector3(0, 10, 0), Quaternion.identity);
+        StartCoroutine(StartNextStage());
     }
 
-    private void StartEpicPatternTimer(GameSceneEventArgs gameSceneEventArgs)
+    private IEnumerator StartNextStage()
     {
-        StartCoroutine(StartEpicPattern());
-    }
-    private IEnumerator StartEpicPattern()
-    {
-        yield return new WaitForSeconds(_epicPatternTime);
+        yield return new WaitForSeconds(_stageTime);
         GameSceneEvent.CallWarningSignal();
+        GameLevel++;
+        
     }
 }

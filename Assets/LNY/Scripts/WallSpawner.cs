@@ -16,12 +16,16 @@ public class WallSpawner : MonoBehaviour
     public void Start()
     {
         InvokeRepeating(nameof(WallSpawning), 0.5f, spawnInterval);
+        spawnInterval -= (Constants.LEVEL_WALL_SPAWNTIME * GameSceneManager.GameLevel);
     }
 
     public void Update()
     {
-        
+        spawnInterval -= (Constants.LEVEL_WALL_SPAWNTIME * GameSceneManager.GameLevel);
     }
+
+    
+
 
     void  WallSpawning()
     {
