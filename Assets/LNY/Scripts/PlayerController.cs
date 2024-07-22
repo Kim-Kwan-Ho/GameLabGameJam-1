@@ -47,20 +47,20 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W))
         {
-            movementUpDown = transform.up;
+            movementUpDown = Vector3.up;
         }
         else if (Input.GetKey(KeyCode.S))
         {
-            movementUpDown = -transform.up;
+            movementUpDown = Vector3.down;
         }
 
         if (Input.GetKey(KeyCode.D))
         {
-            movementLeftRight = transform.right;
+            movementLeftRight = Vector3.right;
         }
         else if (Input.GetKey(KeyCode.A))
         {
-            movementLeftRight = -transform.right;
+            movementLeftRight = Vector3.left;
         }
 
         rb.velocity = (movementUpDown + movementLeftRight) * speed;
@@ -71,7 +71,6 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.V))
         {
             Snap();
-            //transform.rotation = Quaternion.identity;
             Debug.Log("The Snap key is pressed");
             return;
 
@@ -97,6 +96,8 @@ public class PlayerController : MonoBehaviour
         }
 
         transform.rotation = targetRotation;
+
+        
     }
 
     float FindNearestAngle(float currentAngle)

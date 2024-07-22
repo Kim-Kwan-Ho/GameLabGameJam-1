@@ -25,7 +25,7 @@ public class SpawnWall : MonoBehaviour
     void  WallSpawning()
     {
         GameObject wallPrefab = Walls[RandomGenerate()];
-        Vector3 spawnPosition = center.position + new Vector3(0, -5, distance);
+        Vector3 spawnPosition = center.position + new Vector3(0.67f, -5, distance);
         Instantiate(wallPrefab, spawnPosition, Quaternion.identity);
     }
 
