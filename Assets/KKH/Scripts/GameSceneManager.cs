@@ -43,10 +43,6 @@ public class GameSceneManager : MonoBehaviour
         GameSceneEvent.GameResume -= StartEpicPatternTimer;
     }
 
-    private void Update()
-    {
-        _levelText.text = "STAGE " + GameLevel.ToString();
-    }
     private void OnEpicPatternEnd(GameSceneEventArgs gameSceneEventArgs)
     {
         Instantiate(_healthItem, new Vector3(0, 10, 0), Quaternion.identity);

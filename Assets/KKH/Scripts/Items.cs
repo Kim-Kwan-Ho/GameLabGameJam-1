@@ -9,6 +9,16 @@ public class Items : MonoBehaviour
     [SerializeField] private float _lifeTime = 7f;
     [SerializeField] private float _rotSpeed = 10f;
     [SerializeField] private GameObject _particleGob;
+
+    void Start()
+    {
+        for (int i = 0; i < LevelManager.Instance.EatenHeart.Count; i++)
+        {
+            if (LevelManager.Instance.EatenHeart[i] == LevelManager.Instance.CurrentCoordinate)
+                Destroy(this.gameObject);
+        }
+    }
+
     private void Update()
     {
         transform.Rotate(new Vector3(0, _rotSpeed, 0) * Time.deltaTime);

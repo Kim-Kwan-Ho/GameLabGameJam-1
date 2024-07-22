@@ -56,6 +56,8 @@ public class MapCreator : MonoBehaviour
             RandomizeMap();
             ValidationMap(_origin, _goal);
         }
+
+        CheckClearRoom();
         
         MapCreateEvent.CallMapCreateComplete();
         Debug.Log($"Map Creator: Map Randomize Completed  (Map size: {_mapSize}, Room count: {(int)Mathf.Pow(_mapSize, 3)})");
@@ -68,8 +70,9 @@ public class MapCreator : MonoBehaviour
 
     private void SetOriginRoom(Vector3Int _origin)
     {
-        // 원점을 평화 맵으로 지정 = 2
+        // 원점을 평화 맵으로 지정 = 2, 이미 들른 방으로 지정
         LevelManager.Instance.levelMap[_origin.x][_origin.y][_origin.z] = 2;
+        LevelManager.Instance.levelVisitedMap[_origin.x][_origin.y][_origin.z] = true;
         Debug.Log($"Map Creator: Set Origin to 1. (Origin: [{_origin.x}, {_origin.y}, {_origin.z}])");
     }
 
@@ -201,6 +204,27 @@ public class MapCreator : MonoBehaviour
                 Debug.Log($"[{bestNode.X}, {bestNode.Y}, {bestNode.Z}] = {LevelManager.Instance.levelMap[bestNode.X][bestNode.Y][bestNode.Z]}");
             }
         }*/
+    }
+
+    private void CheckClearRoom()
+    {
+        // 평화 방, 특별 방, 골 방에 대해서 클리어 처리 필요
+        for (int i0 = 0; i0 < mapSize; i0++)
+        {
+            for (int i1 = 0; i1 < mapSize; i1++)
+            {
+                for (int i2 = 0; i2 < mapSize; i2++)
+                {
+                    if (LevelManager.Instance.levelMap[i0][i1][i2] == 0 ||
+                        LevelManager.Instance.levelMap[i0][i1][i2] == 1 ||
+                        LevelManager.Instance.levelMap[i0][i1][i2] == 2 ||
+                        LevelManager.Instance.levelMap[i0][i1][i2] == 7)
+                    {
+                        LevelManager.Instance.levelClearedMap[i0][i1][i2] = true;
+                    }
+                }
+            }
+        }
     }
 
     private bool CheckMapRange(int x, int y, int z)

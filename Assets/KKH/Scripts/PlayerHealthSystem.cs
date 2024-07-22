@@ -24,9 +24,9 @@ public class PlayerHealthSystem : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.CompareTag("Enemy") || col.gameObject.CompareTag("Obstacle"))
+        if (col.gameObject.CompareTag("Enemy"))
         {
-            Destroy(col.gameObject); // 게임종료
+            Destroy(col.gameObject.transform.parent.gameObject); // 게임종료
             PlayerTakeHit();
         }
     }
@@ -63,12 +63,9 @@ public class PlayerHealthSystem : MonoBehaviour
 
     public void RecoverHealth()
     {
-        if (_health >= Constants.PLAYER_MAXHP)
+        if (_health < Constants.PLAYER_MAXHP)
         {
-            ScoreManager.instance.IncreaseItemScore(Constants.SCORE_HPITEM);
-        }
-        else
-        {
+            LevelManager.Instance.EatenHeart.Add(LevelManager.Instance.CurrentCoordinate);
             HealthIncreaseEvent?.Invoke();
             _health++;
         }

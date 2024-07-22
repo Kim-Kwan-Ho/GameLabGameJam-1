@@ -12,6 +12,7 @@ public class RoomController : MonoBehaviour
     
     public MeshRenderer FadeScreenMesh;
     public Transform Center;
+    [SerializeField] private RoomEnterEventArgs roomEnterEvent;
 
     private BoxCollider roomPassCollider;
 
@@ -23,6 +24,7 @@ public class RoomController : MonoBehaviour
     void Start()
     {
         LevelManager.Instance.MapCreator.MapCreateEvent.MapCreateComplete += ApplyRoomState;
+        roomEnterEvent.RoomEnterEvent += OnRoomEnter;
 
         if (LevelManager.Instance.MapCreator.CheckMapCreation())
             ApplyRoomState();
@@ -30,42 +32,31 @@ public class RoomController : MonoBehaviour
             roomCode = 2;
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            if (!isClearedRoom)
-            {
-                Debug.Log("Enter not cleared room.");
-                ActiveDoor(true);
-            }
-            else
-            {
-                Debug.Log("Enter cleared room.");
-                roomPassCollider.enabled = false;
-            }
-        }
-    }
-
     void OnDestroy()
     {
         LevelManager.Instance.MapCreator.MapCreateEvent.MapCreateComplete -= ApplyRoomState;
+        roomEnterEvent.RoomEnterEvent -= OnRoomEnter;
     }
 
     // 맵이 생성되어 있다면 호출 가능
     private void ApplyRoomState(MapCreateEventArgs mapCreateEventArgs)
     {
-        roomCode = LevelManager.Instance.levelMap[roomCoordinate.x][roomCoordinate.y][roomCoordinate.z];
-
-        CheckLockedDoor();
-        CloseLockedDoor();
+        ApplyRoomState();
     }
     private void ApplyRoomState()
     {
         roomCode = LevelManager.Instance.levelMap[roomCoordinate.x][roomCoordinate.y][roomCoordinate.z];
+        isClearedRoom = LevelManager.Instance.levelClearedMap[roomCoordinate.x][roomCoordinate.y][roomCoordinate.z];
+        roomPassCollider.enabled = !isClearedRoom;
 
         CheckLockedDoor();
         CloseLockedDoor();
+    }
+
+    private void OnRoomEnter(RoomEnterEventArgs roomEnterEventArgs)
+    {
+        Debug.Log("Enter not cleared room.");
+        ActiveDoor(true);
     }
 
     private void CheckLockedDoor()
@@ -148,9 +139,13 @@ public class RoomController : MonoBehaviour
         }
     }
 
-    private void RoomPatternStart()
+    public void RoomClear()
     {
+        // 룸 컨트롤러 클리어 확인 후 레벨 메니저 좌표에 적용
+        isClearedRoom = true;
+        LevelManager.Instance.levelClearedMap[roomCoordinate.x][roomCoordinate.y][roomCoordinate.z] = true;
 
+        ActiveDoor(false);
     }
 
     [Serializable]

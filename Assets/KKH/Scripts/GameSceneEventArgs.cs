@@ -9,6 +9,7 @@ public class GameSceneEventArgs : MonoBehaviour
     public Action<GameSceneEventArgs> EpicPatternStart;
     public Action<GameSceneEventArgs> EpicPatternEnd;
     public Action<GameSceneEventArgs> GameOver;
+    public Action<GameSceneEventArgs> GameClear;
 
 
 
@@ -32,6 +33,11 @@ public class GameSceneEventArgs : MonoBehaviour
     public void CallGameOver()
     {
         GameOver?.Invoke(this);
+    }
+
+    public void CallGameClear()
+    {
+        GameClear?.Invoke(this);
     }
 }
 

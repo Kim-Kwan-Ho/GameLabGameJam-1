@@ -9,6 +9,7 @@ public class CameraMoving : MonoBehaviour
     private bool isOrbiting = false;  // 코루틴 실행 중 여부 확인용 변수
     public float cooltime = 1.0f;  // 쿨타임
     public GameObject player;
+    private bool isMoving = false;
 
     public enum ViewState
     {
@@ -43,22 +44,22 @@ public class CameraMoving : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W) && !isOrbiting)
+        if (Input.GetKeyDown(KeyCode.W) && !isOrbiting && !isMoving)
         {
             StartCoroutine(OrbitCooldown());
             StartCoroutine(OrbitAround(0));
         }
-        if (Input.GetKeyDown(KeyCode.A) && !isOrbiting)
+        if (Input.GetKeyDown(KeyCode.A) && !isOrbiting && !isMoving)
         {
             StartCoroutine(OrbitCooldown());
             StartCoroutine(OrbitAround(1));
         }
-        if (Input.GetKeyDown(KeyCode.D) && !isOrbiting)
+        if (Input.GetKeyDown(KeyCode.D) && !isOrbiting && !isMoving)
         {
             StartCoroutine(OrbitCooldown());
             StartCoroutine(OrbitAround(2));
         }
-        if  (Input.GetKeyDown(KeyCode.S) && !isOrbiting)
+        if  (Input.GetKeyDown(KeyCode.S) && !isOrbiting && !isMoving)
         {
             StartCoroutine(OrbitCooldown());
             StartCoroutine(OrbitAround(3));
@@ -205,6 +206,7 @@ public class CameraMoving : MonoBehaviour
 
     IEnumerator IE_MoveRoom(Vector3Int moveDir)
     {
+        isMoving = true;
         Vector3 destination = transform.position + (moveDir * 21);
 
         while (Vector3.Distance(transform.position, destination) > 0.01f)
@@ -221,7 +223,7 @@ public class CameraMoving : MonoBehaviour
         transform.position = destination + correctionVector;
         
         Time.timeScale = 1;
-
+        isMoving = false;
         yield break;
     }
 }

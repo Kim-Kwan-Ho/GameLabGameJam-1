@@ -12,8 +12,6 @@ public class TitleScene : MonoBehaviour
     void Start()
     {
         _keyClicked = false;
-        RankManager.Instance.ReadRankData();
-        RankManager.Instance.UpdateRankUI();
     }
 
     // Update is called once per frame

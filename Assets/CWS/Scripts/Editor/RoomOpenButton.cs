@@ -11,9 +11,15 @@ public class RoomOpenButton : Editor
         base.OnInspectorGUI();
 
         RoomController generator = (RoomController)target;
+
         if (GUILayout.Button("Door Active"))
         {
             generator.ActiveDoor();
+        }
+
+        if (GUILayout.Button("Room Clear"))
+        {
+            generator.RoomClear();
         }
     }
 }

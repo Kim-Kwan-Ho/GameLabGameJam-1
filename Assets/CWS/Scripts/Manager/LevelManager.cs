@@ -7,6 +7,8 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance;
 
+    public GameObject Player;
+
     public MapCreator MapCreator;
 
     public Transform RoomParentTransform;
@@ -14,14 +16,17 @@ public class LevelManager : MonoBehaviour
 
     public GameObject PrevRoom;
     public GameObject CurrentRoom;
+    private RoomController currentRoomController;
 
     public int MapSize { get { return mapSize; } }
     [SerializeField] private int mapSize = 3;
-    [SerializeField] private Vector3Int origin = Vector3Int.zero;
-    [SerializeField] private Vector3Int goalPoint = Vector3Int.zero;
+    public Vector3Int origin = Vector3Int.zero;
+    public Vector3Int goalPoint = Vector3Int.zero;
     public Vector3Int CurrentCoordinate = Vector3Int.zero;
     public List<List<List<int>>> levelMap = new List<List<List<int>>>();
-    private List<List<List<bool>>> levelVisitedMap = new List<List<List<bool>>>();
+    public List<List<List<bool>>> levelVisitedMap = new List<List<List<bool>>>();
+    public List<List<List<bool>>> levelClearedMap = new List<List<List<bool>>>();
+    public List<Vector3Int> EatenHeart = new List<Vector3Int>();
 
     public GameObject[] RoomList;
 
@@ -48,14 +53,17 @@ public class LevelManager : MonoBehaviour
         {
             levelMap.Add(new List<List<int>>());
             levelVisitedMap.Add(new List<List<bool>>());
+            levelClearedMap.Add(new List<List<bool>>());
             for (int i1 = 0; i1 < mapSize; i1++)
             {
                 levelMap[i0].Add(new List<int>());
                 levelVisitedMap[i0].Add(new List<bool>());
+                levelClearedMap[i0].Add(new List<bool>());
                 for (int i2 = 0; i2 < mapSize; i2++)
                 {
                     levelMap[i0][i1].Add(-1);
                     levelVisitedMap[i0][i1].Add(false);
+                    levelClearedMap[i0][i1].Add(false);
                 }
             }
         }
@@ -68,15 +76,24 @@ public class LevelManager : MonoBehaviour
         RoomController newRoomController = newRoomObj.GetComponent<RoomController>();
         RoomController oldRoomController = oldRoomObj.GetComponent<RoomController>();
 
+        // 현재 방 좌표 지정
         newRoomController.SetCoordinate(CurrentCoordinate + moveDir);
         CurrentCoordinate = newRoomController.GetCoordinate();
 
+        // 페이드 효과 시작
         newRoomController.FadeScreenMesh.enabled = true;
         oldRoomController.FadeScreenMesh.enabled = true;
 
+        // 레벨 컨트롤러의 룸 오브젝트 및 룸 컨트롤러 적용
         PrevRoom = oldRoomObj;
         CurrentRoom = newRoomObj;
+        currentRoomController = newRoomController;
+        GameUI.Instance.UpdateCurrentCoorText();
 
+        // 현재 좌표의 방 들름
+        levelVisitedMap[CurrentCoordinate.x][CurrentCoordinate.y][CurrentCoordinate.z] = true;
+
+        // 페이드 효과 적용 및 카메라 이동
         StartCoroutine(IE_FadeRoom(newRoomController.FadeScreenMesh, oldRoomController.FadeScreenMesh));
         CameraController.MoveRoomCam(moveDir);
     }
@@ -103,6 +120,17 @@ public class LevelManager : MonoBehaviour
         yield break;
     }
 
+    public void CallClearGame()
+    {
+        StartCoroutine(IE_ClearGame());
+    }
+
+    IEnumerator IE_ClearGame()
+    {
+        yield return new WaitForSeconds(3f);
+        GameSceneManager.Instance.GameSceneEvent.CallGameClear();
+    }
+
     public void RemoveOldRoom()
     {
         Destroy(PrevRoom);
@@ -123,6 +151,16 @@ public class LevelManager : MonoBehaviour
 
     public Transform GetNewCenter()
     {
-        return CurrentRoom.GetComponent<RoomController>().Center;
+        return currentRoomController.Center;
+    }
+
+    public bool GetCurrentRoomCleared()
+    {
+        return levelClearedMap[CurrentCoordinate.x][CurrentCoordinate.y][CurrentCoordinate.z];
+    }
+
+    public void RoomClear()
+    {
+        currentRoomController.RoomClear();
     }
 }
