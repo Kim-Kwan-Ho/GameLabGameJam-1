@@ -7,8 +7,8 @@ TagManager:
   - Enemy
   - Item
   - Obstacle
-  - obstacle
   - EpicEnemy
+  - Solution Trigger
   layers:
   - Default
   - TransparentFX

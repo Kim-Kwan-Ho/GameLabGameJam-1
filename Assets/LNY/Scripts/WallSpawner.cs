@@ -1,7 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using JetBrains.Annotations;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class WallSpawner : MonoBehaviour
@@ -30,11 +27,7 @@ public class WallSpawner : MonoBehaviour
     {
         GameObject wallPrefab = Walls[RandomGenerate()];
         Vector3 spawnPosition = center.position + new Vector3(0.67f, -5, distance);
-        GameObject newWall = Instantiate(wallPrefab, spawnPosition, Quaternion.identity);
-        Transform wallTransform = newWall.transform;
-        wallQueue.Enqueue(wallTransform);
-
-        playerRayCast.UpdateWallTransform(wallTransform);
+        Instantiate(wallPrefab, spawnPosition, Quaternion.identity);
 
     }
 

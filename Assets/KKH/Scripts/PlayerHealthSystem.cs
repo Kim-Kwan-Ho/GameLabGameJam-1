@@ -1,7 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerHealthSystem : MonoBehaviour
@@ -11,7 +9,7 @@ public class PlayerHealthSystem : MonoBehaviour
     [SerializeField] private int _health = 3;
 
     [SerializeField] private GameObject _deathParticle;
-    [SerializeField] private Material[] _materials = new Material[2];
+    //[SerializeField] private Material[] _materials = new Material[2];
     [SerializeField] private float _hitEffectTime = 0.2f;
     public Action HealthDecreaseEvent;
     public Action HealthIncreaseEvent;
@@ -26,7 +24,7 @@ public class PlayerHealthSystem : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.CompareTag("Enemy") || col.gameObject.CompareTag("Obstacle"))
+        if (col.gameObject.CompareTag("Obstacle"))
         {
             // Get the parent¡¯s parent¡¯s parent GameObject
             GameObject entireGameObject = col.transform.parent?.parent?.parent?.gameObject;
