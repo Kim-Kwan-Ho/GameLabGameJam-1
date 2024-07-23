@@ -211,7 +211,7 @@ public class CameraMoving : MonoBehaviour
 
         while (Vector3.Distance(transform.position, destination) > 0.01f)
         {
-            transform.position = Vector3.Lerp(transform.position, destination, 0.05f);
+            transform.position = Vector3.Lerp(transform.position, destination, 0.1f);
             yield return null;
         }
 

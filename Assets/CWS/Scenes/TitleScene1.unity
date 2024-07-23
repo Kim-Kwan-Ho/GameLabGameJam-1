@@ -340,6 +340,10 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6988855592825733309, guid: 70a9313d698a25c49b6e80d8e4785c78, type: 3}
+      propertyPath: m_ScreenMatchMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8831900099625001452, guid: 70a9313d698a25c49b6e80d8e4785c78, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
@@ -854,6 +858,10 @@ PrefabInstance:
     - target: {fileID: 7387354588171081967, guid: 8383dc4abb2e4ef44883244063e12fca, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8441078908804744591, guid: 8383dc4abb2e4ef44883244063e12fca, type: 3}
+      propertyPath: m_ScreenMatchMode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
