@@ -42,7 +42,7 @@ public class WallManager : MonoBehaviour
             //StartCoroutine(HandleClearCondition());
         }
 
-        ReturnToPos();
+        //ReturnToPos();
 
     }
 
@@ -56,7 +56,7 @@ public class WallManager : MonoBehaviour
         normalTriggerActivated = true;
         //Debug.Log("wrongly Triggered");
 
-        ReturnToPos();
+        //ReturnToPos();
     }
 
 

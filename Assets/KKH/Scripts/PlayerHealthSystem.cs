@@ -24,13 +24,14 @@ public class PlayerHealthSystem : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
+        Debug.Log(col);
         if (col.gameObject.CompareTag("Obstacle"))
         {
             Debug.Log("hello");
             // Get the parent¡¯s parent¡¯s parent GameObject
             GameObject entireGameObject = col.transform.parent?.parent?.parent?.gameObject;
 
-            Destroy(entireGameObject);
+            //Destroy(entireGameObject);
             PlayerTakeHit();
 
         }

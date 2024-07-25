@@ -11,22 +11,42 @@ public class WallSpawner : MonoBehaviour
     public float spawnInterval = 10f;
     private float spawnPosition;
 
-    private Queue<Transform> wallQueue = new Queue<Transform>();
-    public PlayerRayCast playerRayCast;
+    private float timeSinceLastIntervalDecrease = 0f;
+    //decrease by 0.2f every 5 seconds
+    public float intervalDecreaseAmount = 0.2f;
+    public float intervalDecreaseTime = 3f;
     public void Start()
     {
         InvokeRepeating(nameof(WallSpawning), 0.5f, spawnInterval);
-        spawnInterval -= (Constants.LEVEL_WALL_SPAWNTIME * GameSceneManager.GameLevel);
     }
 
     public void Update()
     {
-        spawnInterval -= (Constants.LEVEL_WALL_SPAWNTIME * GameSceneManager.GameLevel);
+        // Update time tracker
+        timeSinceLastIntervalDecrease += Time.deltaTime;
+
+        // Check if it's time to decrease the spawn interval
+        if (timeSinceLastIntervalDecrease >= intervalDecreaseTime)
+        {
+            // Decrease the spawn interval
+            spawnInterval -= intervalDecreaseAmount;
+
+            // Ensure spawnInterval does not go below a minimum value (optional)
+            if (spawnInterval < 1f) // Adjust the minimum value as needed
+            {
+                spawnInterval = 1f; // You can set this to any minimum value
+            }
+
+            // Restart the InvokeRepeating with the updated spawn interval
+            CancelInvoke(nameof(WallSpawning));
+            InvokeRepeating(nameof(WallSpawning), 0.5f, spawnInterval);
+
+            // Reset the time tracker
+            timeSinceLastIntervalDecrease = 0f;
+        }
     }
 
-    
-
-
+ 
     void  WallSpawning()
     {
         GameObject wallPrefab = Walls[RandomGenerate()];
